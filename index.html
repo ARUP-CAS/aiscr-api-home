@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" style="height:100%">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	<title>API AIS ČR</title>
+  </head>
+	<body style="background-image:url('media/desktop.png');background-repeat:no-repeat;background-position:center;background-attachment:fixed;background-size:cover;height:100%;font-family:Helvetica Neue">
+
+    <nav class="navbar">
+	<div class="container-fluid">
+	    <a class="navbar-brand" href="http://www.aiscr.cz/">
+		<img style="width:80%" src="media/logo_AIS.png" alt="">
+	    </a>
+	</div>
+    </nav>
+
+    <div class="container pb-10" id="change">
+		<div class="row mt-5 mb-4">
+			<div class="col-md-12 text-center">
+				<h3 class="mb-5"><span style="font-weight:500;color:black">Vítejte na stránkách</span> <span style="font-weight:500;color:rgb(231,48,42)">API Archeologického informačního systému ČR</span></h3>
+			</div>
+			<div class="col-md-12">
+				<p>API v současné době nabízí službu Data Provider AMČR, která poskytuje metadatové záznamy z databáze <a style="color:black;text-decoration:underline" href="http://www.archeologickamapa.cz/">Archelogická mapa ČR</a>, a to pomocí protokolu OpenArchives Initiative Protocol for Metadata Harvesting (OAI-PMH).</p>
+			</div>
+			<div class="col-md-12 mt-3">
+				Implementace OAI-PMH podporuje reprezentaci metadat v:
+			</div>
+			<div class="col-md-12 mt-1">
+			<ul>
+				<li style="list-style-image:url('media/ellipse.svg')">Dublin Core - poskytuje část datasetu týkající se dokumentů a jejich popisu</li>
+				<li style="list-style-image:url('media/ellipse.svg')"><a style="color:black;text-decoration:underline" href="http://www.cidoc-crm.org/">CIDOC-CRM</a> - nabízí archivovaná, volně přístupná data z AMČR ve formátu RDF v syntaxi odpovídající této ontologii</li>
+				<li style="list-style-image:url('media/ellipse.svg')">AMČR XML - nativní formát, který umožňuje plné vytěžování databáze při zohlednění přístupových práv</li>
+			</ul>
+			</div>
+			<div class="col-md-12 mt-3">
+				<p>Archeologové či uživatelé s vyšším oprávněním mohou využít registrovaný účet Archeologické mapy ČR pro přístup k nearchivovaným či jinak chráněným záznamům. Aktualizace dat probíhá na denní bázi vždy od 00:30 SEČ.</p>
+			</div>
+			<div class="col-md-12 text-center mt-4 mb-5">
+				<p id="test">Podrobný návod si můžete stáhnout <a href="media/API_UserGuide.pdf"><button class="btn btn-outline-danger btn-sm" style="border-radius:25px;border-width:2px"><span id="test" style="font-weight:600">ZDE</span></button></a><a>
+			</div>
+		</div>
+    </div>
+
+    <footer class="page-footer" style="position:fixed;bottom:0;width:100%; height:76px;background-color:#333333">
+		<div class="container pt-2 pb-1">
+			<div class="row align-items-center h-100">
+				<div class="col-12 col-md-6">
+					<p class="mb-0 pb-0" style="color:white" id="test">Archeologický ústav AV ČR, Praha, v. v. i. © 2019.</p>
+					<p class="pb-1 mb-0" style="color:#cccccc"><a id="toggleContact" class="btn btn-link pl-0 pt-1 pr-2"><img class="pb-1" src="media/add.svg" id="contactAdd" style="width: 11px">  Kontakt</a>|
+						<span style="color:#CCCCCC" class="pl-2">Created by</span> <a style="color:#CCCCCC;text-decoration:underline" href="http://www.ssf.fi/ssc/">SSC</a> <a class="btn btn-link pr-1 pl-3" id="toggleLicense"><img id="licenseAdd" class="pb-1" src="media/add.svg" style="width: 11px"></a> <a href="https://creativecommons.org/licenses/by-nc/4.0/"><img class="pb-1" src="media/logo-cc.png"></a></p>
+				
+				</div>
+				<div class="col-12 col-md-6 text-right">
+					<a href="http://www.arup.cas.cz/"><img src="media/logo-arup.png"></a> &nbsp
+					<a href="http://arub.avcr.cz/archiv/"><img src="media/logo-avcr-brno.png"></a> &nbsp
+					<a href="http://www.msmt.cz/"><img src="media/logo-msmt.png"></a> &nbsp
+					<a href="http://www.ssf.fi/ssc/"><img src="media/logo-ssc.png"></a>
+				</div>
+			</div>
+			<div class="row align-items-center h-100">
+				<div class="col-12 col-md-6">
+
+					<div id="toggle-contact" class="pl-2 pt-0.5 pb-1 mb-2" style="border-width:1px;border-style: solid;border-radius: 5px;border-color: #CCCCCC;display:none; font-size:10pt">
+						<p class="pb-0 mb-0" style="color:white">Správa dat, uživatelů a podpora pro oblast Čech</p>
+						<p class="p-0 m-0" style="color:rgb(167,169,166)">Archeologický ústav AV ČR, Praha, v. v. i.</p>
+						<p><a class="pt-0 mt-0" href="mailto:amcr@arup.cas.cz" style="color:#cccccc;text-decoration:underline">amcr@arup.cas.cz</a></p>
+
+						<p class="pb-0 mb-0" style="color:white">Správa dat, uživatelů a podpora pro oblast Moravy a Slezska (vč. kraje Vysočina)</p>
+						<p class="p-0 m-0" style="color:rgb(167,169,166)">Archeologický ústav AV ČR, Brno, v. v. i.</p>
+						<a class="p-0 m-0" href="mailto:amcr@arub.cz"  style="color:#cccccc;text-decoration:underline">amcr@arub.cz</a>
+					</div>
+					
+					<div id="toggle-license" class="pl-2 pt-1 pb-1 mb-2"  style="border-width:1px;border-style: solid;border-radius: 5px;border-color: #CCCCCC;display:none;font-size:10pt">
+							<p class="p-0 m-0" style="color:white">Databáze Archeologická mapa ČR, jejímž autorem je <a style="color:rgb(167, 169, 166);text-decoration:underline" href="http://www.arup.cas.cz/">Archeologický ústav AV ČR, Praha, v. v. i.</a> a 
+								<a href="http://arub.avcr.cz/" style="color:rgb(167, 169, 166);text-decoration:underline">Archeologický ústav AV ČR, Brno, v. v. i.</a>, podléhá licenci 
+								<a href="https://creativecommons.org/licenses/by-nc/4.0/" style="color:rgb(167, 169, 166);text-decoration:underline">Creative Commons Uveďte původ-Neužívejte komerčně 4.0 Mezinárodní (CC BY-NC 4.0)</a>. Užití dat i metadat podléhá této licenci, pokud není explicitně stanoveno jinak.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+  </body>
+</html>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#toggleContact").click( function() {
+			$("#contactAdd").attr("src", function(index, attr) {
+				return attr == 'media/remove.svg' ? 'media/add.svg' : 'media/remove.svg'})
+			$("#toggle-contact").toggle()
+			$("footer").css('height', 'auto')
+
+
+		})	
+
+		$("#toggleLicense").click( function() {
+			$("#licenseAdd").attr("src", function(index, attr) {
+				return attr == 'media/remove.svg' ? 'media/add.svg' : 'media/remove.svg'})
+			$("#toggle-license").toggle()
+			$("footer").css('height', 'auto')
+
+		})
+
+	})		
+  </script>
