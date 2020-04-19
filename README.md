@@ -1,5 +1,5 @@
 # aiscr-api-home
-Domovská stránka API AIS CR
+Domovská stránka API AIS CR (http://www.aiscr.cz/)
 
 Související komponenty:
 
