@@ -1,0 +1,41 @@
+---
+about:
+  template: solana
+  # image: "figs/logo-aiscr-ver.png"
+  # image-width: "160px"
+  links:
+    - text: Zenodo
+      href: https://zenodo.org/communities/aiscr/
+    - icon: github
+      text: Github
+      href: https://github.com/ARUP-CAS/
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/AISCRproject/
+    - icon: facebook
+      text: Facebook
+      href: https://www.facebook.com/ArcheologickyInformacniSystem/
+    - icon: youtube
+      text: YouTube
+      href: https://www.youtube.com/@aiscr253
+format-links: false
+repo-actions: false
+---
+
+**Archaeological Map of the Czech Republic** ([AMČR](https://amcr-info.aiscr.cz/){.external}) is an integral part of the **Archaeological Information System of the Czech Republic** ([AIS CR](https://aiscr.cz/){.external}). 
+The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in [Prague](https://arup.cas.cz){.external} and [Brno](https://arub.cz/){.external}.
+
+
+## Contacts
+
+Support for the region of **Bohemia**:
+
+- Institute of Archaeology, Czech Academy of Sciences, Prague  
+  [https://www.arup.cas.cz/](https://www.arup.cas.cz/){.external}  
+  [{{< fa regular envelope size=xs >}} amcr@arup.cas.cz](mailto:amcr@arup.cas.cz)
+
+Support for the regions of **Moravia** and **Silesia** (incl. Vysočina region):
+
+- Institute of Archaeology, Czech Academy of Sciences, Brno  
+  [https://www.arub.cz/](https://www.arub.cz/){.external}  
+  [{{< fa regular envelope size=xs >}} amcr@arub.cz](mailto:amcr@arub.cz)

@@ -1,0 +1,38 @@
+---
+title: "AMCR APIs"
+format-links: false
+listing: 
+  - id: news
+    contents: "news/*.qmd"
+    template: "news.ejs"
+    sort: "date desc"
+    max-items: 4
+  - id: news2
+    type: default
+    contents: "news/*.qmd"
+    sort: "date desc"
+    fields: [date, title, categories, description]
+    categories: true
+    max-items: 4
+---
+
+API currently hosts **AMCR Data Provider** service 
+
+## News
+
+::: {#news}
+
+:::
+
+See [archived posts](newsfeed.qmd)...
+
+
+## Changelogs
+
+::: {#news2}
+
+:::
+
+## Citations and licence
+
+Contents of this page is licensed under [CC BY-SA 4.0 Int.](https://creativecommons.org/licenses/by-nc/4.0/){.external} licence.

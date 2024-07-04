@@ -1,0 +1,99 @@
+project:
+  type: website
+  resources:
+    - "CNAME"
+
+website:
+  title: "AMCR APIs"
+  favicon: figs/cover.png
+  repo-url: https://github.com/ARUP-CAS/aiscr-api-home/
+  repo-actions: [source, edit, issue]
+  page-navigation: false
+  # google-analytics:
+  #   tracking-id: "G-S3BT2B2SPF"
+  #   anonymize-ip: true
+  #   storage: cookies
+  cookie-consent:
+    style: simple
+    palette: light
+  bread-crumbs: true
+
+  navbar:
+    background: dark
+    search: true
+    pinned: true
+    logo: figs/cover_g.png
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Oai-pmh Api"
+        href: oaipmhapi.qmd
+    right:
+      - text: "About"
+        href: about.qmd
+
+  sidebar:
+    - id: main
+      collapse-level: 1
+      style: "floating"
+      header: |
+        [![](/figs/logo-amcr-hor.png)](https://amcr-info.aiscr.cz/)
+      contents:
+        - index.qmd
+      # footer: |
+      #   **{{< fa skull-crossbones >}}  Pozor, zavítali jste na stránky připravované pro novou verzi AMČR!**  
+      #   Tyto stránky jsou ve výstavbě a informace, které obsahují, nemusí být platné pro aktuálně spuštěné verze nástrojů AMČR. 
+      #   Platná nápověda je [zde](https://amcr-info.aiscr.cz/help).
+        
+    - id: oaipmhapi
+      contents:
+        - oaipmhapi.qmd
+        
+    - id: about
+      contents:
+        - about.qmd
+
+  page-footer:
+    background: light
+    left: |
+      [About](about.qmd) | 
+      [<u>Cookies</u>]{#open_preferences_center} |
+      CC BY-NC 4.0
+    center: |
+      [![](/figs/logo-aiscr-hor.png){height=60}](https://aiscr.cz/)
+    right:
+      - text: Created with &#9825; in Quarto.
+        href: https://www.quarto.org/
+
+format:
+  html:
+    toc: true
+    theme:
+      - spacelab
+      - theme.scss
+    css:
+      - museo.css
+    mainfont: "Alegreya Sans"
+    fontsize: 1.1em
+    df-print: kable
+    link-external-newwindow: true
+    grid:
+      sidebar-width: 250px
+      body-width: 1000px
+      margin-width: 300px
+  pdf:
+    documentclass: scrarticle
+    papersize: a4wide
+    lot: false
+    lof: false
+  docx: default
+
+execute:
+  freeze: auto
+  echo: false
+
+crossref:
+   chapters: true
+
+callout-appearance: simple
+toc-depth: 4

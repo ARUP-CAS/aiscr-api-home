@@ -1,0 +1,11 @@
+```{=html}
+
+<% for (const item of items) { %>
+  <div style="margin-bottom: 10px;">
+    <div><b><%= item.title %></b></div>
+    <div style="color: gray; font-variant: small-caps;"><%= item.date %> | <%= item.categories %></div>
+    <%= item.description %>
+  </div>
+<% } %>
+
+```
