@@ -22,28 +22,6 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "AMCR APIs",
-    "section": "",
-    "text": "Archaeological Map of the Czech Republic (AMČR) is an integral part of the Archaeological Information System of the Czech Republic (AIS CR). The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in Prague and Brno.",
-    "crumbs": [
-      "About",
-      "Contacts"
-    ]
-  },
-  {
-    "objectID": "about.html#contacts",
-    "href": "about.html#contacts",
-    "title": "AMCR APIs",
-    "section": "Contacts",
-    "text": "Contacts\nSupport for the region of Bohemia:\n\nInstitute of Archaeology, Czech Academy of Sciences, Prague\nhttps://www.arup.cas.cz/\n amcr@arup.cas.cz\n\nSupport for the regions of Moravia and Silesia (incl. Vysočina region):\n\nInstitute of Archaeology, Czech Academy of Sciences, Brno\nhttps://www.arub.cz/\n amcr@arub.cz",
-    "crumbs": [
-      "About",
-      "Contacts"
-    ]
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "AMCR APIs",
@@ -93,5 +71,27 @@
     "title": "Changelog and news",
     "section": "",
     "text": "Template\n    Jun 6, 2024 | maintenance\n    Text novinky je prosté HTML.\nVíce viz https://amcr-info.aiscr.cz/.\n\n  \n\n  \n    Ukončení provozu desktopového klienta AMČR\n    May 30, 2024 | maintenance\n    Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace.\nV tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR.\nVíce viz https://amcr-info.aiscr.cz/.\n\n  \n\n  \n    Version v05 of OAI-PMH API\n    Mar 26, 2024 | oai-pmh,major,minor,patch\n    The operation of the Digital Archive has been fully restored, we apologize for the inconvenience.\n\n  \n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "AMCR APIs",
+    "section": "",
+    "text": "Archaeological Map of the Czech Republic (AMČR) is an integral part of the Archaeological Information System of the Czech Republic (AIS CR). The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in Prague and Brno.",
+    "crumbs": [
+      "About",
+      "Contacts"
+    ]
+  },
+  {
+    "objectID": "about.html#contacts",
+    "href": "about.html#contacts",
+    "title": "AMCR APIs",
+    "section": "Contacts",
+    "text": "Contacts\nSupport for the region of Bohemia:\n\nInstitute of Archaeology, Czech Academy of Sciences, Prague\nhttps://www.arup.cas.cz/\n amcr@arup.cas.cz\n\nSupport for the regions of Moravia and Silesia (incl. Vysočina region):\n\nInstitute of Archaeology, Czech Academy of Sciences, Brno\nhttps://www.arub.cz/\n amcr@arub.cz",
+    "crumbs": [
+      "About",
+      "Contacts"
+    ]
   }
 ]
