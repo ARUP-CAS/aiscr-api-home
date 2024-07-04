@@ -1,0 +1,97 @@
+[
+  {
+    "objectID": "oaipmhapi.html",
+    "href": "oaipmhapi.html",
+    "title": "OAI-PMH API",
+    "section": "",
+    "text": "API currently hosts AMCR Data Provider service",
+    "crumbs": [
+      "Oai-pmh Api",
+      "OAI-PMH API"
+    ]
+  },
+  {
+    "objectID": "oaipmhapi.html#amcr-api-amcr-data-provider",
+    "href": "oaipmhapi.html#amcr-api-amcr-data-provider",
+    "title": "OAI-PMH API",
+    "section": "",
+    "text": "API currently hosts AMCR Data Provider service",
+    "crumbs": [
+      "Oai-pmh Api",
+      "OAI-PMH API"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "AMCR APIs",
+    "section": "",
+    "text": "Archaeological Map of the Czech Republic (AMČR) is an integral part of the Archaeological Information System of the Czech Republic (AIS CR). The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in Prague and Brno.",
+    "crumbs": [
+      "About",
+      "Contacts"
+    ]
+  },
+  {
+    "objectID": "about.html#contacts",
+    "href": "about.html#contacts",
+    "title": "AMCR APIs",
+    "section": "Contacts",
+    "text": "Contacts\nSupport for the region of Bohemia:\n\nInstitute of Archaeology, Czech Academy of Sciences, Prague\nhttps://www.arup.cas.cz/\n amcr@arup.cas.cz\n\nSupport for the regions of Moravia and Silesia (incl. Vysočina region):\n\nInstitute of Archaeology, Czech Academy of Sciences, Brno\nhttps://www.arub.cz/\n amcr@arub.cz",
+    "crumbs": [
+      "About",
+      "Contacts"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AMCR APIs",
+    "section": "",
+    "text": "API currently hosts AMCR Data Provider service",
+    "crumbs": [
+      "Home",
+      "AMCR APIs"
+    ]
+  },
+  {
+    "objectID": "index.html#news",
+    "href": "index.html#news",
+    "title": "AMCR APIs",
+    "section": "News",
+    "text": "News\n\n\n  \n    Template\n    Jun 6, 2024 | maintenance\n    Text novinky je prosté HTML.\nVíce viz https://amcr-info.aiscr.cz/.\n\n  \n\n  \n    Ukončení provozu desktopového klienta AMČR\n    May 30, 2024 | maintenance\n    Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace.\nV tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR.\nVíce viz https://amcr-info.aiscr.cz/.\n\n  \n\n  \n    Version v05 of OAI-PMH API\n    Mar 26, 2024 | oai-pmh,major,minor,patch\n    The operation of the Digital Archive has been fully restored, we apologize for the inconvenience.\n\n  \n\n\nNo matching items\n\n\nSee archived posts…",
+    "crumbs": [
+      "Home",
+      "AMCR APIs"
+    ]
+  },
+  {
+    "objectID": "index.html#changelogs",
+    "href": "index.html#changelogs",
+    "title": "AMCR APIs",
+    "section": "Changelogs",
+    "text": "Changelogs\n\n\n\n\n\nTemplate\n\n\n\n\n\n\nmaintenance\n\n\n\nText novinky je prosté HTML. Více viz https://amcr-info.aiscr.cz/. \n\n\n\n\n\nJun 6, 2024\n\n\n\n\n\n\n\nUkončení provozu desktopového klienta AMČR\n\n\n\n\n\n\nmaintenance\n\n\n\nOd 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace. V tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR. Více viz https://amcr-info.aiscr.cz/. \n\n\n\n\n\nMay 30, 2024\n\n\n\n\n\n\n\nVersion v05 of OAI-PMH API\n\n\n\n\n\n\noai-pmh\n\n\nmajor\n\n\nminor\n\n\npatch\n\n\n\nThe operation of the Digital Archive has been fully restored, we apologize for the inconvenience. \n\n\n\n\n\nMar 26, 2024\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "AMCR APIs"
+    ]
+  },
+  {
+    "objectID": "index.html#citations-and-licence",
+    "href": "index.html#citations-and-licence",
+    "title": "AMCR APIs",
+    "section": "Citations and licence",
+    "text": "Citations and licence\nContents of this page is licensed under CC BY-SA 4.0 Int. licence.",
+    "crumbs": [
+      "Home",
+      "AMCR APIs"
+    ]
+  },
+  {
+    "objectID": "news.html",
+    "href": "news.html",
+    "title": "Changelog and news",
+    "section": "",
+    "text": "Template\n    Jun 6, 2024 | maintenance\n    Text novinky je prosté HTML.\nVíce viz https://amcr-info.aiscr.cz/.\n\n  \n\n  \n    Ukončení provozu desktopového klienta AMČR\n    May 30, 2024 | maintenance\n    Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace.\nV tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR.\nVíce viz https://amcr-info.aiscr.cz/.\n\n  \n\n  \n    Version v05 of OAI-PMH API\n    Mar 26, 2024 | oai-pmh,major,minor,patch\n    The operation of the Digital Archive has been fully restored, we apologize for the inconvenience.\n\n  \n\n\nNo matching items"
+  }
+]

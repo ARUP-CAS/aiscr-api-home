@@ -1,0 +1,18 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/news/2024-06-06.html",
+      "/news/2024-05-30.html",
+      "/news/2024-03-26.html"
+    ]
+  },
+  {
+    "listing": "/news.html",
+    "items": [
+      "/news/2024-06-06.html",
+      "/news/2024-05-30.html",
+      "/news/2024-03-26.html"
+    ]
+  }
+]
