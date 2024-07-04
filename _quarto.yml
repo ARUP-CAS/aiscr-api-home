@@ -1,7 +1,7 @@
 project:
   type: website
-  resources:
-    - "CNAME"
+  # resources:
+  #   - "CNAME"
 
 website:
   title: "AMCR APIs"
