@@ -81,11 +81,11 @@ format:
       sidebar-width: 250px
       body-width: 1000px
       margin-width: 300px
-  # pdf:
-  #   documentclass: scrarticle
-  #   papersize: a4wide
-  #   lot: false
-  #   lof: false
+  pdf:
+    documentclass: scrarticle
+    papersize: a4wide
+    lot: false
+    lof: false
   docx: default
 
 execute:
