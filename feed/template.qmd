@@ -1,8 +1,0 @@
----
-title: "Ukončení provozu desktopového klienta AMČR"
-date: 2024-05-30
-description: |
-   Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace. 
-   V tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR. 
-   Více viz <https://amcr-info.aiscr.cz/>. 
----
