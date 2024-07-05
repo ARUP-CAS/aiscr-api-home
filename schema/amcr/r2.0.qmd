@@ -1,0 +1,16 @@
+---
+title: "Redirect"
+aliases:
+  - "2.0/"
+repo-actions: false  
+format-links: false
+format:
+  html:
+    minimal: true
+    theme: none
+    include-in-header:
+      - text: |
+          <meta http-equiv = "refresh" content = "0; URL = '2.0/amcr.xsd'" />
+---
+
+Redirecting to .xsd schema.
