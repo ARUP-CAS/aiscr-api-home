@@ -6,8 +6,6 @@ repo-actions: false
 format-links: false
 format:
   html:
-    minimal: true
-    theme: none
     include-in-header:
       - text: |
           <meta http-equiv = "refresh" content = "0; URL = '1.0/amcr.xsd'" />
