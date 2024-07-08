@@ -1,0 +1,8 @@
+---
+title: 404 Page not found!
+subtitle: Impossible. Perhaps the archives are incomplete.
+format-links: false
+repo-actions: false
+---
+
+Please go back to the [home page](index.qmd) or try your luck using our magnificent search option.
