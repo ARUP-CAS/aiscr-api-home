@@ -16,6 +16,7 @@ website:
     anonymize-ip: true
     storage: cookies
   cookie-consent:
+    type: express
     style: simple
     palette: light
   bread-crumbs: true
