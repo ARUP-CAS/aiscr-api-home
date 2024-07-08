@@ -11,10 +11,10 @@ website:
   repo-url: https://github.com/ARUP-CAS/aiscr-api-home/
   repo-actions: [source, edit, issue]
   page-navigation: false
-  # google-analytics:
-  #   tracking-id: "G-S3BT2B2SPF"
-  #   anonymize-ip: true
-  #   storage: cookies
+  google-analytics:
+    tracking-id: "UA-79200582-4"
+    anonymize-ip: true
+    storage: cookies
   cookie-consent:
     style: simple
     palette: light
