@@ -23,7 +23,7 @@ repo-actions: false
 ---
 
 **Archaeological Map of the Czech Republic** ([AMČR](https://amcr-info.aiscr.cz/){.external}) is an integral part of the **Archaeological Information System of the Czech Republic** ([AIS CR](https://aiscr.cz/){.external}). 
-The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in [Prague](https://arup.cas.cz){.external} and [Brno](https://arub.cz/){.external}.
+The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in [Prague](https://www.arup.cas.cz){.external} and [Brno](https://www.arub.cz/){.external}.
 
 
 ## Contacts
