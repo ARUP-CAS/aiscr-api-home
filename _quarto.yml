@@ -30,10 +30,10 @@ website:
       - text: "Home"
         href: index.qmd
       - text: "Oai-pmh Api"
-        href: oaipmhapi.qmd
+        href: oai-pmh/index.qmd
     right:
       - text: "About"
-        href: about.qmd
+        href: about/index.qmd
 
   sidebar:
     - id: main
@@ -48,18 +48,18 @@ website:
       #   Tyto stránky jsou ve výstavbě a informace, které obsahují, nemusí být platné pro aktuálně spuštěné verze nástrojů AMČR. 
       #   Platná nápověda je [zde](https://amcr-info.aiscr.cz/help).
         
-    - id: oaipmhapi
+    - id: oaipmh
       contents:
-        - oaipmhapi.qmd
+        - oai-pmh/index.qmd
         
     - id: about
       contents:
-        - about.qmd
+        - about/index.qmd
 
   page-footer:
     background: light
     left: |
-      [About](about.qmd) | 
+      [About](/about/index.qmd) | 
       [<u>Cookies</u>]{#open_preferences_center} |
       CC BY-NC 4.0
     center: |
