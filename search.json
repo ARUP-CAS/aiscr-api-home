@@ -1,24 +1,24 @@
 [
   {
-    "objectID": "oaipmhapi.html",
-    "href": "oaipmhapi.html",
-    "title": "OAI-PMH API",
+    "objectID": "about/index.html",
+    "href": "about/index.html",
+    "title": "AMCR APIs",
     "section": "",
-    "text": "API currently hosts AMCR Data Provider service",
+    "text": "Archaeological Map of the Czech Republic (AMČR) is an integral part of the Archaeological Information System of the Czech Republic (AIS CR). The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in Prague and Brno.",
     "crumbs": [
-      "Oai-pmh Api",
-      "OAI-PMH API"
+      "About",
+      "Contacts"
     ]
   },
   {
-    "objectID": "oaipmhapi.html#amcr-api-amcr-data-provider",
-    "href": "oaipmhapi.html#amcr-api-amcr-data-provider",
-    "title": "OAI-PMH API",
-    "section": "",
-    "text": "API currently hosts AMCR Data Provider service",
+    "objectID": "about/index.html#contacts",
+    "href": "about/index.html#contacts",
+    "title": "AMCR APIs",
+    "section": "Contacts",
+    "text": "Contacts\nSupport for the region of Bohemia:\n\nInstitute of Archaeology, Czech Academy of Sciences, Prague\nhttps://www.arup.cas.cz/\n amcr@arup.cas.cz\n\nSupport for the regions of Moravia and Silesia (incl. Vysočina region):\n\nInstitute of Archaeology, Czech Academy of Sciences, Brno\nhttps://www.arub.cz/\n amcr@arub.cz",
     "crumbs": [
-      "Oai-pmh Api",
-      "OAI-PMH API"
+      "About",
+      "Contacts"
     ]
   },
   {
@@ -27,6 +27,72 @@
     "title": "Changelog and news",
     "section": "",
     "text": "Template\n    Jun 6, 2024 | maintenance\n    Text novinky je prosté HTML.\nVíce viz https://amcr-info.aiscr.cz/.\n\n  \n\n  \n    Ukončení provozu desktopového klienta AMČR\n    May 30, 2024 | maintenance\n    Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace.\nV tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR.\nVíce viz https://amcr-info.aiscr.cz/.\n\n  \n\n  \n    Version v05 of OAI-PMH API\n    Mar 26, 2024 | oai-pmh,major,minor,patch\n    The operation of the Digital Archive has been fully restored, we apologize for the inconvenience.\n\n  \n\n\nNo matching items"
+  },
+  {
+    "objectID": "oai-pmh/index.html",
+    "href": "oai-pmh/index.html",
+    "title": "OAI-PMH API",
+    "section": "",
+    "text": "API is available here: https://api.aiscr.cz/oai?verb=Identify.\nUser registration is available here: https://amcr.aiscr.cz/accounts/register/.\nThis guide is valid for version 2.0.0 of the service.\nOAI-PMH AMČR API hosts AMČR Data Provider service providing metadata from the AMČR database using the OpenArchives Initiative Protocol for Metadata Harvesting (OAI-PMH).\nThe implementation supports two metadata standards:",
+    "crumbs": [
+      "Oai-pmh Api",
+      "OAI-PMH API"
+    ]
+  },
+  {
+    "objectID": "oai-pmh/index.html#access",
+    "href": "oai-pmh/index.html#access",
+    "title": "OAI-PMH API",
+    "section": "Access",
+    "text": "Access\nThe access to some metadata is protected by user roles:\n\nA (anonymous) – anyoune on the internet accessing AMČR services,\nB (researcher) – registered users,\nC (archaeologist) – archaeologist from a licensed organisation,\nD (archivist) – AMČR authorized archivist.\n\nRegistration to the system is available here: https://amcr.aiscr.cz/accounts/register/.",
+    "crumbs": [
+      "Oai-pmh Api",
+      "OAI-PMH API"
+    ]
+  },
+  {
+    "objectID": "oai-pmh/index.html#specification",
+    "href": "oai-pmh/index.html#specification",
+    "title": "OAI-PMH API",
+    "section": "Specification",
+    "text": "Specification\n\nSchema\n\n\nFilters\n\nState and accessibility of the record\n\n\nSets\n\n\n\nAvailable sets\n\n\n\n\n\n\nsetSpec\nsetName\n\n\n\n\nprojekt\nProjekty / Projects\n\n\nakce\nAkce / Fieldwork Events\n\n\nlokalita\nLokality / Sites\n\n\ndok_jednotka\nDokumentační jednotky / Descriptive Units\n\n\nadb\nArcheologický dokumentační bod / Archaeological Documentation Point\n\n\ndokument\nDokumenty / Documents\n\n\nsoubor\nSoubory / Files\n\n\npian\nPIAN / Spatial Units\n\n\next_zdroj\nExterní zdroje / External Sources\n\n\nlet\nLety / Flights\n\n\nsamostatny_nalez\nSamostatné nálezy / Individual Finds\n\n\n\n\n\n\n\nDatestamps",
+    "crumbs": [
+      "Oai-pmh Api",
+      "OAI-PMH API"
+    ]
+  },
+  {
+    "objectID": "oai-pmh/index.html#login-and-authorization",
+    "href": "oai-pmh/index.html#login-and-authorization",
+    "title": "OAI-PMH API",
+    "section": "Login and authorization",
+    "text": "Login and authorization\n\ncURL\n\n\nPostman",
+    "crumbs": [
+      "Oai-pmh Api",
+      "OAI-PMH API"
+    ]
+  },
+  {
+    "objectID": "oai-pmh/index.html#oai-pmh-verbs",
+    "href": "oai-pmh/index.html#oai-pmh-verbs",
+    "title": "OAI-PMH API",
+    "section": "OAI-PMH Verbs",
+    "text": "OAI-PMH Verbs\nOAI-PMH protocol defines several verbs that allow metadata harvesting. OAI-PMH specification is available here.\n\nIdentify\nVerb Identify is used to get information about the repository.\nQuery: https://api.aiscr.cz/oai?verb=Identify\nSample response:\n\n&lt;OAI-PMH xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\"&gt;\n  &lt;responseDate&gt;2024-07-11T12:26:50Z&lt;/responseDate&gt;\n  &lt;request verb=\"Identify\"&gt;http://digiarchiv:8080/oai&lt;/request&gt;\n  &lt;Identify&gt;\n    &lt;repositoryName&gt;Archaeological Map of the Czech Republic (AMCR)&lt;/repositoryName&gt;\n    &lt;baseURL&gt;https://api.aiscr.cz/oai&lt;/baseURL&gt;\n    &lt;protocolVersion&gt;2.0&lt;/protocolVersion&gt;\n    &lt;adminEmail&gt;info@amapa.cz&lt;/adminEmail&gt;\n    &lt;earliestDatestamp&gt;1990-01-01&lt;/earliestDatestamp&gt;\n    &lt;deletedRecord&gt;persistent&lt;/deletedRecord&gt;\n    &lt;granularity&gt;YYYY-MM-DDThh:mm:ssZ&lt;/granularity&gt;\n    &lt;description&gt;\n      &lt;rightsManifest xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/rights/ http://www.openarchives.org/OAI/2.0/rightsManifest.xsd\" appliesTo=\"http://www.openarchives.org/OAI/2.0/entity#metadata\"&gt;\n        &lt;rights&gt;\n          &lt;rightsReference ref=\"http://creativecommons.org/licenses/by-nc/4.0/rdf\"/&gt;\n        &lt;/rights&gt;\n      &lt;/rightsManifest&gt;\n    &lt;/description&gt;\n    &lt;description&gt;\n      &lt;oai_dc:dc xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\"&gt;\n        &lt;dc:title xml:lang=\"cs\"&gt;Archeologická mapa České Republiky (AMČR)&lt;/dc:title&gt;\n        &lt;dc:title xml:lang=\"en\"&gt;Archaeological Map of the Czech Republic (AMCR)&lt;/dc:title&gt;\n        [...]\n        &lt;dc:identifier&gt;https://api.aiscr.cz/&lt;/dc:identifier&gt;\n        &lt;dc:identifier&gt;version 2.0.0&lt;/dc:identifier&gt;\n        [...]\n      &lt;/oai_dc:dc&gt;\n    &lt;/description&gt;\n  &lt;/Identify&gt;\n&lt;/OAI-PMH&gt;\n\n\n\nListMetadataFormats\nVerb ListMetadataFormats returns available metadata formats/standards.\nQuery: https://api.aiscr.cz/oai?verb=ListMetadataFormats\nSample response:\n\n&lt;OAI-PMH xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\"&gt;\n  &lt;responseDate&gt;2024-07-11T12:46:31Z&lt;/responseDate&gt;\n  &lt;request verb=\"ListMetadataFormats\"&gt;http://digiarchiv:8080/oai&lt;/request&gt;\n  &lt;ListMetadataFormats&gt;\n    &lt;metadataFormat&gt;\n      &lt;metadataPrefix&gt;oai_dc&lt;/metadataPrefix&gt;\n      &lt;schema&gt;http://www.openarchives.org/OAI/2.0/oai_dc.xsd&lt;/schema&gt;\n      &lt;metadataNamespace&gt;http://www.openarchives.org/OAI/2.0/oai_dc/&lt;/metadataNamespace&gt;\n    &lt;/metadataFormat&gt;\n    &lt;metadataFormat&gt;\n      &lt;metadataPrefix&gt;oai_amcr&lt;/metadataPrefix&gt;\n      &lt;schema&gt;https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd&lt;/schema&gt;\n      &lt;metadataNamespace&gt;https://api.aiscr.cz/schema/amcr/2.0/&lt;/metadataNamespace&gt;\n    &lt;/metadataFormat&gt;\n  &lt;/ListMetadataFormats&gt;\n&lt;/OAI-PMH&gt;\n\nSupported metadata formats are:\n\nDublin Core – metadataPrefix=oai_dc, schema available here http://www.openarchives.org/OAI/2.0/oai_dc.xsd,\nnative AMČR .xml format – metadataPrefix=oai_amcr, schema available here https://api.aiscr.cz/schema/amcr/2.0/.\n\n\n\nListIdentifiers\nVerb ListIdentifiers lists record headers. Required parameter is metadataPrefix, optional arguments allow filtering based on predefined sets (set) and/or datestamps (from, until). Only first page with limited amount of records is returned, to go to the next page, user has to submit a resumptionToken returned in the response.\nQuery: https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr\nSample response:\n\n&lt;OAI-PMH xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\"&gt;\n  &lt;responseDate&gt;2024-07-11T12:51:03Z&lt;/responseDate&gt;\n  &lt;request verb=\"ListIdentifiers\" metadataPrefix=\"oai_amcr\"&gt;http://digiarchiv:8080/oai&lt;/request&gt;\n  &lt;ListIdentifiers&gt;\n    &lt;record&gt;\n      &lt;header&gt;\n        &lt;identifier&gt;https://api-test.aiscr.cz/id/C-202013149&lt;/identifier&gt;\n        &lt;datestamp&gt;2024-07-11T12:27:13.968Z&lt;/datestamp&gt;\n        &lt;setSpec&gt;projekt&lt;/setSpec&gt;\n      &lt;/header&gt;\n    &lt;/record&gt;\n    &lt;record&gt;\n      &lt;header&gt;\n        &lt;identifier&gt;https://api-test.aiscr.cz/id/P-0334-000377&lt;/identifier&gt;\n        &lt;datestamp&gt;2024-07-11T12:12:19.386Z&lt;/datestamp&gt;\n        &lt;setSpec&gt;pian&lt;/setSpec&gt;\n      &lt;/header&gt;\n    &lt;/record&gt;\n    &lt;record&gt;\n      &lt;header&gt;\n        &lt;identifier&gt;https://api-test.aiscr.cz/id/C-DL-200400209&lt;/identifier&gt;\n        &lt;datestamp&gt;2024-07-11T12:10:48.403Z&lt;/datestamp&gt;\n        &lt;setSpec&gt;dokument&lt;/setSpec&gt;\n      &lt;/header&gt;\n    &lt;/record&gt;\n    [...]\n    &lt;resumptionToken completeListSize=\"859142\" cursor=\"0\"&gt;8F37FA46A1BE68D815CAE66EDFD7EE64&lt;/resumptionToken&gt;\n  &lt;/ListIdentifiers&gt;\n&lt;/OAI-PMH&gt;\n\n\n\nListRecords\nVerb ListRecords lists records. Required parameter is metadataPrefix, optional arguments allow filtering based on predefined sets (set) and/or datestamps (from, until). Only first page with limited amount of records is returned, to go to the next page, user has to submit a resumptionToken returned in the response.\nQuery: https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc\nSample response:\n\n&lt;OAI-PMH xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\"&gt;\n  &lt;responseDate&gt;2024-07-11T13:25:02Z&lt;/responseDate&gt;\n  &lt;request verb=\"ListRecords\" metadataPrefix=\"oai_dc\"&gt;http://digiarchiv:8080/oai&lt;/request&gt;\n  &lt;ListRecords&gt;\n    &lt;record&gt;\n      &lt;header&gt;\n        &lt;identifier&gt;https://api-test.aiscr.cz/id/C-202013149&lt;/identifier&gt;\n        &lt;datestamp&gt;2024-07-11T12:27:13.968Z&lt;/datestamp&gt;\n        &lt;setSpec&gt;projekt&lt;/setSpec&gt;\n      &lt;/header&gt;\n      &lt;metadata&gt;\n        &lt;oai_dc:dc xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\"&gt;\n          &lt;oai_dc:dc xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\"&gt;\n            &lt;dc:title xml:lang=\"cs\"&gt;AMČR - projekt C-202013149&lt;/dc:title&gt;\n            &lt;dc:identifier&gt;C-202013149&lt;/dc:identifier&gt;\n            &lt;dc:subject xml:lang=\"cs\"&gt;projekt&lt;/dc:subject&gt;\n            &lt;dc:description xml:lang=\"cs\"&gt;Stav: 6&lt;/dc:description&gt;\n            &lt;dc:type&gt;http://base_url/id/HES-000865&lt;/dc:type&gt;\n            [...]\n          &lt;/oai_dc:dc&gt;\n        &lt;/oai_dc:dc&gt;\n      &lt;/metadata&gt;\n    &lt;/record&gt;\n    &lt;resumptionToken completeListSize=\"859142\" cursor=\"0\"&gt;2A997D362431AC3FC670E2680E61D782&lt;/resumptionToken&gt;\n  &lt;/ListRecords&gt;\n&lt;/OAI-PMH&gt;\n\n\n\nGetRecord\nQuery: \nSample response:\n\n\n\n\n\nListSets\nVerb ListSets lists available sets.\nQuery: https://api.aiscr.cz/oai?verb=ListSets\nSample response:\n\n&lt;OAI-PMH xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\"&gt;\n  &lt;responseDate&gt;2024-07-11T13:28:01Z&lt;/responseDate&gt;\n  &lt;request verb=\"ListSets\"&gt;http://digiarchiv:8080/oai&lt;/request&gt;\n  &lt;ListSets&gt;\n    &lt;set&gt;\n      &lt;setSpec&gt;projekt&lt;/setSpec&gt;\n      &lt;setName&gt;Projekty / Projects&lt;/setName&gt;\n      &lt;setDescription&gt;\n        &lt;oai_dc:dc xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd\"&gt;\n          &lt;dc:description xml:lang=\"cs\"&gt;\n            Evidenční jednotky terénní činnosti badatelského nebo záchranného rázu evidované již ve fázi přípravy. Pro vymezení projektu je rozhodující podnět k výzkumu a provádějící subjekt (oprávněná organizace), lokalizace a příp. projektová dokumentace. Na projekt zpravidla navazuje jedna či (méně často) více terénních akcí či evidence samostatných nálezů.\n          &lt;/dc:description&gt;\n          &lt;dc:description xml:lang=\"en\"&gt;\n            Records of field activities of a research or development-led nature recorded in the preparation phase. For the definition of the project, the motivation and the implementing body (authorised organisation), the location and, if applicable, the project documentation are decisive. The project is usually followed by one or (less frequently) more fieldwork, or the recording of individual finds.\n          &lt;/dc:description&gt;\n        &lt;/oai_dc:dc&gt;\n      &lt;/setDescription&gt;\n    &lt;/set&gt;\n    [...]\n  &lt;/ListSets&gt;\n&lt;/OAI-PMH&gt;",
+    "crumbs": [
+      "Oai-pmh Api",
+      "OAI-PMH API"
+    ]
+  },
+  {
+    "objectID": "oai-pmh/index.html#query-parameters",
+    "href": "oai-pmh/index.html#query-parameters",
+    "title": "OAI-PMH API",
+    "section": "Query parameters",
+    "text": "Query parameters\n\n\n\nRequired and optional query parameters\n\n\n\n\n\n\n\nverb\nrequired\noptional\n\n\n\n\nIdentify\n\n\n\n\nListMetadataFormats\n\n\n\n\nListIdentifiers\nmetadataPrefix\nset, from, until, resumptionToken\n\n\nListRecords\nmetadataPrefix\nset, from, until, resumptionToken\n\n\nGetRecord\nidentifier, metadataPrefix\n\n\n\nListSets\n\n\n\n\n\n\n\n\nPagination\n\n\nFilters\n\nRecord accessibility\n\n\nSets\n\n\nDatestamps",
+    "crumbs": [
+      "Oai-pmh Api",
+      "OAI-PMH API"
+    ]
   },
   {
     "objectID": "index.html",
@@ -70,28 +136,6 @@
     "crumbs": [
       "Home",
       "AMCR APIs"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "AMCR APIs",
-    "section": "",
-    "text": "Archaeological Map of the Czech Republic (AMČR) is an integral part of the Archaeological Information System of the Czech Republic (AIS CR). The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in Prague and Brno.",
-    "crumbs": [
-      "About",
-      "Contacts"
-    ]
-  },
-  {
-    "objectID": "about.html#contacts",
-    "href": "about.html#contacts",
-    "title": "AMCR APIs",
-    "section": "Contacts",
-    "text": "Contacts\nSupport for the region of Bohemia:\n\nInstitute of Archaeology, Czech Academy of Sciences, Prague\nhttps://www.arup.cas.cz/\n amcr@arup.cas.cz\n\nSupport for the regions of Moravia and Silesia (incl. Vysočina region):\n\nInstitute of Archaeology, Czech Academy of Sciences, Brno\nhttps://www.arub.cz/\n amcr@arub.cz",
-    "crumbs": [
-      "About",
-      "Contacts"
     ]
   }
 ]
