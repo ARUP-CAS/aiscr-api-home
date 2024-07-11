@@ -1,0 +1,291 @@
+---
+title: "OAI-PMH API"
+subtitle: OpenArchives Initiative Protocol for Metadata Harvesting AMČR API
+date: today
+---
+
+::: {.callout-note}
+
+API is available here: [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}.  
+User registration is available here: [https://amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external}.  
+This guide is valid for version 2.0.0 of the service.
+
+:::
+
+OAI-PMH AMČR API hosts *AMČR Data Provider* service providing metadata from the AMČR database using the *OpenArchives Initiative Protocol for Metadata Harvesting* ([OAI-PMH](http://www.openarchives.org/pmh/){.external}).
+
+The implementation supports two metadata standards:
+
+- [Dublin Core](http://dublincore.org/){.external} -- part of the AMČR data set with metadata on documents and their descriptions,
+- AMČR XML -- native format with a complete representation of the whole AMČR database. 
+
+## Access
+
+The access to some metadata is protected by user roles:
+
+- A (anonymous) -- anyoune on the internet accessing AMČR services,
+- B (researcher) -- registered users,
+- C (archaeologist) -- archaeologist from a licensed organisation,
+- D (archivist) -- AMČR authorized archivist.
+
+Registration to the system is available here: [https://amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external}.
+
+
+## Specification
+
+### Schema
+
+### Filters
+
+#### State and accessibility of the record
+
+#### Sets
+
+
+```{r}
+#| tbl-cap: "Available sets"
+
+read.csv("tabs/api-sety.csv") |>
+  knitr::kable()
+```
+
+#### Datestamps
+
+
+## Login and authorization
+
+### cURL
+
+### Postman
+
+## OAI-PMH Verbs
+
+OAI-PMH protocol defines several verbs that allow metadata harvesting. 
+OAI-PMH specification is available [here](http://www.openarchives.org/OAI/openarchivesprotocol.html){.external}.
+
+### Identify
+
+Verb `Identify` is used to get information about the repository. 
+
+*Query:* [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}
+
+*Sample response:*
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-11T12:26:50Z</responseDate>
+  <request verb="Identify">http://digiarchiv:8080/oai</request>
+  <Identify>
+    <repositoryName>Archaeological Map of the Czech Republic (AMCR)</repositoryName>
+    <baseURL>https://api.aiscr.cz/oai</baseURL>
+    <protocolVersion>2.0</protocolVersion>
+    <adminEmail>info@amapa.cz</adminEmail>
+    <earliestDatestamp>1990-01-01</earliestDatestamp>
+    <deletedRecord>persistent</deletedRecord>
+    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>
+    <description>
+      <rightsManifest xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/rights/ http://www.openarchives.org/OAI/2.0/rightsManifest.xsd" appliesTo="http://www.openarchives.org/OAI/2.0/entity#metadata">
+        <rights>
+          <rightsReference ref="http://creativecommons.org/licenses/by-nc/4.0/rdf"/>
+        </rights>
+      </rightsManifest>
+    </description>
+    <description>
+      <oai_dc:dc xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+        <dc:title xml:lang="cs">Archeologická mapa České Republiky (AMČR)</dc:title>
+        <dc:title xml:lang="en">Archaeological Map of the Czech Republic (AMCR)</dc:title>
+        [...]
+        <dc:identifier>https://api.aiscr.cz/</dc:identifier>
+        <dc:identifier>version 2.0.0</dc:identifier>
+        [...]
+      </oai_dc:dc>
+    </description>
+  </Identify>
+</OAI-PMH>
+```
+:::
+
+### ListMetadataFormats
+
+Verb `ListMetadataFormats` returns available metadata formats/standards.
+
+*Query:* [https://api.aiscr.cz/oai?verb=ListMetadataFormats](https://api.aiscr.cz/oai?verb=ListMetadataFormats){.external}
+
+*Sample response:*
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-11T12:46:31Z</responseDate>
+  <request verb="ListMetadataFormats">http://digiarchiv:8080/oai</request>
+  <ListMetadataFormats>
+    <metadataFormat>
+      <metadataPrefix>oai_dc</metadataPrefix>
+      <schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</schema>
+      <metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</metadataNamespace>
+    </metadataFormat>
+    <metadataFormat>
+      <metadataPrefix>oai_amcr</metadataPrefix>
+      <schema>https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd</schema>
+      <metadataNamespace>https://api.aiscr.cz/schema/amcr/2.0/</metadataNamespace>
+    </metadataFormat>
+  </ListMetadataFormats>
+</OAI-PMH>
+```
+:::
+
+Supported metadata formats are:
+
+- Dublin Core -- `metadataPrefix=oai_dc`, schema available here [http://www.openarchives.org/OAI/2.0/oai_dc.xsd](http://www.openarchives.org/OAI/2.0/oai_dc.xsd){.external},
+- native AMČR *.xml* format -- `metadataPrefix=oai_amcr`, schema available here [https://api.aiscr.cz/schema/amcr/2.0/](https://api.aiscr.cz/schema/amcr/2.0/).
+
+### ListIdentifiers
+
+Verb `ListIdentifiers` lists record headers.
+Required parameter is `metadataPrefix`, optional arguments allow filtering based on predefined sets (`set`) and/or datestamps (`from`, `until`).
+Only first page with limited amount of records is returned, to go to the next page, user has to submit a `resumptionToken` returned in the response.
+
+*Query:* [https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr){.external}
+
+*Sample response:*
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-11T12:51:03Z</responseDate>
+  <request verb="ListIdentifiers" metadataPrefix="oai_amcr">http://digiarchiv:8080/oai</request>
+  <ListIdentifiers>
+    <record>
+      <header>
+        <identifier>https://api-test.aiscr.cz/id/C-202013149</identifier>
+        <datestamp>2024-07-11T12:27:13.968Z</datestamp>
+        <setSpec>projekt</setSpec>
+      </header>
+    </record>
+    <record>
+      <header>
+        <identifier>https://api-test.aiscr.cz/id/P-0334-000377</identifier>
+        <datestamp>2024-07-11T12:12:19.386Z</datestamp>
+        <setSpec>pian</setSpec>
+      </header>
+    </record>
+    <record>
+      <header>
+        <identifier>https://api-test.aiscr.cz/id/C-DL-200400209</identifier>
+        <datestamp>2024-07-11T12:10:48.403Z</datestamp>
+        <setSpec>dokument</setSpec>
+      </header>
+    </record>
+    [...]
+    <resumptionToken completeListSize="859142" cursor="0">8F37FA46A1BE68D815CAE66EDFD7EE64</resumptionToken>
+  </ListIdentifiers>
+</OAI-PMH>
+```
+:::
+
+### ListRecords
+
+Verb `ListRecords` lists records.
+Required parameter is `metadataPrefix`, optional arguments allow filtering based on predefined sets (`set`) and/or datestamps (`from`, `until`).
+Only first page with limited amount of records is returned, to go to the next page, user has to submit a `resumptionToken` returned in the response.
+
+*Query:* [https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc](https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc){.external}
+
+*Sample response:*
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-11T13:25:02Z</responseDate>
+  <request verb="ListRecords" metadataPrefix="oai_dc">http://digiarchiv:8080/oai</request>
+  <ListRecords>
+    <record>
+      <header>
+        <identifier>https://api-test.aiscr.cz/id/C-202013149</identifier>
+        <datestamp>2024-07-11T12:27:13.968Z</datestamp>
+        <setSpec>projekt</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+          <oai_dc:dc xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+            <dc:title xml:lang="cs">AMČR - projekt C-202013149</dc:title>
+            <dc:identifier>C-202013149</dc:identifier>
+            <dc:subject xml:lang="cs">projekt</dc:subject>
+            <dc:description xml:lang="cs">Stav: 6</dc:description>
+            <dc:type>http://base_url/id/HES-000865</dc:type>
+            [...]
+          </oai_dc:dc>
+        </oai_dc:dc>
+      </metadata>
+    </record>
+    <resumptionToken completeListSize="859142" cursor="0">2A997D362431AC3FC670E2680E61D782</resumptionToken>
+  </ListRecords>
+</OAI-PMH>
+```
+:::
+
+### GetRecord
+
+*Query:* [](){.external}
+
+*Sample response:*
+
+::: {.small}
+```xml
+
+```
+:::
+
+### ListSets
+
+Verb `ListSets` lists available sets.
+
+*Query:* [https://api.aiscr.cz/oai?verb=ListSets](https://api.aiscr.cz/oai?verb=ListSets){.external}
+
+*Sample response:*
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-11T13:28:01Z</responseDate>
+  <request verb="ListSets">http://digiarchiv:8080/oai</request>
+  <ListSets>
+    <set>
+      <setSpec>projekt</setSpec>
+      <setName>Projekty / Projects</setName>
+      <setDescription>
+        <oai_dc:dc xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+          <dc:description xml:lang="cs">
+            Evidenční jednotky terénní činnosti badatelského nebo záchranného rázu evidované již ve fázi přípravy. Pro vymezení projektu je rozhodující podnět k výzkumu a provádějící subjekt (oprávněná organizace), lokalizace a příp. projektová dokumentace. Na projekt zpravidla navazuje jedna či (méně často) více terénních akcí či evidence samostatných nálezů.
+          </dc:description>
+          <dc:description xml:lang="en">
+            Records of field activities of a research or development-led nature recorded in the preparation phase. For the definition of the project, the motivation and the implementing body (authorised organisation), the location and, if applicable, the project documentation are decisive. The project is usually followed by one or (less frequently) more fieldwork, or the recording of individual finds.
+          </dc:description>
+        </oai_dc:dc>
+      </setDescription>
+    </set>
+    [...]
+  </ListSets>
+</OAI-PMH>
+```
+:::
+
+## Query parameters
+
+```{r}
+#| tbl-cap: "Required and optional query parameters"
+
+read.csv("tabs/params.csv") |>
+  knitr::kable()
+```
+
+### Pagination
+
+### Filters
+
+#### Record accessibility
+
+#### Sets
+
+#### Datestamps
