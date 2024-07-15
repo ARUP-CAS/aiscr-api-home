@@ -73,48 +73,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-news .list');
+    const listingTargetEl = window.document.querySelector('#listing-changelogs .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-project','listing-website','listing-format','listing-execute','listing-crossref','listing-callout-appearance','listing-toc-depth','listing-language','listing-title','listing-date','listing-categories','listing-description','listing-path','listing-outputHref','listing-date-modified','listing-author','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-project","listing-website","listing-format","listing-execute","listing-crossref","listing-callout-appearance","listing-toc-depth","listing-language","listing-title","listing-date","listing-categories","listing-description","listing-path","listing-outputHref","listing-date-modified","listing-author","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-news'] = new List('listing-news', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-news2 .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-categories','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-news2'] = new List('listing-news2', options);
+    window['quarto-listings']['listing-changelogs'] = new List('listing-changelogs', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -224,6 +196,10 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
+    <a class="nav-link" href="./changelogs/index.html"> 
+<span class="menu-text">Changelogs</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./about/index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -268,12 +244,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#news" id="toc-news" class="nav-link active" data-scroll-target="#news">News</a></li>
-  <li><a href="#changelogs" id="toc-changelogs" class="nav-link" data-scroll-target="#changelogs">Changelogs</a></li>
-  <li><a href="#citations-and-licence" id="toc-citations-and-licence" class="nav-link" data-scroll-target="#citations-and-licence">Citations and licence</a></li>
+  <li><a href="#changelogs" id="toc-changelogs" class="nav-link active" data-scroll-target="#changelogs">Changelogs</a></li>
+  <li><a href="#citation-and-licence" id="toc-citation-and-licence" class="nav-link" data-scroll-target="#citation-and-licence">Citation and licence</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/edit/main/index.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="maintenance">maintenance <span class="quarto-category-count">(4)</span></div><div class="category" data-category="major">major <span class="quarto-category-count">(2)</span></div><div class="category" data-category="minor">minor <span class="quarto-category-count">(2)</span></div><div class="category" data-category="oai-pmh">oai-pmh <span class="quarto-category-count">(2)</span></div><div class="category" data-category="patch">patch <span class="quarto-category-count">(2)</span></div></div></div>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -296,137 +271,51 @@ window.Quarto = {
 </header>
 
 
-<p>API currently hosts <strong>AMCR Data Provider</strong> service</p>
-<section id="news" class="level2">
-<h2 class="anchored" data-anchor-id="news">News</h2>
-<div id="listing-news" class="quarto-listing quarto-listing-container-custom">
-
-  <div style="margin-bottom: 10px;">
-    <div><b>Template</b></div>
-    <div style="color: gray; font-variant: small-caps;">Jun 6, 2024 | maintenance</div>
-    Text novinky je prosté HTML.
-Více viz <a href="https://amcr-info.aiscr.cz/">https://amcr-info.aiscr.cz/</a>.
-
-  </div>
-
-  <div style="margin-bottom: 10px;">
-    <div><b>Ukončení provozu desktopového klienta AMČR</b></div>
-    <div style="color: gray; font-variant: small-caps;">May 30, 2024 | maintenance</div>
-    Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace.
-V tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR.
-Více viz <a href="https://amcr-info.aiscr.cz/">https://amcr-info.aiscr.cz/</a>.
-
-  </div>
-
-  <div style="margin-bottom: 10px;">
-    <div><b>Version v05 of OAI-PMH API</b></div>
-    <div style="color: gray; font-variant: small-caps;">Mar 26, 2024 | oai-pmh,major,minor,patch</div>
-    The operation of the Digital Archive has been fully restored, we apologize for the inconvenience.
-
-  </div>
-
-<div class="listing-no-matching d-none">
-No matching items
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
-<p>See <a href="newsfeed.qmd">archived posts</a>…</p>
-</section>
+<div class="callout-body-container callout-body">
+<p>These pages are under construction so the information given here might be incomplete or entirelly wrong.</p>
+</div>
+</div>
 <section id="changelogs" class="level2">
 <h2 class="anchored" data-anchor-id="changelogs">Changelogs</h2>
-<div id="listing-news2" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="maintenance" data-listing-date-sort="1717632000000" data-listing-file-modified-sort="1720705056855" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./news/2024-06-06.html" class="no-external">Template</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./news/2024-06-06.html" class="no-external"></a>
+<div id="listing-changelogs" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="maintenance,oai-pmh,major" data-listing-date-sort="1722384000000" data-listing-file-modified-sort="1721054390839" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="20">
+<a href="./changelogs/2024-07-31.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Version 2.0 of OAI-PMH API
+</h5>
+<div class="card-text listing-description">
+<p>New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client.</p>
 </div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('maintenance'); return false;">
-maintenance
-</div>
-</div>
-<div class="listing-description">
-<a href="./news/2024-06-06.html" class="no-external">Text novinky je prosté HTML. Více viz </a><a href="https://amcr-info.aiscr.cz/">https://amcr-info.aiscr.cz/</a>. 
-</div>
-</div>
-<div class="metadata">
-<a href="./news/2024-06-06.html" class="no-external">
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
-Jun 6, 2024
+2024-07-31
+</div>
+</div>
+</div>
 </div>
 </a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="maintenance" data-listing-date-sort="1717027200000" data-listing-file-modified-sort="1720705056855" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./news/2024-05-30.html" class="no-external">Ukončení provozu desktopového klienta AMČR</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./news/2024-05-30.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('maintenance'); return false;">
-maintenance
-</div>
-</div>
-<div class="listing-description">
-<a href="./news/2024-05-30.html" class="no-external">Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace. V tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR. Více viz </a><a href="https://amcr-info.aiscr.cz/">https://amcr-info.aiscr.cz/</a>. 
-</div>
-</div>
-<div class="metadata">
-<a href="./news/2024-05-30.html" class="no-external">
-<div class="listing-date">
-May 30, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="oai-pmh,major,minor,patch" data-listing-date-sort="1711411200000" data-listing-file-modified-sort="1720705056855" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./news/2024-03-26.html" class="no-external">Version v05 of OAI-PMH API</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./news/2024-03-26.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('oai-pmh'); return false;">
-oai-pmh
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('major'); return false;">
-major
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('minor'); return false;">
-minor
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('patch'); return false;">
-patch
-</div>
-</div>
-<div class="listing-description">
-<a href="./news/2024-03-26.html" class="no-external">The operation of the Digital Archive has been fully restored, we apologize for the inconvenience. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./news/2024-03-26.html" class="no-external">
-<div class="listing-date">
-Mar 26, 2024
-</div>
-</a>
-</div>
 </div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
 </div>
+<p>Older changelogs can be browsed <a href="./changelogs/index.html">here</a>.</p>
 </section>
-<section id="citations-and-licence" class="level2">
-<h2 class="anchored" data-anchor-id="citations-and-licence">Citations and licence</h2>
+<section id="citation-and-licence" class="level2">
+<h2 class="anchored" data-anchor-id="citation-and-licence">Citation and licence</h2>
 <p>Contents of this page is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" class="external">CC BY-SA 4.0 Int.</a> licence.</p>
 
 
@@ -867,7 +756,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
 <p><a href="https://aiscr.cz/"><img src="./figs/logo-aiscr-hor.png" height="60"></a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/edit/main/index.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+</div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">

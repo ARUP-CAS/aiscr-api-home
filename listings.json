@@ -1,18 +1,14 @@
 [
   {
-    "listing": "/news.html",
+    "listing": "/changelogs/index.html",
     "items": [
-      "/news/2024-06-06.html",
-      "/news/2024-05-30.html",
-      "/news/2024-03-26.html"
+      "/changelogs/2024-07-31.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
-      "/news/2024-06-06.html",
-      "/news/2024-05-30.html",
-      "/news/2024-03-26.html"
+      "/changelogs/2024-07-31.html"
     ]
   }
 ]

@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-05-30">
-<meta name="description" content="Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace. V tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR. Více viz https://amcr-info.aiscr.cz/.">
+<meta name="dcterms.date" content="2024-07-31">
+<meta name="description" content="New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client.">
 
-<title>Ukončení provozu desktopového klienta AMČR – AMCR APIs</title>
+<title>Version 2.0 of OAI-PMH API – AMCR APIs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ cookieconsent.run({
 <link rel="stylesheet" href="../museo.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -138,6 +138,10 @@ cookieconsent.run({
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
+    <a class="nav-link active" href="../changelogs/index.html" aria-current="page"> 
+<span class="menu-text">Changelogs</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../about/index.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -147,28 +151,66 @@ cookieconsent.run({
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2024-07-31.html">Version 2.0 of OAI-PMH API</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<p><a href="https://amcr-info.aiscr.cz/"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../changelogs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Changelogs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../changelogs/2024-07-31.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Version 2.0 of OAI-PMH API</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2024-05-30.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="2024-05-30.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2024-07-31.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="2024-07-31.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2024-07-31.html">Version 2.0 of OAI-PMH API</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ukončení provozu desktopového klienta AMČR</h1>
+<h1 class="title">Version 2.0 of OAI-PMH API</h1>
   <div class="quarto-categories">
     <div class="quarto-category">maintenance</div>
+    <div class="quarto-category">oai-pmh</div>
+    <div class="quarto-category">major</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    <p>Od 15. července dojde k definitivnímu odstavení webového klienta AMČR a přechodu na webovou verzi aplikace. V tomto období může zároveň po dobu cca dvou až tří týdnů docházet k výpadkům Digitálního archivu AMČR. Více viz <a href="https://amcr-info.aiscr.cz/">https://amcr-info.aiscr.cz/</a>.</p>
+    <p>New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client.</p>
   </div>
 </div>
 
@@ -179,7 +221,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 30, 2024</p>
+      <p class="date">July 31, 2024</p>
     </div>
   </div>
   
@@ -191,6 +233,7 @@ cookieconsent.run({
 </header>
 
 
+<p>Since 15. July the former AMČR desktop client is undergoing shutdown and migration to new set of web services begins.</p>
 
 
 
@@ -628,7 +671,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
 <p><a href="https://aiscr.cz/"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
-<div class="toc-actions"><ul><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/blob/main/news/2024-05-30.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/edit/main/news/2024-05-30.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/blob/main/changelogs/2024-07-31.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/edit/main/changelogs/2024-07-31.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
