@@ -1,7 +1,0 @@
----
-title: "Version v05 of OAI-PMH API"
-date: 2024-03-26
-categories: [oai-pmh, major, minor, patch]
-description: |
-   The operation of the Digital Archive has been fully restored, we apologize for the inconvenience. 
----

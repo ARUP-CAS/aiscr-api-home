@@ -32,6 +32,8 @@ website:
       - text: "Oai-pmh Api"
         href: oai-pmh/index.qmd
     right:
+      - text: "Changelogs"
+        href: changelogs/index.qmd
       - text: "About"
         href: about/index.qmd
 
@@ -43,14 +45,14 @@ website:
         [![](/figs/logo-amcr-hor.png)](https://amcr-info.aiscr.cz/)
       contents:
         - index.qmd
-      # footer: |
-      #   **{{< fa skull-crossbones >}}  Pozor, zavítali jste na stránky připravované pro novou verzi AMČR!**  
-      #   Tyto stránky jsou ve výstavbě a informace, které obsahují, nemusí být platné pro aktuálně spuštěné verze nástrojů AMČR. 
-      #   Platná nápověda je [zde](https://amcr-info.aiscr.cz/help).
         
     - id: oaipmh
       contents:
         - oai-pmh/index.qmd
+        
+    - id: changelogs
+      contents:
+        - auto: changelogs/
         
     - id: about
       contents:

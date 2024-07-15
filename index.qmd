@@ -1,38 +1,38 @@
 ---
 title: "AMCR APIs"
 format-links: false
+repo-actions: false
 listing: 
-  - id: news
-    contents: "news/*.qmd"
-    template: "news.ejs"
+  - id: changelogs
+    type: grid
+    contents: 
+      - "changelogs/20*.qmd"
+    fields: [date, title, description]
     sort: "date desc"
-    max-items: 4
-  - id: news2
-    type: default
-    contents: "news/*.qmd"
-    sort: "date desc"
-    fields: [date, title, categories, description]
-    categories: true
-    max-items: 4
+    date-format: iso
+    sort-ui: false
+    categories: false
+    max-items: 3
 ---
 
-API currently hosts **AMCR Data Provider** service 
+::: {.callout-important}
 
-## News
+## Important
 
-::: {#news}
+These pages are under construction so the information given here might be incomplete or entirelly wrong. 
 
 :::
-
-See [archived posts](newsfeed.qmd)...
 
 
 ## Changelogs
 
-::: {#news2}
+::: {#changelogs}
 
 :::
 
-## Citations and licence
+Older changelogs can be browsed [here](/changelogs/index.qmd).
+
+
+## Citation and licence
 
 Contents of this page is licensed under [CC BY-SA 4.0 Int.](https://creativecommons.org/licenses/by-nc/4.0/){.external} licence.

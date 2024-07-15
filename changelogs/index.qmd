@@ -1,0 +1,20 @@
+---
+title: "Changelogs"
+format-links: false
+repo-actions: false
+listing: 
+  - id: changelogs
+    type: table
+    contents: 
+      - "20*.qmd"
+    fields: [date, title, categories]
+    sort: "date desc"
+    date-format: iso
+    sort-ui: false
+    categories: true
+    table-striped: true
+---
+
+::: {#changelogs}
+
+:::

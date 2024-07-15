@@ -1,0 +1,11 @@
+---
+title: "Version 2.0 of OAI-PMH API"
+date: 2024-07-31
+categories: [maintenance, oai-pmh, major]
+description: |
+  New AMČR API version is released together with other tools and services 
+  updated after the end of life of the AMČR desktop client. 
+---
+
+Since 15. July the former AMČR desktop client is undergoing shutdown and migration to new 
+set of web services begins.

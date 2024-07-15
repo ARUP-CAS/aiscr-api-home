@@ -1,8 +1,0 @@
----
-title: "Template"
-date: 2024-06-06
-categories: [maintenance]
-description: |
-   Text novinky je prosté HTML.
-   Více viz <a href=https://amcr-info.aiscr.cz/>https://amcr-info.aiscr.cz/</a>. 
----
