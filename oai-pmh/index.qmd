@@ -1,32 +1,40 @@
 ---
 title: "OAI-PMH API"
-subtitle: OpenArchives Initiative Protocol for Metadata Harvesting AMČR API
+subtitle: OpenArchives Initiative Protocol for Metadata Harvesting API
 date: today
 ---
+
+::: {.callout-important}
+
+## Important
+
+These pages are under construction so the information given here might be incomplete or entirelly wrong. 
+
+:::
 
 ::: {.callout-note}
 
 API is available here: [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}.  
 User registration is available here: [https://amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external}.  
-This guide is valid for version 2.0.0 of the service.
+This guide is valid for version 2.0.0 of the service and schema.
 
 :::
 
-OAI-PMH AMČR API hosts *AMČR Data Provider* service providing metadata from the AMČR database using the *OpenArchives Initiative Protocol for Metadata Harvesting* ([OAI-PMH](http://www.openarchives.org/pmh/){.external}).
-
-The implementation supports two metadata standards:
+OAI-PMH AMČR API provides metadata from the AMČR database using the *OpenArchives Initiative Protocol for Metadata Harvesting* ([OAI-PMH](http://www.openarchives.org/pmh/){.external}). The implementation supports two metadata standards:
 
 - [Dublin Core](http://dublincore.org/){.external} -- part of the AMČR data set with metadata on documents and their descriptions,
 - AMČR XML -- native format with a complete representation of the whole AMČR database. 
+
+The API response is an *.xml* file.
 
 ## Access
 
 The access to some metadata is protected by user roles:
 
-- A (anonymous) -- anyoune on the internet accessing AMČR services,
-- B (researcher) -- registered users,
-- C (archaeologist) -- archaeologist from a licensed organisation,
-- D (archivist) -- AMČR authorized archivist.
+- **A** (anonymous) -- anyoune on the internet accessing AMČR services,
+- **B** (researcher) -- registered users,
+- **C** (archaeologist) -- archaeologist from a licensed organisation,
+- **D** (archivist) -- AMČR authorized archivist.
 
 Registration to the system is available here: [https://amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external}.
 
@@ -35,30 +43,55 @@ Registration to the system is available here: [https://amcr.aiscr.cz/accounts/re
 
 ### Schema
 
+Schema (*.xsd*) for current version (**2.0**) of the service can be found here: [https://api.aiscr.cz/schema/amcr/2.0/](https://api.aiscr.cz/schema/amcr/2.0/).
+Schema for previous version (1.0) is accessible here: [https://api.aiscr.cz/schema/amcr/1.0/](https://api.aiscr.cz/schema/amcr/1.0/)
+
+???
+
 ### Filters
 
 #### State and accessibility of the record
 
+???
+
 #### Sets
 
+Selective querying can be achieved using predefined sets.
 
 ```{r}
 #| tbl-cap: "Available sets"
 
-read.csv("tabs/api-sety.csv") |>
-  knitr::kable()
+read.csv("tabs/sets.csv") |>
+  dplyr::mutate(vocabulary = dplyr::if_else(vocabulary, "&#x2714;", "-")) |>
+  knitr::kable(align = "llc")
 ```
 
 #### Datestamps
 
+In `ListIdentifiers` and `ListRecords` verbs it is possible to filter based on optional query parameter datestamp.
+(`from` -- `until`).
+
+???
 
 ## Login and authorization
 
+To be able to access records with limited accessibility, it is neccessary to login using *Basic access authentication* while sending the requests.
+
 ### cURL
+
+Use flag `-u` tu put in your username and password in each request.
+
+```zsh
+curl -u <username>:<password> <GET request>
+```
 
 ### Postman
 
-## OAI-PMH Verbs
+In Postman, username and password can be set up on the *Authorization* tab.
+Select *Basic Auth* in the *TYPE* menu.
+
+
+## Verbs
 
 OAI-PMH protocol defines several verbs that allow metadata harvesting. 
 OAI-PMH specification is available [here](http://www.openarchives.org/OAI/openarchivesprotocol.html){.external}.
@@ -67,7 +100,11 @@ OAI-PMH specification is available [here](http://www.openarchives.org/OAI/openar
 
 Verb `Identify` is used to get information about the repository. 
 
-*Query:* [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}
+*Request:* [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=Identify'
+```
 
 *Sample response:*
 
@@ -110,7 +147,11 @@ Verb `Identify` is used to get information about the repository.
 
 Verb `ListMetadataFormats` returns available metadata formats/standards.
 
-*Query:* [https://api.aiscr.cz/oai?verb=ListMetadataFormats](https://api.aiscr.cz/oai?verb=ListMetadataFormats){.external}
+*Request:* [https://api.aiscr.cz/oai?verb=ListMetadataFormats](https://api.aiscr.cz/oai?verb=ListMetadataFormats){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=ListMetadataFormats'
+```
 
 *Sample response:*
 
@@ -146,7 +187,11 @@ Verb `ListIdentifiers` lists record headers.
 Required parameter is `metadataPrefix`, optional arguments allow filtering based on predefined sets (`set`) and/or datestamps (`from`, `until`).
 Only first page with limited amount of records is returned, to go to the next page, user has to submit a `resumptionToken` returned in the response.
 
-*Query:* [https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr){.external}
+*Request:* [https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr'
+```
 
 *Sample response:*
 
@@ -190,7 +235,11 @@ Verb `ListRecords` lists records.
 Required parameter is `metadataPrefix`, optional arguments allow filtering based on predefined sets (`set`) and/or datestamps (`from`, `until`).
 Only first page with limited amount of records is returned, to go to the next page, user has to submit a `resumptionToken` returned in the response.
 
-*Query:* [https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc](https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc){.external}
+*Request:* [https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc](https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc'
+```
 
 *Sample response:*
 
@@ -227,13 +276,37 @@ Only first page with limited amount of records is returned, to go to the next pa
 
 ### GetRecord
 
-*Query:* [](){.external}
+Verb `GetRecord` returns individual record. 
+Required parameters are `metadataPrefix` and `identifier` (unique identifier of the record, URI).
+Unique identifier of individual record is in the header of each record in the element with tag `<identifier>`.
+The contents of `<identifier>` element is derived from a unique identifier of the given record stored in the `<amcr:ident_cely>` prefixed with string `https://api.aiscr.cz/id/`.
+
+*Request:* [https://api.aiscr.cz/oai?verb=GetRecord&identifier=https://api-test.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=GetRecord&identifier=https://api-test.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=GetRecord&identifier=https://api-test.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr'
+```
 
 *Sample response:*
 
 ::: {.small}
 ```xml
-
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-15T09:04:59Z</responseDate>
+  <request verb="GetRecord" identifier="https://api-test.aiscr.cz/id/M-FT-110598700" metadataPrefix="oai_amcr">http://digiarchiv:8080/oai</request>
+  <GetRecord>
+    <record>
+      <header>
+        <identifier>https://api-test.aiscr.cz/id/M-FT-110598700</identifier>
+        <datestamp>2024-05-09T12:39:30.474Z</datestamp>
+        <setSpec>dokument</setSpec>
+      </header>
+      <metadata>
+        <amcr:amcr xsi:schemaLocation="https://api.aiscr.cz/schema/amcr/2.0/ https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"> HTTP/1.1 403 Forbidden </amcr:amcr>
+      </metadata>
+    </record>
+  </GetRecord>
+</OAI-PMH>
 ```
 :::
 
@@ -241,7 +314,11 @@ Only first page with limited amount of records is returned, to go to the next pa
 
 Verb `ListSets` lists available sets.
 
-*Query:* [https://api.aiscr.cz/oai?verb=ListSets](https://api.aiscr.cz/oai?verb=ListSets){.external}
+*Request:* [https://api.aiscr.cz/oai?verb=ListSets](https://api.aiscr.cz/oai?verb=ListSets){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=ListSets'
+```
 
 *Sample response:*
 
@@ -271,7 +348,9 @@ Verb `ListSets` lists available sets.
 ```
 :::
 
-## Query parameters
+## Parameters
+
+Some verbs have required parameters (typically specifying the metadata format with `metadataPrefix`) and some have optional parameters allowing filtration, pagination etc.
 
 ```{r}
 #| tbl-cap: "Required and optional query parameters"
@@ -282,10 +361,143 @@ read.csv("tabs/params.csv") |>
 
 ### Pagination
 
+In case of `ListIdentifiers` and `ListRecords` verbs, only the first page of results is returned.
+To get another page, a `resumptionToken` returned at the end of the response must be used as a parameter in the following request.
+Parameter `resumptionToken` should be always the last parameter in the request.
+
+*Request:* [https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_amcr){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_amcr'
+```
+
+*Sample response:* 
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-15T11:57:23Z</responseDate>
+  <request verb="ListRecords" metadataPrefix="oai_amcr">http://digiarchiv:8080/oai</request>
+  <ListRecords>
+    <record>
+      <header>
+        [...]
+      </header>
+      <metadata>
+        [...]
+      </metadata>
+    </record>
+    <resumptionToken completeListSize="859162" cursor="0">55CC4AC4A4BDAA3245F6B3E0E8B1CE0A</resumptionToken>
+  </ListRecords>
+</OAI-PMH>
+```
+:::
+
+*Follow up request with `resumptionToken`:* [https://api.aiscr.cz/oai?verb=ListRecords&resumptionToken=55CC4AC4A4BDAA3245F6B3E0E8B1CE0A](https://api.aiscr.cz/oai?verb=ListRecords&resumptionToken=55CC4AC4A4BDAA3245F6B3E0E8B1CE0A){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=ListRecords&resumptionToken=55CC4AC4A4BDAA3245F6B3E0E8B1CE0A'
+```
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-15T12:01:28Z</responseDate>
+  <request verb="ListRecords" resumptionToken="55CC4AC4A4BDAA3245F6B3E0E8B1CE0A">http://digiarchiv:8080/oai</request>
+  <ListRecords>
+    <record>
+      <header>
+        [...]
+      </header>
+      <metadata>
+        [...]
+      </metadata>
+    </record>
+    <resumptionToken completeListSize="859162" cursor="100">AC59E153A7C3CDBAC4200F62CAC67880</resumptionToken>
+  </ListRecords>
+</OAI-PMH>
+```
+:::
+
+Notice the attributes of the `resumptionToken` element `completeListSize` indicating total number of results and `cursor` indicating that the first record in the given response is n-th returned record.
+
 ### Filters
+
+Selective harvesting is allowed thanks to datestamps of records and sets.
 
 #### Record accessibility
 
+???
+
 #### Sets
 
+Available sets of records are returned using the `ListSets` verb.
+The contents of the `<setSpec>` element can be used in a `set` parameter in `ListIdentifiers` and `ListRecords` verbs.
+
+*Request:* [https://api.aiscr.cz/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr'
+```
+
+*Sample response:* 
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-15T12:17:21Z</responseDate>
+  <request verb="ListIdentifiers" set="pian" metadataPrefix="oai_amcr">http://digiarchiv:8080/oai</request>
+  <ListIdentifiers>
+    <record>
+      <header>
+        <identifier>https://api-test.aiscr.cz/id/P-1223-101288</identifier>
+        <datestamp>2024-07-15T11:13:45.237Z</datestamp>
+        <setSpec>pian</setSpec>
+      </header>
+    </record>
+    [...]
+    <resumptionToken completeListSize="219014" cursor="0">A828ECF79EF4EABB40CDD5EAB26F62B1</resumptionToken>
+  </ListIdentifiers>
+</OAI-PMH>
+```
+:::
+
 #### Datestamps
+
+Parameters `from` and `until` in verbs `ListIdentifiers` and `ListRecords` allow filtering based on a datestamp of the given record.
+Use dates in ISO-8601 standard format, i.e. YYYY-MM-DD.
+
+*Request:* [https://api.aiscr.cz/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr){.external}
+
+```zsh
+curl 'https://api.aiscr.cz/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr'
+```
+
+*Sample response:* 
+
+::: {.small}
+```xml
+<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2024-07-15T12:20:21Z</responseDate>
+  <request verb="ListIdentifiers" set="projekt" from="2023-04-21" until="2024-04-27" metadataPrefix="oai_amcr">http://digiarchiv:8080/oai</request>
+  <ListIdentifiers>
+    <record>
+      <header>
+        <identifier>https://api-test.aiscr.cz/id/M-202204394</identifier>
+        <datestamp>2024-04-26T13:08:37.256Z</datestamp>
+        <setSpec>projekt</setSpec>
+      </header>
+    </record>
+    [...]
+    <record>
+      <header>
+        <identifier>https://api-test.aiscr.cz/id/C-202401944</identifier>
+        <datestamp>2024-03-17T06:32:08.143Z</datestamp>
+        <setSpec>projekt</setSpec>
+      </header>
+    </record>
+    <resumptionToken completeListSize="180105" cursor="0">6ABB1C7ACC374C52B5106D1ABCA113C6</resumptionToken>
+  </ListIdentifiers>
+</OAI-PMH>
+```
+:::
