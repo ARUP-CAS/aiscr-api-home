@@ -1,14 +1,17 @@
 ---
 title: "OAI-PMH API"
 subtitle: OpenArchives Initiative Protocol for Metadata Harvesting API
-date: today
+date: 2024-07-17
 ---
 
 ::: {.callout-important}
 
-## Important
+## Webpage under construction
 
-These pages are under construction so the information given here might be incomplete or entirelly wrong. 
+We appreciate your interest in our website. 
+Please be advised that this page is currently under construction and we are working to improve your experience and will have it up and running shortly. 
+Thank you for your patience and understanding. 
+If you have any questions or need assistance, please [contact us](about/index.qmd).
 
 :::
 
@@ -46,13 +49,27 @@ Registration to the system is available here: [https://amcr.aiscr.cz/accounts/re
 Schema (*.xsd*) for current version (**2.0**) of the service can be found here: [https://api.aiscr.cz/schema/amcr/2.0/](https://api.aiscr.cz/schema/amcr/2.0/).
 Schema for previous version (1.0) is accessible here: [https://api.aiscr.cz/schema/amcr/1.0/](https://api.aiscr.cz/schema/amcr/1.0/)
 
-???
+::: {.callout-important}
+
+## This part under construction
+
+This part of the webpage will be updated with schemas and further explanations.
+We apologize for any inconvenience and appreciate your understanding. 
+
+:::
 
 ### Filters
 
 #### State and accessibility of the record
 
-???
+::: {.callout-important}
+
+## This part under construction
+
+This part of the webpage will be updated with schemas and further explanations.
+We apologize for any inconvenience and appreciate your understanding. 
+
+:::
 
 #### Sets
 
@@ -71,7 +88,14 @@ read.csv("tabs/sets.csv") |>
 In `ListIdentifiers` and `ListRecords` verbs it is possible to filter based on optional query parameter datestamp.
 (`from` -- `until`).
 
-???
+::: {.callout-important}
+
+## This part under construction
+
+This part of the webpage will be updated with schemas and further explanations.
+We apologize for any inconvenience and appreciate your understanding. 
+
+:::
 
 ## Login and authorization
 
@@ -427,7 +451,14 @@ Selective harvesting is allowed thanks to datestamps of records and sets.
 
 #### Record accessibility
 
-???
+::: {.callout-important}
+
+## This part under construction
+
+This part of the webpage will be updated with schemas and further explanations.
+We apologize for any inconvenience and appreciate your understanding. 
+
+:::
 
 #### Sets
 

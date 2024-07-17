@@ -17,12 +17,30 @@ listing:
 
 ::: {.callout-important}
 
-## Important
+## Webpage Under Construction
 
-These pages are under construction so the information given here might be incomplete or entirelly wrong. 
+We appreciate your interest in our website. 
+Please be advised that this page is currently under construction and we are working to improve your experience and will have it up and running shortly. 
+Thank you for your patience and understanding. 
+If you have any questions or need assistance, please [contact us](about/index.qmd).
 
 :::
 
+
+**Archaeological Map of the Czech Republic** (AMČR) is part of a large research infrastructure **Archaeological Information System of the Czech Republic** (AIS CR).
+**AMCR APIs** is a home of AMČR application programming interface providing data stored in the AMČR database using the *OpenArchives Initiative Protocol for Metadata Harvesting* ([OAI-PMH](http://www.openarchives.org/OAI/2.0/openarchivesprotocol.htm){.external}).
+
+Currently, the only API in operation is the [OAI-PMH API](oai-pmh/index.qmd).
+
+::: {.callout-note}
+
+## Other AIS CR pages
+
+- AMČR home page is here: [https://amcr-info.aiscr.cz](https://amcr-info.aiscr.cz){.external}.
+- Digital Archive of the AMČR, the main interface for browsing the AMČR data, is here: [https://digiarchiv.aiscr.cz/](https://digiarchiv.aiscr.cz/){.external}.
+- Main page of AIS CR infrastructure is here: [https://www.aiscr.cz/](https://www.aiscr.cz/){.external}.
+
+:::
 
 ## Changelogs
 
@@ -33,6 +51,19 @@ These pages are under construction so the information given here might be incomp
 Older changelogs can be browsed [here](/changelogs/index.qmd).
 
 
-## Citation and licence
+## Licence
 
-Contents of this page is licensed under [CC BY-SA 4.0 Int.](https://creativecommons.org/licenses/by-nc/4.0/){.external} licence.
+The data accessible through the AMČR API are published in accordance with the policy of open access to data and with the consent of the copyright holders. 
+The utilisation of the data is subject (unless explicitly stated otherwise) to the [CC BY-NC 4.0 Int. licence](https://creativecommons.org/licenses/by-nc/4.0/){.external} (*Creative Commons Attribution-NonCommercial 4.0 International*). 
+Consequently, the data may only be used with proper attribution to the author and exclusively for non-commercial purposes. 
+This provision does not restrict the utilisation of AMČR data based on other contractual agreements or statutory rights. 
+Use of the API for commercial purposes is permissible only upon the execution of a prior written agreement. 
+If interested, please [contact us](about/index.qmd) for this purpose.
+
+Contents of this page is licensed under the [CC BY-NC 4.0 Int.](https://creativecommons.org/licenses/by-nc/4.0/){.external} licence as well.
+
+## Citation
+
+Please cite the use of the data queried from the API in scientific publications as follows:
+
+> AMČR: *Archaeological Map of the Czech Republic.* [cit. YYYY-MM-DD]. Available from: [https://api.aiscr.cz](https://api.aiscr.cz)
