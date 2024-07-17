@@ -69,6 +69,7 @@ website:
     right:
       - text: Created with &#9825; in Quarto.
         href: https://www.quarto.org/
+        target: _blank
 
 format:
   html:

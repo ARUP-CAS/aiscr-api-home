@@ -1,7 +1,7 @@
 ---
 title: "AMCR APIs"
 format-links: false
-repo-actions: false
+# repo-actions: false
 listing: 
   - id: changelogs
     type: grid
