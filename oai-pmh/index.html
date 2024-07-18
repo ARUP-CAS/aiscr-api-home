@@ -296,7 +296,7 @@ Webpage under construction
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We appreciate your interest in our website. Please be advised that this page is currently under construction and we are working to improve your experience and will have it up and running shortly. Thank you for your patience and understanding. If you have any questions or need assistance, please <a href="about/index.qmd">contact us</a>.</p>
+<p>We appreciate your interest in our website. Please be advised that this page is currently under construction and we are working to improve your experience and will have it up and running shortly. Thank you for your patience and understanding. If you have any questions or need assistance, please <a href="../about/index.html">contact us</a>.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-note">
@@ -992,11 +992,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
