@@ -11,7 +11,7 @@ date: 2024-07-17
 We appreciate your interest in our website. 
 Please be advised that this page is currently under construction and we are working to improve your experience and will have it up and running shortly. 
 Thank you for your patience and understanding. 
-If you have any questions or need assistance, please [contact us](about/index.qmd).
+If you have any questions or need assistance, please [contact us](/about/index.qmd).
 
 :::
 

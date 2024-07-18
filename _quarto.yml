@@ -82,7 +82,7 @@ format:
     mainfont: "Alegreya Sans"
     fontsize: 1.1em
     df-print: kable
-    link-external-newwindow: true
+    link-external-newwindow: false
     grid:
       sidebar-width: 250px
       body-width: 1000px
