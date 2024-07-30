@@ -1,7 +1,7 @@
 "verb","required","optional"
 "Identify",-,-
-"ListMetadataFormats",-,-
+"ListMetadataFormats",-,"identifier"
 "ListIdentifiers","metadataPrefix","set, from, until, resumptionToken"
 "ListRecords","metadataPrefix","set, from, until, resumptionToken"
 "GetRecord","identifier, metadataPrefix",-
-"ListSets",-,-
+"ListSets",-,"resumptionToken"

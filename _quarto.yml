@@ -6,10 +6,10 @@ project:
     - schema/amcr/2.0/amcr.xsd
 
 website:
-  title: "AMCR APIs"
+  title: "AMCR API"
   favicon: figs/cover.png
   repo-url: https://github.com/ARUP-CAS/aiscr-api-home/
-  repo-actions: [source, edit, issue]
+  # repo-actions: [source, edit, issue]
   page-navigation: false
   google-analytics:
     tracking-id: "UA-79200582-4"
@@ -42,7 +42,7 @@ website:
       collapse-level: 1
       style: "floating"
       header: |
-        [![](/figs/logo-amcr-hor.png)](https://amcr-info.aiscr.cz/)
+        [![](/figs/logo-amcr-hor.png)](https://api.aiscr.cz/)
       contents:
         - index.qmd
         
@@ -65,7 +65,7 @@ website:
       [<u>Cookies</u>]{#open_preferences_center} |
       CC BY-NC 4.0
     center: |
-      [![](/figs/logo-aiscr-hor.png){height=60}](https://aiscr.cz/)
+      [![](/figs/logo-aiscr-hor.png){height=60}](https://aiscr.cz/){.external}
     right:
       - text: Created with &#9825; in Quarto.
         href: https://www.quarto.org/
@@ -87,12 +87,12 @@ format:
       sidebar-width: 250px
       body-width: 1000px
       margin-width: 300px
-  pdf:
-    documentclass: scrarticle
-    papersize: a4wide
-    lot: false
-    lof: false
-  docx: default
+  # pdf:
+  #   documentclass: scrarticle
+  #   papersize: a4wide
+  #   lot: false
+  #   lof: false
+  # docx: default
 
 execute:
   freeze: auto

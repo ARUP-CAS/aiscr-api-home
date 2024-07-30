@@ -1,0 +1,8 @@
+"element with required role","protected element"
+"projekt/pristupnost_pom","projekt/chranene_udaje"
+"archeologicky_zaznam/pristupnost","archeologicky_zaznam/chranene_udaje"
+"archeologicky_zaznam/pristupnost","archeologicky_zaznam/akce/chranene_udaje"
+"archeologicky_zaznam/pristupnost","archeologicky_zaznam/lokalita/chranene_udaje"
+"adb/pristupnost_pom","adb/chranene_udaje"
+"pian/pristupnost_pom","pian/chranene_udaje"
+"samostatny_nalez/pristupnost","samostatny_nalez/chranene_udaje"

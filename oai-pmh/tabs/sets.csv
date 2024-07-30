@@ -9,7 +9,7 @@
 "ext_zdroj","Externí zdroje / External Sources","FALSE"
 "pian","PIAN / Spatial Units","FALSE"
 "samostatny_nalez","Samostatné nálezy / Individual Finds","FALSE"
-"uzivatel","Uživatelé / Users","TRUE"
+"uzivatel","Uživatelé / Users","FALSE"
 "heslo","Hesláře / Vocabularies","TRUE"
 "ruian_kraj","RÚIAN - Kraje / RÚIAN – Regions","TRUE"
 "ruian_okres","RÚIAN - Okresy / RÚIAN – Districts","TRUE"
