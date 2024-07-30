@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2024-07-17">
 
-<title>OAI-PMH API – AMCR APIs</title>
+<title>OAI-PMH API – AMCR API</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +151,7 @@ cookieconsent.run({
     <img src="../figs/cover_g.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">AMCR APIs</span>
+    <span class="navbar-title">AMCR API</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -199,7 +199,7 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
-<p><a href="https://amcr-info.aiscr.cz/"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
+<p><a href="https://api.aiscr.cz/"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
 </div></div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
@@ -225,9 +225,8 @@ cookieconsent.run({
   <li><a href="#schema" id="toc-schema" class="nav-link" data-scroll-target="#schema">Schema</a></li>
   <li><a href="#filters" id="toc-filters" class="nav-link" data-scroll-target="#filters">Filters</a>
   <ul class="collapse">
-  <li><a href="#state-and-accessibility-of-the-record" id="toc-state-and-accessibility-of-the-record" class="nav-link" data-scroll-target="#state-and-accessibility-of-the-record">State and accessibility of the record</a></li>
   <li><a href="#sets" id="toc-sets" class="nav-link" data-scroll-target="#sets">Sets</a></li>
-  <li><a href="#datestamps" id="toc-datestamps" class="nav-link" data-scroll-target="#datestamps">Datestamps</a></li>
+  <li><a href="#datestamps-and-deleted-records" id="toc-datestamps-and-deleted-records" class="nav-link" data-scroll-target="#datestamps-and-deleted-records">Datestamps and deleted records</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#login-and-authorization" id="toc-login-and-authorization" class="nav-link" data-scroll-target="#login-and-authorization">Login and authorization</a>
@@ -239,23 +238,22 @@ cookieconsent.run({
   <ul>
   <li><a href="#identify" id="toc-identify" class="nav-link" data-scroll-target="#identify">Identify</a></li>
   <li><a href="#listmetadataformats" id="toc-listmetadataformats" class="nav-link" data-scroll-target="#listmetadataformats">ListMetadataFormats</a></li>
+  <li><a href="#listsets" id="toc-listsets" class="nav-link" data-scroll-target="#listsets">ListSets</a></li>
   <li><a href="#listidentifiers" id="toc-listidentifiers" class="nav-link" data-scroll-target="#listidentifiers">ListIdentifiers</a></li>
   <li><a href="#listrecords" id="toc-listrecords" class="nav-link" data-scroll-target="#listrecords">ListRecords</a></li>
   <li><a href="#getrecord" id="toc-getrecord" class="nav-link" data-scroll-target="#getrecord">GetRecord</a></li>
-  <li><a href="#listsets" id="toc-listsets" class="nav-link" data-scroll-target="#listsets">ListSets</a></li>
   </ul></li>
-  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a>
   <ul>
   <li><a href="#pagination" id="toc-pagination" class="nav-link" data-scroll-target="#pagination">Pagination</a></li>
   <li><a href="#filters-1" id="toc-filters-1" class="nav-link" data-scroll-target="#filters-1">Filters</a>
   <ul class="collapse">
-  <li><a href="#record-accessibility" id="toc-record-accessibility" class="nav-link" data-scroll-target="#record-accessibility">Record accessibility</a></li>
   <li><a href="#sets-1" id="toc-sets-1" class="nav-link" data-scroll-target="#sets-1">Sets</a></li>
-  <li><a href="#datestamps-1" id="toc-datestamps-1" class="nav-link" data-scroll-target="#datestamps-1">Datestamps</a></li>
+  <li><a href="#datestamps" id="toc-datestamps" class="nav-link" data-scroll-target="#datestamps">Datestamps</a></li>
   </ul></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/blob/main/oai-pmh/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/edit/main/oai-pmh/index.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -311,63 +309,224 @@ This guide is valid for version 2.0.0 of the service and schema.</p>
 </div>
 </div>
 </div>
-<p>OAI-PMH AMČR API provides metadata from the AMČR database using the <em>OpenArchives Initiative Protocol for Metadata Harvesting</em> (<a href="http://www.openarchives.org/pmh/" class="external">OAI-PMH</a>). The implementation supports two metadata standards:</p>
+<p>OAI-PMH AMCR API provides metadata from the AMCR database using the <em>OpenArchives Initiative Protocol for Metadata Harvesting</em> (<a href="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" class="external">OAI-PMH</a>). The implementation supports two metadata standards:</p>
 <ul>
-<li><a href="http://dublincore.org/" class="external">Dublin Core</a> – part of the AMČR data set with metadata on documents and their descriptions,</li>
-<li>AMČR XML – native format with a complete representation of the whole AMČR database.</li>
+<li><a href="http://dublincore.org/" class="external">Dublin Core</a> – AMCR basic metadata serialised using Dublin Core elements from the DCMI schema for unqualified Dublin Core according to OAI-PMH specification;</li>
+<li><a href="https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd">AMCR XML</a> – native format with a complete representation of the whole AMCR database.</li>
 </ul>
-<p>The API response is an <em>.xml</em> file.</p>
+<p>The API response is an XML file.</p>
 <section id="access" class="level2">
 <h2 class="anchored" data-anchor-id="access">Access</h2>
 <p>The access to some metadata is protected by user roles:</p>
 <ul>
-<li><strong>A</strong> (anonymous) – anyoune on the internet accessing AMČR services,</li>
-<li><strong>B</strong> (researcher) – registered users,</li>
+<li><strong>A</strong> (anonymous) – anyone on the internet accessing AMCR services,</li>
+<li><strong>B</strong> (researcher) – registered user,</li>
 <li><strong>C</strong> (archaeologist) – archaeologist from a licensed organisation,</li>
-<li><strong>D</strong> (archivist) – AMČR authorized archivist.</li>
+<li><strong>D</strong> (archivist) – authorised AMCR archivist.</li>
 </ul>
-<p>Registration to the system is available here: <a href="https://amcr.aiscr.cz/accounts/register/" class="external">https://amcr.aiscr.cz/accounts/register/</a>.</p>
+<p>Registration to the system is available <a href="https://amcr.aiscr.cz/accounts/register/" class="external">here</a>.</p>
+<p>Accessibility is automatically assessed for each record based on the user’s role, organisational affiliation and the processing state of the record. If the record or part of it is inaccessible, the corresponding element will return an <code>HTTP/1.1 403 Forbidden</code> string. The rules are applied as detailed in the following tables. The first table defines the basic rules for the record to be visible, the second table lists the effects of the limited accessibility defined on the individual record level.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Basic rules for the record visibility</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 14%">
+<col style="width: 21%">
+<col style="width: 34%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">element</th>
+<th style="text-align: center;">A</th>
+<th style="text-align: center;">B</th>
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">projekt</td>
+<td style="text-align: center;">stav = 6</td>
+<td style="text-align: center;">stav = 6</td>
+<td style="text-align: center;">stav &gt; 0</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">projekt/oznamovatel</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">stav = 1 OR my organisation record</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">archeologicky_zaznam</td>
+<td style="text-align: center;">stav = 3</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">let</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">adb</td>
+<td style="text-align: center;">stav_pom&nbsp; = 3</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dokument</td>
+<td style="text-align: center;">stav = 3</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ext_zdroj</td>
+<td style="text-align: center;">stav = 3</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pian</td>
+<td style="text-align: center;">stav = 2</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">samostatny_nalez</td>
+<td style="text-align: center;">stav = 4</td>
+<td style="text-align: center;">stav&nbsp;= 4 OR my record</td>
+<td style="text-align: center;">stav&nbsp;= 4 OR my organisation record</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">uzivatel</td>
+<td style="text-align: center;">✘</td>
+<td style="text-align: center;">my record</td>
+<td style="text-align: center;">my record</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo&nbsp;</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ruian_kraj</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ruian_okres</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ruian_katastr</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">organizace&nbsp;</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">osoba</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✔</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><em>stav</em> – process state of the record, see <strong>???</strong><br>
+<em>my record</em> – record created by the user<br>
+<em>my organisation record</em> – record created by someone from user’s organisation</p>
+</blockquote>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Effects of the limited accessibility</caption>
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">element with required role</th>
+<th style="text-align: left;">protected element</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">projekt/pristupnost_pom</td>
+<td style="text-align: left;">projekt/chranene_udaje</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">archeologicky_zaznam/pristupnost</td>
+<td style="text-align: left;">archeologicky_zaznam/chranene_udaje</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">archeologicky_zaznam/pristupnost</td>
+<td style="text-align: left;">archeologicky_zaznam/akce/chranene_udaje</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">archeologicky_zaznam/pristupnost</td>
+<td style="text-align: left;">archeologicky_zaznam/lokalita/chranene_udaje</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">adb/pristupnost_pom</td>
+<td style="text-align: left;">adb/chranene_udaje</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pian/pristupnost_pom</td>
+<td style="text-align: left;">pian/chranene_udaje</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">samostatny_nalez/pristupnost</td>
+<td style="text-align: left;">samostatny_nalez/chranene_udaje</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="specification" class="level2">
 <h2 class="anchored" data-anchor-id="specification">Specification</h2>
 <section id="schema" class="level3">
 <h3 class="anchored" data-anchor-id="schema">Schema</h3>
-<p>Schema (<em>.xsd</em>) for current version (<strong>2.0</strong>) of the service can be found here: <a href="https://api.aiscr.cz/schema/amcr/2.0/">https://api.aiscr.cz/schema/amcr/2.0/</a>. Schema for previous version (1.0) is accessible here: <a href="https://api.aiscr.cz/schema/amcr/1.0/">https://api.aiscr.cz/schema/amcr/1.0/</a></p>
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This part under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This part of the webpage will be updated with schemas and further explanations. We apologize for any inconvenience and appreciate your understanding.</p>
-</div>
-</div>
+<p>Schema (XSD) for current version of the service can be found here: <a href="https://api.aiscr.cz/schema/amcr/2.0/">https://api.aiscr.cz/schema/amcr/2.0/</a>. The schema follows the AMCR data structure as described <a href="https://amcr-help.aiscr.cz/o-systemu/datovy-model.html" class="external">here</a>. Main entities are represented as records in individual sets (see below), with all direct children listed in the XML hierarchical structure.</p>
 </section>
 <section id="filters" class="level3">
 <h3 class="anchored" data-anchor-id="filters">Filters</h3>
-<section id="state-and-accessibility-of-the-record" class="level4">
-<h4 class="anchored" data-anchor-id="state-and-accessibility-of-the-record">State and accessibility of the record</h4>
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This part under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This part of the webpage will be updated with schemas and further explanations. We apologize for any inconvenience and appreciate your understanding.</p>
-</div>
-</div>
-</section>
 <section id="sets" class="level4">
 <h4 class="anchored" data-anchor-id="sets">Sets</h4>
-<p>Selective querying can be achieved using predefined sets.</p>
+<p>Selective querying can be achieved using predefined sets. Description of sets’ contents is available at: <a href="https://api.aiscr.cz/oai?verb=ListSets" class="external">https://api.aiscr.cz/oai?verb=ListSets</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -388,57 +547,57 @@ This part under construction
 <tr class="odd">
 <td style="text-align: left;">projekt</td>
 <td style="text-align: left;">Projekty / Projects</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">archeologicky_zaznam</td>
 <td style="text-align: left;">Archeologické záznamy / Archaeological Records</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">archeologicky_zaznam:akce</td>
 <td style="text-align: left;">Akce / Fieldwork Events</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">archeologicky_zaznam:lokalita</td>
 <td style="text-align: left;">Lokality / Sites</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">let</td>
 <td style="text-align: left;">Lety / Flights</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">adb</td>
 <td style="text-align: left;">Archeologické dokumentační body / Archaeological Documentation Points</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">dokument</td>
 <td style="text-align: left;">Dokumenty / Documents</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ext_zdroj</td>
 <td style="text-align: left;">Externí zdroje / External Sources</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">pian</td>
 <td style="text-align: left;">PIAN / Spatial Units</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">samostatny_nalez</td>
 <td style="text-align: left;">Samostatné nálezy / Individual Finds</td>
-<td style="text-align: center;">-</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">uzivatel</td>
 <td style="text-align: left;">Uživatelé / Users</td>
-<td style="text-align: center;">✔</td>
+<td style="text-align: center;">✘</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">heslo</td>
@@ -475,28 +634,16 @@ This part under construction
 </div>
 </div>
 </section>
-<section id="datestamps" class="level4">
-<h4 class="anchored" data-anchor-id="datestamps">Datestamps</h4>
-<p>In <code>ListIdentifiers</code> and <code>ListRecords</code> verbs it is possible to filter based on optional query parameter datestamp. (<code>from</code> – <code>until</code>).</p>
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This part under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This part of the webpage will be updated with schemas and further explanations. We apologize for any inconvenience and appreciate your understanding.</p>
-</div>
-</div>
+<section id="datestamps-and-deleted-records" class="level4">
+<h4 class="anchored" data-anchor-id="datestamps-and-deleted-records">Datestamps and deleted records</h4>
+<p>In <code>ListIdentifiers</code> and <code>ListRecords</code> requests it is possible to filter based on optional query argument datestamp. (<code>from</code> – <code>until</code>).</p>
+<p>The datestamp reflects the last change to the record. The API also keeps track of deleted records that are no longer available in AMCR. Such records are still listed in the results, while the datestamp marks the date of deletion. Deleted records are marked with the <code>status="deleted"</code> attribute in the header element of the record (i.e.&nbsp;<code>&lt;header status="deleted"&gt;</code>). Therefore, datestamps and from/until arguments can be used to continuously update previous harvests.</p>
 </section>
 </section>
 </section>
 <section id="login-and-authorization" class="level2">
 <h2 class="anchored" data-anchor-id="login-and-authorization">Login and authorization</h2>
-<p>To be able to access records with limited accessibility, it is neccessary to login using <em>Basic access authentication</em> while sending the requests.</p>
+<p>To be able to access records with limited accessibility, it is neccessary to login using <em>Basic Access Authentication</em> while sending the requests.</p>
 <section id="curl" class="level3">
 <h3 class="anchored" data-anchor-id="curl">cURL</h3>
 <p>Use flag <code>-u</code> tu put in your username and password in each request.</p>
@@ -509,7 +656,7 @@ This part under construction
 </section>
 <section id="verbs" class="level2">
 <h2 class="anchored" data-anchor-id="verbs">Verbs</h2>
-<p>OAI-PMH protocol defines several verbs that allow metadata harvesting. OAI-PMH specification is available <a href="http://www.openarchives.org/OAI/openarchivesprotocol.html" class="external">here</a>.</p>
+<p>OAI-PMH protocol defines several verbs that allow metadata harvesting, the specification is available <a href="http://www.openarchives.org/OAI/openarchivesprotocol.html" class="external">here</a>.</p>
 <section id="identify" class="level3">
 <h3 class="anchored" data-anchor-id="identify">Identify</h3>
 <p>Verb <code>Identify</code> is used to get information about the repository.</p>
@@ -519,7 +666,7 @@ This part under construction
 <div class="small">
 <div class="sourceCode" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T12:26:50Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"Identify"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"Identify"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">Identify</span>&gt;</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">repositoryName</span>&gt;Archaeological Map of the Czech Republic (AMCR)&lt;/<span class="kw">repositoryName</span>&gt;</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">baseURL</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">baseURL</span>&gt;</span>
@@ -537,7 +684,7 @@ This part under construction
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">description</span>&gt;</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">description</span>&gt;</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">oai_dc:dc</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"</span>&gt;</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">dc:title</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;Archeologická mapa České Republiky (AMČR)&lt;/<span class="kw">dc:title</span>&gt;</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">dc:title</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;Archeologická mapa České Republiky (AMCR)&lt;/<span class="kw">dc:title</span>&gt;</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">dc:title</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;Archaeological Map of the Czech Republic (AMCR)&lt;/<span class="kw">dc:title</span>&gt;</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        [...]</span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">dc:identifier</span>&gt;https://api.aiscr.cz/&lt;/<span class="kw">dc:identifier</span>&gt;</span>
@@ -558,7 +705,7 @@ This part under construction
 <div class="small">
 <div class="sourceCode" id="cb5"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T12:46:31Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListMetadataFormats"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListMetadataFormats"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListMetadataFormats</span>&gt;</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">metadataFormat</span>&gt;</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">metadataPrefix</span>&gt;oai_dc&lt;/<span class="kw">metadataPrefix</span>&gt;</span>
@@ -575,146 +722,147 @@ This part under construction
 </div>
 <p>Supported metadata formats are:</p>
 <ul>
-<li>Dublin Core – <code>metadataPrefix=oai_dc</code>, schema available here <a href="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" class="external">http://www.openarchives.org/OAI/2.0/oai_dc.xsd</a>,</li>
-<li>native AMČR <em>.xml</em> format – <code>metadataPrefix=oai_amcr</code>, schema available here <a href="https://api.aiscr.cz/schema/amcr/2.0/">https://api.aiscr.cz/schema/amcr/2.0/</a>.</li>
+<li>Dublin Core – <code>metadataPrefix=oai_dc</code>, schema available <a href="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" class="external">here</a>,</li>
+<li>native AMCR <em>.xml</em> format – <code>metadataPrefix=oai_amcr</code>, schema available <a href="https://api.aiscr.cz/schema/amcr/2.0/">here</a>.</li>
 </ul>
-</section>
-<section id="listidentifiers" class="level3">
-<h3 class="anchored" data-anchor-id="listidentifiers">ListIdentifiers</h3>
-<p>Verb <code>ListIdentifiers</code> lists record headers. Required parameter is <code>metadataPrefix</code>, optional arguments allow filtering based on predefined sets (<code>set</code>) and/or datestamps (<code>from</code>, <code>until</code>). Only first page with limited amount of records is returned, to go to the next page, user has to submit a <code>resumptionToken</code> returned in the response.</p>
-<p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr</a></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Sample response:</em></p>
-<div class="small">
-<div class="sourceCode" id="cb7"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T12:51:03Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListIdentifiers</span>&gt;</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api-test.aiscr.cz/id/C-202013149&lt;/<span class="kw">identifier</span>&gt;</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-11T12:27:13.968Z&lt;/<span class="kw">datestamp</span>&gt;</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;projekt&lt;/<span class="kw">setSpec</span>&gt;</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api-test.aiscr.cz/id/P-0334-000377&lt;/<span class="kw">identifier</span>&gt;</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-11T12:12:19.386Z&lt;/<span class="kw">datestamp</span>&gt;</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;pian&lt;/<span class="kw">setSpec</span>&gt;</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api-test.aiscr.cz/id/C-DL-200400209&lt;/<span class="kw">identifier</span>&gt;</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-11T12:10:48.403Z&lt;/<span class="kw">datestamp</span>&gt;</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;dokument&lt;/<span class="kw">setSpec</span>&gt;</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    [...]</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859142"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;8F37FA46A1BE68D815CAE66EDFD7EE64&lt;/<span class="kw">resumptionToken</span>&gt;</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListIdentifiers</span>&gt;</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="listrecords" class="level3">
-<h3 class="anchored" data-anchor-id="listrecords">ListRecords</h3>
-<p>Verb <code>ListRecords</code> lists records. Required parameter is <code>metadataPrefix</code>, optional arguments allow filtering based on predefined sets (<code>set</code>) and/or datestamps (<code>from</code>, <code>until</code>). Only first page with limited amount of records is returned, to go to the next page, user has to submit a <code>resumptionToken</code> returned in the response.</p>
-<p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_dc" class="external">https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_dc</a></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_dc'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Sample response:</em></p>
-<div class="small">
-<div class="sourceCode" id="cb9"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T13:25:02Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_dc"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListRecords</span>&gt;</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api-test.aiscr.cz/id/C-202013149&lt;/<span class="kw">identifier</span>&gt;</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-11T12:27:13.968Z&lt;/<span class="kw">datestamp</span>&gt;</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;projekt&lt;/<span class="kw">setSpec</span>&gt;</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">metadata</span>&gt;</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">oai_dc:dc</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"</span>&gt;</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">oai_dc:dc</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"</span>&gt;</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:title</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;AMČR - projekt C-202013149&lt;/<span class="kw">dc:title</span>&gt;</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:identifier</span>&gt;C-202013149&lt;/<span class="kw">dc:identifier</span>&gt;</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:subject</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;projekt&lt;/<span class="kw">dc:subject</span>&gt;</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:description</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;Stav: 6&lt;/<span class="kw">dc:description</span>&gt;</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:type</span>&gt;http://base_url/id/HES-000865&lt;/<span class="kw">dc:type</span>&gt;</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>            [...]</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">oai_dc:dc</span>&gt;</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">oai_dc:dc</span>&gt;</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">metadata</span>&gt;</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859142"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;2A997D362431AC3FC670E2680E61D782&lt;/<span class="kw">resumptionToken</span>&gt;</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListRecords</span>&gt;</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="getrecord" class="level3">
-<h3 class="anchored" data-anchor-id="getrecord">GetRecord</h3>
-<p>Verb <code>GetRecord</code> returns individual record. Required parameters are <code>metadataPrefix</code> and <code>identifier</code> (unique identifier of the record, URI). Unique identifier of individual record is in the header of each record in the element with tag <code>&lt;identifier&gt;</code>. The contents of <code>&lt;identifier&gt;</code> element is derived from a unique identifier of the given record stored in the <code>&lt;amcr:ident_cely&gt;</code> prefixed with string <code>https://api.aiscr.cz/id/</code>.</p>
-<p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=GetRecord&amp;identifier=https://api-test.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/oai?verb=GetRecord&amp;identifier=https://api-test.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr</a></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=GetRecord&amp;identifier=https://api-test.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Sample response:</em></p>
-<div class="small">
-<div class="sourceCode" id="cb11"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T09:04:59Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"GetRecord"</span><span class="ot"> identifier=</span><span class="st">"https://api-test.aiscr.cz/id/M-FT-110598700"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">GetRecord</span>&gt;</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api-test.aiscr.cz/id/M-FT-110598700&lt;/<span class="kw">identifier</span>&gt;</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-05-09T12:39:30.474Z&lt;/<span class="kw">datestamp</span>&gt;</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;dokument&lt;/<span class="kw">setSpec</span>&gt;</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">metadata</span>&gt;</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">amcr:amcr</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"https://api.aiscr.cz/schema/amcr/2.0/ https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"</span>&gt; HTTP/1.1 403 Forbidden &lt;/<span class="kw">amcr:amcr</span>&gt;</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">metadata</span>&gt;</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">GetRecord</span>&gt;</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="listsets" class="level3">
 <h3 class="anchored" data-anchor-id="listsets">ListSets</h3>
 <p>Verb <code>ListSets</code> lists available sets.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListSets" class="external">https://api.aiscr.cz/oai?verb=ListSets</a></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListSets'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListSets'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Sample response:</em></p>
+<div class="small">
+<div class="sourceCode" id="cb7"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T13:28:01Z&lt;/<span class="kw">responseDate</span>&gt;</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListSets"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListSets</span>&gt;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">set</span>&gt;</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">setSpec</span>&gt;projekt&lt;/<span class="kw">setSpec</span>&gt;</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">setName</span>&gt;Projekty / Projects&lt;/<span class="kw">setName</span>&gt;</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">setDescription</span>&gt;</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">oai_dc:dc</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"</span>&gt;</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">dc:description</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            Evidenční jednotky terénní činnosti badatelského nebo záchranného rázu evidované již ve fázi přípravy. Pro vymezení projektu je rozhodující podnět k výzkumu a provádějící subjekt (oprávněná organizace), lokalizace a příp. projektová dokumentace. Na projekt zpravidla navazuje jedna či (méně často) více terénních akcí či evidence samostatných nálezů.</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">dc:description</span>&gt;</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">dc:description</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            Records of field activities of a research or development-led nature recorded in the preparation phase. For the definition of the project, the motivation and the implementing body (authorised organisation), the location and, if applicable, the project documentation are decisive. The project is usually followed by one or (less frequently) more fieldwork, or the recording of individual finds.</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">dc:description</span>&gt;</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">oai_dc:dc</span>&gt;</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">setDescription</span>&gt;</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">set</span>&gt;</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    [...]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListSets</span>&gt;</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="listidentifiers" class="level3">
+<h3 class="anchored" data-anchor-id="listidentifiers">ListIdentifiers</h3>
+<p>Verb <code>ListIdentifiers</code> lists record headers. Required argument is <code>metadataPrefix</code>, optional arguments allow filtering based on predefined sets (<code>set</code>) and/or datestamps (<code>from</code>, <code>until</code>). Only first page with limited amount of records is returned, to go to the next page, user has to submit a <code>resumptionToken</code> returned in the response.</p>
+<p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr</a></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Sample response:</em></p>
+<div class="small">
+<div class="sourceCode" id="cb9"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T12:51:03Z&lt;/<span class="kw">responseDate</span>&gt;</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListIdentifiers</span>&gt;</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api.aiscr.cz/id/C-202013149&lt;/<span class="kw">identifier</span>&gt;</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-11T12:27:13.968Z&lt;/<span class="kw">datestamp</span>&gt;</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;projekt&lt;/<span class="kw">setSpec</span>&gt;</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api.aiscr.cz/id/P-0334-000377&lt;/<span class="kw">identifier</span>&gt;</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-11T12:12:19.386Z&lt;/<span class="kw">datestamp</span>&gt;</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;pian&lt;/<span class="kw">setSpec</span>&gt;</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api.aiscr.cz/id/C-DL-200400209&lt;/<span class="kw">identifier</span>&gt;</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-11T12:10:48.403Z&lt;/<span class="kw">datestamp</span>&gt;</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;dokument&lt;/<span class="kw">setSpec</span>&gt;</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    [...]</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListIdentifiers</span>&gt;</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="listrecords" class="level3">
+<h3 class="anchored" data-anchor-id="listrecords">ListRecords</h3>
+<p>Verb <code>ListRecords</code> lists records. Required argument is <code>metadataPrefix</code>, optional arguments allow filtering based on predefined sets (<code>set</code>) and/or datestamps (<code>from</code>, <code>until</code>). Only first page with limited amount of records is returned, to go to the next page, user has to submit a <code>resumptionToken</code> returned in the response.</p>
+<p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_dc" class="external">https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_dc</a></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_dc'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Sample response:</em></p>
+<div class="small">
+<div class="sourceCode" id="cb11"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T13:25:02Z&lt;/<span class="kw">responseDate</span>&gt;</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_dc"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListRecords</span>&gt;</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api.aiscr.cz/id/C-202013149&lt;/<span class="kw">identifier</span>&gt;</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-11T12:27:13.968Z&lt;/<span class="kw">datestamp</span>&gt;</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;projekt&lt;/<span class="kw">setSpec</span>&gt;</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">metadata</span>&gt;</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">oai_dc:dc</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"</span>&gt;</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">oai_dc:dc</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"</span>&gt;</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:title</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;AMCR - projekt C-202013149&lt;/<span class="kw">dc:title</span>&gt;</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:identifier</span>&gt;C-202013149&lt;/<span class="kw">dc:identifier</span>&gt;</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:subject</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;projekt&lt;/<span class="kw">dc:subject</span>&gt;</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:description</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;Stav: 6&lt;/<span class="kw">dc:description</span>&gt;</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">dc:type</span>&gt;http://base_url/id/HES-000865&lt;/<span class="kw">dc:type</span>&gt;</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>            [...]</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">oai_dc:dc</span>&gt;</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">oai_dc:dc</span>&gt;</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">metadata</span>&gt;</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListRecords</span>&gt;</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="getrecord" class="level3">
+<h3 class="anchored" data-anchor-id="getrecord">GetRecord</h3>
+<p>Verb <code>GetRecord</code> returns individual record. Required arguments are <code>metadataPrefix</code> and <code>identifier</code> (unique identifier of the record, URI). Unique identifier of individual record is in the header of each record in the element with tag <code>&lt;identifier&gt;</code>. The contents of <code>&lt;identifier&gt;</code> element is derived from a unique identifier of the given record usually stored in the <code>&lt;amcr:ident_cely&gt;</code> prefixed with namespace according to the API endpoint, i.e.&nbsp;string <code>https://api.aiscr.cz/id/</code>.</p>
+<p>Resulting URL acts as an alias to <code>GetRecord</code> in the <code>oai_amcr</code> schema for the specified record, and is automatically translated into the appropriate request. Therefore it can be used to easily refer specific records in the API.</p>
+<p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=GetRecord&amp;identifier=https://api.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/oai?verb=GetRecord&amp;identifier=https://api.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr</a></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=GetRecord&amp;identifier=https://api.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Sample response:</em></p>
 <div class="small">
 <div class="sourceCode" id="cb13"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T13:28:01Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListSets"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListSets</span>&gt;</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">set</span>&gt;</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">setSpec</span>&gt;projekt&lt;/<span class="kw">setSpec</span>&gt;</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">setName</span>&gt;Projekty / Projects&lt;/<span class="kw">setName</span>&gt;</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">setDescription</span>&gt;</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">oai_dc:dc</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"</span>&gt;</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">dc:description</span><span class="ot"> xml:lang=</span><span class="st">"cs"</span>&gt;</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>            Evidenční jednotky terénní činnosti badatelského nebo záchranného rázu evidované již ve fázi přípravy. Pro vymezení projektu je rozhodující podnět k výzkumu a provádějící subjekt (oprávněná organizace), lokalizace a příp. projektová dokumentace. Na projekt zpravidla navazuje jedna či (méně často) více terénních akcí či evidence samostatných nálezů.</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">dc:description</span>&gt;</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>          &lt;<span class="kw">dc:description</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            Records of field activities of a research or development-led nature recorded in the preparation phase. For the definition of the project, the motivation and the implementing body (authorised organisation), the location and, if applicable, the project documentation are decisive. The project is usually followed by one or (less frequently) more fieldwork, or the recording of individual finds.</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>          &lt;/<span class="kw">dc:description</span>&gt;</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">oai_dc:dc</span>&gt;</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">setDescription</span>&gt;</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">set</span>&gt;</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    [...]</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListSets</span>&gt;</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T09:04:59Z&lt;/<span class="kw">responseDate</span>&gt;</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"GetRecord"</span><span class="ot"> identifier=</span><span class="st">"https://api.aiscr.cz/id/M-FT-110598700"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">GetRecord</span>&gt;</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api.aiscr.cz/id/M-FT-110598700&lt;/<span class="kw">identifier</span>&gt;</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-05-09T12:39:30.474Z&lt;/<span class="kw">datestamp</span>&gt;</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;dokument&lt;/<span class="kw">setSpec</span>&gt;</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">metadata</span>&gt;</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">amcr:amcr</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"https://api.aiscr.cz/schema/amcr/2.0/ https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"</span>&gt; HTTP/1.1 403 Forbidden &lt;/<span class="kw">amcr:amcr</span>&gt;</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">metadata</span>&gt;</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">GetRecord</span>&gt;</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="parameters" class="level2">
-<h2 class="anchored" data-anchor-id="parameters">Parameters</h2>
-<p>Some verbs have required parameters (typically specifying the metadata format with <code>metadataPrefix</code>) and some have optional parameters allowing filtration, pagination etc.</p>
+<section id="arguments" class="level2">
+<h2 class="anchored" data-anchor-id="arguments">Arguments</h2>
+<p>Some requests (verbs) have required arguments (typically specifying the metadata format with <code>metadataPrefix</code>) and some have optional arguments allowing filtration, pagination etc.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Required and optional query parameters</caption>
+<caption>Required and optional query arguments</caption>
 <colgroup>
 <col style="width: 24%">
 <col style="width: 33%">
@@ -736,7 +884,7 @@ This part under construction
 <tr class="even">
 <td style="text-align: left;">ListMetadataFormats</td>
 <td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
+<td style="text-align: left;">identifier</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ListIdentifiers</td>
@@ -756,7 +904,7 @@ This part under construction
 <tr class="even">
 <td style="text-align: left;">ListSets</td>
 <td style="text-align: left;">-</td>
-<td style="text-align: left;">-</td>
+<td style="text-align: left;">resumptionToken</td>
 </tr>
 </tbody>
 </table>
@@ -764,14 +912,14 @@ This part under construction
 </div>
 <section id="pagination" class="level3">
 <h3 class="anchored" data-anchor-id="pagination">Pagination</h3>
-<p>In case of <code>ListIdentifiers</code> and <code>ListRecords</code> verbs, only the first page of results is returned. To get another page, a <code>resumptionToken</code> returned at the end of the response must be used as a parameter in the following request. Parameter <code>resumptionToken</code> should be always the last parameter in the request.</p>
+<p>In case of <code>ListIdentifiers</code>, <code>ListRecords</code> and <code>ListSets</code> requests, only the first page of results is returned. To get another page, a <code>resumptionToken</code> returned at the end of the response must be used as an argument in the following request. Argument <code>resumptionToken</code> should be always the last argument in the request.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_amcr</a></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListRecords&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Sample response:</em></p>
 <div class="small">
 <div class="sourceCode" id="cb15"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T11:57:23Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListRecords</span>&gt;</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
@@ -781,16 +929,16 @@ This part under construction
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        [...]</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">metadata</span>&gt;</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859162"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;55CC4AC4A4BDAA3245F6B3E0E8B1CE0A&lt;/<span class="kw">resumptionToken</span>&gt;</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListRecords</span>&gt;</span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Follow up request with <code>resumptionToken</code>:</em> <a href="https://api.aiscr.cz/oai?verb=ListRecords&amp;resumptionToken=55CC4AC4A4BDAA3245F6B3E0E8B1CE0A" class="external">https://api.aiscr.cz/oai?verb=ListRecords&amp;resumptionToken=55CC4AC4A4BDAA3245F6B3E0E8B1CE0A</a></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListRecords&amp;resumptionToken=55CC4AC4A4BDAA3245F6B3E0E8B1CE0A'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Follow up request with <code>resumptionToken</code>:</em> <a href="https://api.aiscr.cz/oai?verb=ListRecords&amp;resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90" class="external">https://api.aiscr.cz/oai?verb=ListRecords&amp;resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90</a></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListRecords&amp;resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="small">
 <div class="sourceCode" id="cb17"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T12:01:28Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> resumptionToken=</span><span class="st">"55CC4AC4A4BDAA3245F6B3E0E8B1CE0A"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> resumptionToken=</span><span class="st">"BF0A0598B38E42E3FEB4E639B2911C90"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListRecords</span>&gt;</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
@@ -800,69 +948,54 @@ This part under construction
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        [...]</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">metadata</span>&gt;</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859162"</span><span class="ot"> cursor=</span><span class="st">"100"</span>&gt;AC59E153A7C3CDBAC4200F62CAC67880&lt;/<span class="kw">resumptionToken</span>&gt;</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859206"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-24T16:12:38Z"</span><span class="ot"> cursor=</span><span class="st">"100"</span>&gt;7C6DD5774E7C5493819FF48540A24546&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListRecords</span>&gt;</span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice the attributes of the <code>resumptionToken</code> element <code>completeListSize</code> indicating total number of results and <code>cursor</code> indicating that the first record in the given response is n-th returned record.</p>
+<p>Each resumption token also has set expiration date until when it can be used to acquire the next page. Please note that the data in the API is constantly updated so it is advisable to harvest the results at once to avoid possible inconsistencies in the response.</p>
 </section>
 <section id="filters-1" class="level3">
 <h3 class="anchored" data-anchor-id="filters-1">Filters</h3>
 <p>Selective harvesting is allowed thanks to datestamps of records and sets.</p>
-<section id="record-accessibility" class="level4">
-<h4 class="anchored" data-anchor-id="record-accessibility">Record accessibility</h4>
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This part under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This part of the webpage will be updated with schemas and further explanations. We apologize for any inconvenience and appreciate your understanding.</p>
-</div>
-</div>
-</section>
 <section id="sets-1" class="level4">
 <h4 class="anchored" data-anchor-id="sets-1">Sets</h4>
-<p>Available sets of records are returned using the <code>ListSets</code> verb. The contents of the <code>&lt;setSpec&gt;</code> element can be used in a <code>set</code> parameter in <code>ListIdentifiers</code> and <code>ListRecords</code> verbs.</p>
+<p>Available sets of records are returned using the <code>ListSets</code> verb. The contents of the <code>&lt;setSpec&gt;</code> element can be used in a <code>set</code> argument in <code>ListIdentifiers</code> and <code>ListRecords</code> requests.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;set=pian&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;set=pian&amp;metadataPrefix=oai_amcr</a></p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;set=pian&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Sample response:</em></p>
 <div class="small">
 <div class="sourceCode" id="cb19"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T12:17:21Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> set=</span><span class="st">"pian"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> set=</span><span class="st">"pian"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListIdentifiers</span>&gt;</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api-test.aiscr.cz/id/P-1223-101288&lt;/<span class="kw">identifier</span>&gt;</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api.aiscr.cz/id/P-1223-101288&lt;/<span class="kw">identifier</span>&gt;</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-07-15T11:13:45.237Z&lt;/<span class="kw">datestamp</span>&gt;</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;pian&lt;/<span class="kw">setSpec</span>&gt;</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    [...]</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"219014"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;A828ECF79EF4EABB40CDD5EAB26F62B1&lt;/<span class="kw">resumptionToken</span>&gt;</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListIdentifiers</span>&gt;</span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="datestamps-1" class="level4">
-<h4 class="anchored" data-anchor-id="datestamps-1">Datestamps</h4>
-<p>Parameters <code>from</code> and <code>until</code> in verbs <code>ListIdentifiers</code> and <code>ListRecords</code> allow filtering based on a datestamp of the given record. Use dates in ISO-8601 standard format, i.e.&nbsp;YYYY-MM-DD.</p>
+<section id="datestamps" class="level4">
+<h4 class="anchored" data-anchor-id="datestamps">Datestamps</h4>
+<p>Arguments <code>from</code> and <code>until</code> in <code>ListIdentifiers</code> and <code>ListRecords</code> requests allow filtering based on a datestamp of the given record. Use timestamps in ISO-8601 standard format, i.e.&nbsp;YYYY-MM-DDThh:mm:ssZ or its subset.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;set=projekt&amp;from=2023-04-21&amp;until=2024-04-27&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;set=projekt&amp;from=2023-04-21&amp;until=2024-04-27&amp;metadataPrefix=oai_amcr</a></p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;set=projekt&amp;from=2023-04-21&amp;until=2024-04-27&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Sample response:</em></p>
 <div class="small">
 <div class="sourceCode" id="cb21"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T12:20:21Z&lt;/<span class="kw">responseDate</span>&gt;</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> set=</span><span class="st">"projekt"</span><span class="ot"> from=</span><span class="st">"2023-04-21"</span><span class="ot"> until=</span><span class="st">"2024-04-27"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;http://digiarchiv:8080/oai&lt;/<span class="kw">request</span>&gt;</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> set=</span><span class="st">"projekt"</span><span class="ot"> from=</span><span class="st">"2023-04-21"</span><span class="ot"> until=</span><span class="st">"2024-04-27"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListIdentifiers</span>&gt;</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api-test.aiscr.cz/id/M-202204394&lt;/<span class="kw">identifier</span>&gt;</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api.aiscr.cz/id/M-202204394&lt;/<span class="kw">identifier</span>&gt;</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-04-26T13:08:37.256Z&lt;/<span class="kw">datestamp</span>&gt;</span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;projekt&lt;/<span class="kw">setSpec</span>&gt;</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
@@ -870,12 +1003,12 @@ This part under construction
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    [...]</span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">record</span>&gt;</span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">header</span>&gt;</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api-test.aiscr.cz/id/C-202401944&lt;/<span class="kw">identifier</span>&gt;</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">identifier</span>&gt;https://api.aiscr.cz/id/C-202401944&lt;/<span class="kw">identifier</span>&gt;</span>
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">datestamp</span>&gt;2024-03-17T06:32:08.143Z&lt;/<span class="kw">datestamp</span>&gt;</span>
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">setSpec</span>&gt;projekt&lt;/<span class="kw">setSpec</span>&gt;</span>
 <span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">header</span>&gt;</span>
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"180105"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;6ABB1C7ACC374C52B5106D1ABCA113C6&lt;/<span class="kw">resumptionToken</span>&gt;</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListIdentifiers</span>&gt;</span>
 <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1313,8 +1446,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <p><a href="../about/index.html">About</a> | <span id="open_preferences_center"><u>Cookies</u></span> | CC BY-NC 4.0</p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://aiscr.cz/"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/blob/main/oai-pmh/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/edit/main/oai-pmh/index.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/ARUP-CAS/aiscr-api-home/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<p><a href="https://aiscr.cz/" class="external"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
+</div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
