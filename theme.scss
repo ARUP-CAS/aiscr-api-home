@@ -53,6 +53,11 @@ code {
   color: $da;
 }
 
+.fttext {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .blockquote {
   color: black !important;
 }
@@ -64,14 +69,14 @@ code {
   font-weight: 300;
 }
 
-.navbar .navbar-brand:hover,
-.navbar .navbar-brand:focus {
-  color: white;
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: white !important;
 }
 
-.navbar-dark .navbar-nav .nav-link.active, 
-.navbar-dark .navbar-nav .nav-link:hover, 
-.navbar-dark .navbar-nav .nav-link:focus {
+.nav-link.active, 
+.nav-link:hover, 
+.nav-link:focus {
   color: white !important;
 }
 
@@ -95,8 +100,12 @@ ul.navbar-nav > li > a:focus > span {
 /*-- sidebar --*/
 .sidebar-item {
   font-family: $mainfont;
-  font-weight: 300;
+  font-weight: 400;
 }
+
+// .sidebar-item:hover {
+//     font-weight: 500;
+// }
 
 .sidebar-item .active {
   font-weight: 500;

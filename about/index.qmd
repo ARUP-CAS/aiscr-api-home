@@ -4,20 +4,22 @@ about:
   # image: "figs/logo-aiscr-ver.png"
   # image-width: "160px"
   links:
-    - text: Zenodo
+    - icon: book
+      text: Zenodo
       href: https://zenodo.org/communities/aiscr/
     - icon: github
       text: Github
       href: https://github.com/ARUP-CAS/
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com/AISCRproject/
+    - icon: twitter-x
+      text: X (Twitter)
+      href: https://x.com/AISCRproject/
     - icon: facebook
       text: Facebook
       href: https://www.facebook.com/ArcheologickyInformacniSystem/
     - icon: youtube
       text: YouTube
       href: https://www.youtube.com/@aiscr253
+toc: false
 format-links: false
 repo-actions: false
 ---
