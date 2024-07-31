@@ -4,22 +4,11 @@ subtitle: OpenArchives Initiative Protocol for Metadata Harvesting API
 date: 2024-07-17
 ---
 
-::: {.callout-important}
-
-## Webpage under construction
-
-We appreciate your interest in our website. 
-Please be advised that this page is currently under construction and we are working to improve your experience and will have it up and running shortly. 
-Thank you for your patience and understanding. 
-If you have any questions or need assistance, please [contact us](/about/index.qmd).
-
-:::
-
 ::: {.callout-note}
 
 API is available here: [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}.  
 User registration is available here: [https://amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external}.  
-This guide is valid for version 2.0.0 of the service and schema.
+This guide is valid for version 2.0.0 of the service and the schema.
 
 :::
 
@@ -56,7 +45,7 @@ read.csv("tabs/access1.csv", tryLogical = FALSE) |>
   knitr::kable(align = "lcccc")
 ```
 
-> *stav* -- process state of the record, see **???**  
+> *stav* -- processing state of the record, see [Documentation](https://amcr-help.aiscr.cz/o-systemu/procesy.html){.external} (*in Czech language only*)  
 > *my record* -- record created by the user  
 > *my organisation record* -- record created by someone from user's organisation
 
