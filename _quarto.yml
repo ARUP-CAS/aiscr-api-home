@@ -1,9 +1,6 @@
 project:
   type: website
-  resources:
-    # - "CNAME"
-    - schema/amcr/1.0/amcr.xsd
-    - schema/amcr/2.0/amcr.xsd
+  # resources:
 
 website:
   title: "AMCR API"
