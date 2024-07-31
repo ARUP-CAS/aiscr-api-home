@@ -199,7 +199,7 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
-<p><a href="https://api.aiscr.cz/"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
+<p><a href="../oai-pmh/index.html"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
 </div></div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
@@ -284,19 +284,6 @@ cookieconsent.run({
 </header>
 
 
-<div class="callout callout-style-simple callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Webpage under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We appreciate your interest in our website. Please be advised that this page is currently under construction and we are working to improve your experience and will have it up and running shortly. Thank you for your patience and understanding. If you have any questions or need assistance, please <a href="../about/index.html">contact us</a>.</p>
-</div>
-</div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -305,7 +292,7 @@ Webpage under construction
 <div class="callout-body-container">
 <p>API is available here: <a href="https://api.aiscr.cz/oai?verb=Identify" class="external">https://api.aiscr.cz/oai?verb=Identify</a>.<br>
 User registration is available here: <a href="https://amcr.aiscr.cz/accounts/register/" class="external">https://amcr.aiscr.cz/accounts/register/</a>.<br>
-This guide is valid for version 2.0.0 of the service and schema.</p>
+This guide is valid for version 2.0.0 of the service and the schema.</p>
 </div>
 </div>
 </div>
@@ -464,7 +451,7 @@ This guide is valid for version 2.0.0 of the service and schema.</p>
 </div>
 </div>
 <blockquote class="blockquote">
-<p><em>stav</em> – process state of the record, see <strong>???</strong><br>
+<p><em>stav</em> – processing state of the record, see <a href="https://amcr-help.aiscr.cz/o-systemu/procesy.html" class="external">Documentation</a> (<em>in Czech language only</em>)<br>
 <em>my record</em> – record created by the user<br>
 <em>my organisation record</em> – record created by someone from user’s organisation</p>
 </blockquote>
@@ -1125,6 +1112,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1443,20 +1435,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><a href="../about/index.html">About</a> | <span id="open_preferences_center"><u>Cookies</u></span> | CC BY-NC 4.0</p>
+<p><a href="../about/index.html" class="fttext">About</a> | <u id="open_preferences_center" class="fttext">Cookies</u> | <span class="fttext">CC BY-NC 4.0</span></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://aiscr.cz/" class="external"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
+<p><a href="https://www.aiscr.cz/" target="_blank"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
 </div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item">
-    <a class="nav-link" href="https://www.quarto.org/" target="_blank">
-<p>Created with ♡ in Quarto.</p>
-</a>
-  </li>  
-</ul>
-    </div>
+<p>Created with ♡ in <a href="https://www.quarto.org/" target="_blank">Quarto</a>.</p>
+</div>
   </div>
 </footer>
 

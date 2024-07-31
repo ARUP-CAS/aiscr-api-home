@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2024-07-31">
-<meta name="description" content="New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client.">
 
 <title>Version 2.0 of OAI-PMH API – AMCR API</title>
 <style>
@@ -166,7 +165,7 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
-<p><a href="https://api.aiscr.cz/"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
+<p><a href="../changelogs/index.html"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
 </div></div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
@@ -202,17 +201,10 @@ cookieconsent.run({
 <div class="quarto-title">
 <h1 class="title">Version 2.0 of OAI-PMH API</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">maintenance</div>
     <div class="quarto-category">oai-pmh</div>
-    <div class="quarto-category">major</div>
   </div>
   </div>
 
-<div>
-  <div class="description">
-    <p>New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client.</p>
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -233,7 +225,7 @@ cookieconsent.run({
 </header>
 
 
-<p>Since 15. July the former AMČR desktop client is undergoing shutdown and migration to new set of web services begins.</p>
+<p>New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client. See <a href="https://github.com/ARUP-CAS/aiscr-webamcr/blob/dev/webclient/xml_generator/definitions/oai_amcr_v1-2_v2-0_changelog.xsd" class="external">changelog</a> for more details.</p>
 
 
 
@@ -344,6 +336,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -662,20 +659,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><a href="../about/index.html">About</a> | <span id="open_preferences_center"><u>Cookies</u></span> | CC BY-NC 4.0</p>
+<p><a href="../about/index.html" class="fttext">About</a> | <u id="open_preferences_center" class="fttext">Cookies</u> | <span class="fttext">CC BY-NC 4.0</span></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://aiscr.cz/" class="external"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
+<p><a href="https://www.aiscr.cz/" target="_blank"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
 </div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item">
-    <a class="nav-link" href="https://www.quarto.org/" target="_blank">
-<p>Created with ♡ in Quarto.</p>
-</a>
-  </li>  
-</ul>
-    </div>
+<p>Created with ♡ in <a href="https://www.quarto.org/" target="_blank">Quarto</a>.</p>
+</div>
   </div>
 </footer>
 

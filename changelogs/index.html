@@ -224,7 +224,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
-<p><a href="https://api.aiscr.cz/"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
+<p><a href="../changelogs/index.html"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
 </div></div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
@@ -252,7 +252,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="maintenance">maintenance <span class="quarto-category-count">(1)</span></div><div class="category" data-category="major">major <span class="quarto-category-count">(1)</span></div><div class="category" data-category="oai-pmh">oai-pmh <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="oai-pmh">oai-pmh <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -297,7 +297,7 @@ Categories
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="maintenance,oai-pmh,major" data-listing-date-sort="1722384000000" data-listing-file-modified-sort="1722351050051" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="20" data-listing-title-sort="Version 2.0 of OAI-PMH API" data-listing-filename-sort="2024-07-31.qmd">
+<tr data-index="0" data-categories="oai-pmh" data-listing-date-sort="1722384000000" data-listing-file-modified-sort="1722425698864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="27" data-listing-title-sort="Version 2.0 of OAI-PMH API" data-listing-filename-sort="2024-07-31.qmd">
 <td>
 <span class="listing-date">2024-07-31</span>
 </td>
@@ -305,7 +305,7 @@ Categories
 <a href="../changelogs/2024-07-31.html" class="title listing-title">Version 2.0 of OAI-PMH API</a>
 </td>
 <td>
-<span class="listing-categories">maintenance, oai-pmh, major</span>
+<span class="listing-categories">oai-pmh</span>
 </td>
 </tr>
 </tbody>
@@ -425,6 +425,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -743,20 +748,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><a href="../about/index.html">About</a> | <span id="open_preferences_center"><u>Cookies</u></span> | CC BY-NC 4.0</p>
+<p><a href="../about/index.html" class="fttext">About</a> | <u id="open_preferences_center" class="fttext">Cookies</u> | <span class="fttext">CC BY-NC 4.0</span></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://aiscr.cz/" class="external"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
+<p><a href="https://www.aiscr.cz/" target="_blank"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
 </div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item">
-    <a class="nav-link" href="https://www.quarto.org/" target="_blank">
-<p>Created with ♡ in Quarto.</p>
-</a>
-  </li>  
-</ul>
-    </div>
+<p>Created with ♡ in <a href="https://www.quarto.org/" target="_blank">Quarto</a>.</p>
+</div>
   </div>
 </footer>
 

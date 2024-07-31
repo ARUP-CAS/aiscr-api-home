@@ -291,6 +291,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -609,20 +614,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><a href="/aiscr-api-home/./about/index.html">About</a> | <span id="open_preferences_center"><u>Cookies</u></span> | CC BY-NC 4.0</p>
+<p><a href="/aiscr-api-home/./about/index.html" class="fttext">About</a> | <u id="open_preferences_center" class="fttext">Cookies</u> | <span class="fttext">CC BY-NC 4.0</span></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://aiscr.cz/" class="external"><img src="/aiscr-api-home/./figs/logo-aiscr-hor.png" height="60"></a></p>
+<p><a href="https://www.aiscr.cz/" target="_blank"><img src="/aiscr-api-home/figs/logo-aiscr-hor.png" height="60"></a></p>
 </div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item">
-    <a class="nav-link" href="https://www.quarto.org/" target="_blank">
-<p>Created with ♡ in Quarto.</p>
-</a>
-  </li>  
-</ul>
-    </div>
+<p>Created with ♡ in <a href="https://www.quarto.org/" target="_blank">Quarto</a>.</p>
+</div>
   </div>
 </footer>
 
