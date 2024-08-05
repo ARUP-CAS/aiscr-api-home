@@ -69,7 +69,7 @@
     "href": "index.html#citation",
     "title": "AMCR API",
     "section": "Citation",
-    "text": "Citation\nPlease cite the use of the data queried from the API in scientific publications as follows:\n\nAMCR: Archaeological Map of the Czech Republic. [cit. YYYY-MM-DD]. Available from: https://api.aiscr.cz/",
+    "text": "Citation\nPlease cite the use of the data queried from the API in scientific publications as follows:\n\nAMCR: Archaeological Map of the Czech Republic. [cit. YYYY-MM-DD]. Available from: https://api.aiscr.cz/\n\nAnd the API documentation as:\n\nPajdla P., Novák D. 2024: AMCR API Documentation. DOI: 10.5281/zenodo.13220182. Website: https://arup-cas.github.io/aiscr-api-home/. Source: https://github.com/ARUP-CAS/aiscr-api-home.",
     "crumbs": [
       "Home",
       "AMCR API"
