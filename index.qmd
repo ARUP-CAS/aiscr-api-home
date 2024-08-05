@@ -3,6 +3,7 @@ title: "AMCR API"
 format-links: false
 repo-actions: false
 date: 2024-08-05
+doi: 10.5281/zenodo.13220182
 listing: 
   - id: changelogs
     type: grid
@@ -78,3 +79,7 @@ Every AIS CR user is therefore **obliged** to:
 Please cite the use of the data queried from the API in scientific publications as follows:
 
 > AMCR: *Archaeological Map of the Czech Republic.* [cit. YYYY-MM-DD]. Available from: [https://api.aiscr.cz/](https://api.aiscr.cz/)
+
+And the API documentation as:
+
+> Pajdla P., Novák D. 2024: AMCR API Documentation. DOI: [10.5281/zenodo.13220182](https://zenodo.org/doi/10.5281/zenodo.13220182). Website: [https://arup-cas.github.io/aiscr-api-home/](https://arup-cas.github.io/aiscr-api-home/). Source: [https://github.com/ARUP-CAS/aiscr-api-home](https://github.com/ARUP-CAS/aiscr-api-home).
