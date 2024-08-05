@@ -1,0 +1,30 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: AMCR API Homepage
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file or generic citation: AMCR:
+  Archaeological Map of the Czech Republic. [cit.
+  YYYY-MM-DD]. Available from: https://api.aiscr.cz/. 
+type: software
+authors:
+  - given-names: Petr
+    family-names: Pajdla
+    email: pajdla@arub.cz
+    affiliation: >-
+      Czech Academy of Sciences, Institute of Archaeology,
+      Brno
+    orcid: 'https://orcid.org/0000-0001-7050-9572'
+  - family-names: Novák
+    given-names: David
+    orcid: 'https://orcid.org/0000-0001-6592-6291'
+    affiliation: >-
+      Czech Academy of Sciences, Institute of Archaeology,
+      Prague
+repository-code: 'https://github.com/ARUP-CAS/aiscr-api-home/'
+url: 'https://arup-cas.github.io/aiscr-api-home/'
+abstract: Homepage for AMCR API.
+license: CC-BY-NC-4.0
+date-released: '2024-08-05'
