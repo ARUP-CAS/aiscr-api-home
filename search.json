@@ -1,5 +1,37 @@
 [
   {
+    "objectID": "changelogs/index.html",
+    "href": "changelogs/index.html",
+    "title": "Changelogs",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\nCategories\n\n\n\n\n\n\n2024-07-31\n\n\nVersion 2.0 of OAI-PMH API\n\n\noai-pmh\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Changelogs"
+    ]
+  },
+  {
+    "objectID": "about/index.html",
+    "href": "about/index.html",
+    "title": "AMCR API",
+    "section": "",
+    "text": "Archaeological Map of the Czech Republic (AMČR) is an integral part of the Archaeological Information System of the Czech Republic (AIS CR). The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in Prague and Brno.",
+    "crumbs": [
+      "About",
+      "Contacts"
+    ]
+  },
+  {
+    "objectID": "about/index.html#contacts",
+    "href": "about/index.html#contacts",
+    "title": "AMCR API",
+    "section": "Contacts",
+    "text": "Contacts\nSupport for the region of Bohemia:\n\nInstitute of Archaeology, Czech Academy of Sciences, Prague\nhttps://www.arup.cas.cz/\n amcr@arup.cas.cz\n\nSupport for the regions of Moravia and Silesia (incl. Vysočina region):\n\nInstitute of Archaeology, Czech Academy of Sciences, Brno\nhttps://www.arub.cz/\n amcr@arub.cz",
+    "crumbs": [
+      "About",
+      "Contacts"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "AMCR API",
@@ -41,17 +73,6 @@
     "crumbs": [
       "Home",
       "AMCR API"
-    ]
-  },
-  {
-    "objectID": "changelogs/2024-07-31.html",
-    "href": "changelogs/2024-07-31.html",
-    "title": "Version 2.0 of OAI-PMH API",
-    "section": "",
-    "text": "New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client. See changelog for more details.",
-    "crumbs": [
-      "Changelogs",
-      "Version 2.0 of OAI-PMH API"
     ]
   },
   {
@@ -121,35 +142,14 @@
     ]
   },
   {
-    "objectID": "changelogs/index.html",
-    "href": "changelogs/index.html",
-    "title": "Changelogs",
+    "objectID": "changelogs/2024-07-31.html",
+    "href": "changelogs/2024-07-31.html",
+    "title": "Version 2.0 of OAI-PMH API",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nCategories\n\n\n\n\n\n\n2024-07-31\n\n\nVersion 2.0 of OAI-PMH API\n\n\noai-pmh\n\n\n\n\n\nNo matching items",
+    "text": "New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client. See changelog for more details.",
     "crumbs": [
-      "Changelogs"
-    ]
-  },
-  {
-    "objectID": "about/index.html",
-    "href": "about/index.html",
-    "title": "AMCR API",
-    "section": "",
-    "text": "Archaeological Map of the Czech Republic (AMČR) is an integral part of the Archaeological Information System of the Czech Republic (AIS CR). The infrastructure is jointly operated by the Institutes of Archaeology of the Czech Academy of Sciences in Prague and Brno.",
-    "crumbs": [
-      "About",
-      "Contacts"
-    ]
-  },
-  {
-    "objectID": "about/index.html#contacts",
-    "href": "about/index.html#contacts",
-    "title": "AMCR API",
-    "section": "Contacts",
-    "text": "Contacts\nSupport for the region of Bohemia:\n\nInstitute of Archaeology, Czech Academy of Sciences, Prague\nhttps://www.arup.cas.cz/\n amcr@arup.cas.cz\n\nSupport for the regions of Moravia and Silesia (incl. Vysočina region):\n\nInstitute of Archaeology, Czech Academy of Sciences, Brno\nhttps://www.arub.cz/\n amcr@arub.cz",
-    "crumbs": [
-      "About",
-      "Contacts"
+      "Changelogs",
+      "Version 2.0 of OAI-PMH API"
     ]
   }
 ]
