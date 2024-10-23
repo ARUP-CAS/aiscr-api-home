@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/index.html</loc>
-    <lastmod>2024-08-05T08:16:22.981Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/about/index.html</loc>
-    <lastmod>2024-08-05T08:16:22.981Z</lastmod>
-  </url>
-  <url>
     <loc>https://ARUP-CAS.github.io/aiscr-api-home/index.html</loc>
-    <lastmod>2024-08-05T08:16:22.985Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/oai-pmh/index.html</loc>
-    <lastmod>2024-08-05T08:16:22.985Z</lastmod>
+    <lastmod>2024-10-23T09:52:09.764Z</lastmod>
   </url>
   <url>
     <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/2024-07-31.html</loc>
-    <lastmod>2024-08-05T08:16:22.981Z</lastmod>
+    <lastmod>2024-10-23T09:52:09.760Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/about/index.html</loc>
+    <lastmod>2024-10-23T09:52:09.760Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/index.html</loc>
+    <lastmod>2024-10-23T09:52:09.760Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/oai-pmh/index.html</loc>
+    <lastmod>2024-10-23T09:52:09.764Z</lastmod>
   </url>
 </urlset>
