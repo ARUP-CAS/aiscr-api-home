@@ -36,9 +36,9 @@ If you have any questions or need assistance, please [contact us](about/index.qm
 
 ## Other AIS CR websites
 
-- AMCR homepage is available here: [https://amcr-info.aiscr.cz](https://amcr-info.aiscr.cz){.external}.
-- Digital Archive of the AMCR, the main interface for browsing the AMCR data, is available here: [https://digiarchiv.aiscr.cz/](https://digiarchiv.aiscr.cz/){.external}.
-- Main page of AIS CR infrastructure is available here: [https://www.aiscr.cz/](https://www.aiscr.cz/){.external}.
+- **AMCR homepage** is available here: [https://amcr-info.aiscr.cz](https://amcr-info.aiscr.cz){.external}.
+- **Digital Archive of the AMCR**, the main interface for browsing the AMCR data, is available here: [https://digiarchiv.aiscr.cz/](https://digiarchiv.aiscr.cz/){.external}.
+- Main page of **AIS CR infrastructure** is available here: [https://www.aiscr.cz/](https://www.aiscr.cz/){.external}.
 
 :::
 
