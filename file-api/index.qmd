@@ -1,5 +1,120 @@
----
-title: "AMCR File API"
-subtitle: OpenArchives Initiative Protocol for Metadata Harvesting API
-date: 2025-03-26
----
+# AMCR Files API Documentation
+
+## Overview
+This documentation provides details for the AMCR Files API, which allows downloading thumbnails and original files.
+
+## Authentication
+- **Type**: Basic Authentication
+- **Required Parameters**:
+  - Username: Provided via `amcr_user` variable
+  - Password: Provided via `amcr_password` variable
+
+## Variables
+| Variable | Description | Default Value |
+|----------|-------------|---------------|
+| `digiarchiv_url` | Base URL for the API | - |
+| `ident_cely` | Identifier for the specific record | (empty) |
+| `file_id` | Unique identifier for the file | (empty) |
+| `page` | Page number for page-specific thumbnails | 1 |
+
+## Endpoints
+
+### 1. Download Thumbnail
+- **Method**: GET
+- **Endpoint**: `/id/{ident_cely}/file/{file_id}/thumb`
+
+#### Parameters
+| Name | Type | Description | Required |
+|------|------|-------------|----------|
+| ident_cely | string | Full identifier of the record | Yes |
+| file_id | string | Unique identifier of the file | Yes |
+
+#### Example Request
+```python
+import requests
+from requests.auth import HTTPBasicAuth
+
+base_url = "https://your-digiarchiv-url.com"
+ident_cely = "example_identifier"
+file_id = "123456"
+
+response = requests.get(
+    f"{base_url}/id/{ident_cely}/file/{file_id}/thumb",
+    auth=HTTPBasicAuth('username', 'password')
+)
+```
+
+### 2. Download Page Thumbnail
+- **Method**: GET
+- **Endpoint**: `/id/{ident_cely}/file/{file_id}/thumb/page/{page}`
+
+#### Parameters
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| ident_cely | string | Full identifier of the record | Yes | - |
+| file_id | string | Unique identifier of the file | Yes | - |
+| page | integer | Specific page number | Yes | 1 |
+
+#### Example Request
+```python
+import requests
+from requests.auth import HTTPBasicAuth
+
+base_url = "https://your-digiarchiv-url.com"
+ident_cely = "example_identifier"
+file_id = "123456"
+page = 2
+
+response = requests.get(
+    f"{base_url}/id/{ident_cely}/file/{file_id}/thumb/page/{page}",
+    auth=HTTPBasicAuth('username', 'password')
+)
+```
+
+### 3. Download Original File
+- **Method**: GET
+- **Endpoint**: `/id/{ident_cely}/file/{file_id}`
+
+#### Parameters
+| Name | Type | Description | Required |
+|------|------|-------------|----------|
+| ident_cely | string | Full identifier of the record | Yes |
+| file_id | string | Unique identifier of the file | Yes |
+
+#### Example Request
+```python
+import requests
+from requests.auth import HTTPBasicAuth
+
+base_url = "https://your-digiarchiv-url.com"
+ident_cely = "example_identifier"
+file_id = "123456"
+
+response = requests.get(
+    f"{base_url}/id/{ident_cely}/file/{file_id}",
+    auth=HTTPBasicAuth('username', 'password')
+)
+```
+
+## Error Handling
+
+### Common Error Codes
+| Code | Description | Possible Cause |
+|------|-------------|----------------|
+| 401 | Unauthorized | Invalid credentials |
+| 403 | Forbidden | Insufficient permissions |
+| 404 | Not Found | Invalid identifier or file ID |
+
+## Best Practices
+- Always use HTTPS for secure communication
+- Handle authentication credentials securely
+- Implement proper error handling in your code
+- Verify file and page identifiers before making requests
+
+## Notes
+- Cookies are disabled for these endpoints
+- Ensure you have the correct base URL and credentials
+- Page thumbnails default to page 1 if not specified
+
+## Support
+For additional assistance, contact the AMCR technical support team.
