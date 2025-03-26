@@ -28,6 +28,10 @@ website:
         href: index.qmd
       - text: "Oai-pmh Api"
         href: oai-pmh/index.qmd
+      - text: "File Api"
+        href: file-api/index.qmd
+      - text: "Authentication Api"
+        href: auth-api/index.qmd
     right:
       - text: "Changelogs"
         href: changelogs/index.qmd
@@ -48,6 +52,23 @@ website:
         [![](/figs/logo-amcr-hor.png)](/oai-pmh/index.qmd)
       contents:
         - oai-pmh/index.qmd
+        - text: ---
+        - section: "Previous versions"
+          contents: 
+            - text: "v2.0"
+              href: oai-pmh/v2.0.qmd
+      
+    - id: fileapi
+      header: |
+        [![](/figs/logo-amcr-hor.png)](/oai-pmh/index.qmd)
+      contents:
+        - file-api/index.qmd
+        
+    - id: authapi
+      header: |
+        [![](/figs/logo-amcr-hor.png)](/oai-pmh/index.qmd)
+      contents:
+        - auth-api/index.qmd
         
     - id: changelogs
       header: |
@@ -76,6 +97,8 @@ website:
 format:
   html:
     toc: true
+    toc-depth: 3
+    toc-location: left
     theme:
       - spacelab
       - theme.scss
