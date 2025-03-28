@@ -1,16 +1,18 @@
 ---
 title: "OAI-PMH API"
 subtitle: OpenArchives Initiative Protocol for Metadata Harvesting API
-date: 2024-07-17
+date: 2025-03-28
 ---
 
 ::: {.callout-note}
 
 API is available here: [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}.  
 User registration is available here: [https://amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external}.  
-This guide is valid for version 2.0.0 of the service and the schema.
+This guide is valid for **version 2.1** of the service and the schema.
 
 :::
+
+## Overview
 
 OAI-PMH AMCR API provides metadata from the AMCR database using the *OpenArchives Initiative Protocol for Metadata Harvesting* ([OAI-PMH](http://www.openarchives.org/OAI/2.0/oai_dc.xsd){.external}). The implementation supports two metadata standards:
 
@@ -19,8 +21,11 @@ OAI-PMH AMCR API provides metadata from the AMCR database using the *OpenArchive
 
 The API response is an XML file.
 
+- Endpoint: `https://api.aiscr.cz/2.1/oai`  
+      *Note:* Generic `https://api.aiscr.cz/oai` endpoint resolves to the most recent version of data and schema.
+- Schema: [https://api.aiscr.cz/schema/amcr/2.1/](https://api.aiscr.cz/schema/amcr/2.1/)
 
-## Access
+### Access
 
 The access to some metadata is protected by user roles:
 
@@ -61,7 +66,7 @@ read.csv("tabs/access2.csv") |>
 
 ### Schema
 
-Schema (XSD) for current version of the service can be found here: [https://api.aiscr.cz/schema/amcr/2.0/](https://api.aiscr.cz/schema/amcr/2.0/).
+Schema (XSD) for current version of the service can be found here: [https://api.aiscr.cz/schema/amcr/2.1/](https://api.aiscr.cz/schema/amcr/2.1/).
 The schema follows the AMCR data structure as described [here](https://amcr-help.aiscr.cz/o-systemu/datovy-model.html){.external}.
 Main entities are represented as records in individual sets (see below), with all direct children listed in the XML hierarchical structure.
 
@@ -94,24 +99,30 @@ Deleted records are marked with the `status="deleted"` attribute in the header e
 Therefore, datestamps and from/until arguments can be used to continuously update previous harvests.
 
 
-## Login and authorization
+### Login and authorization
 
 To be able to access records with limited accessibility, it is neccessary to login using *Basic Access Authentication* while sending the requests.
 
 
-### cURL
+#### cURL
 
 Use flag `-u` tu put in your username and password in each request.
 
 ```zsh
-curl -u <username>:<password> <GET request>
+curl -u <username> <GET request>
 ```
 
-
-### Postman
+#### Postman
 
 In Postman, username and password can be set up on the *Authorization* tab.
 Select *Basic Auth* in the *TYPE* menu.
+
+
+### Stylesheet
+
+[EPrints OAI Stylesheet](https://wiki.eprints.org/w/EPrints_OAI_Stylesheet){.external} is used to format the response in a browser window.
+
+![](figs/stylesheet.png){width=80% fig-align="center"}
 
 
 ## Verbs
@@ -360,20 +371,35 @@ curl 'https://api.aiscr.cz/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id
 
 ::: {.small}
 ```xml
-<OAI-PMH xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
-  <responseDate>2024-07-15T09:04:59Z</responseDate>
-  <request verb="GetRecord" identifier="https://api.aiscr.cz/id/M-FT-110598700" metadataPrefix="oai_amcr">https://api.aiscr.cz/oai</request>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2025-03-28T08:50:52Z</responseDate>
+  <request verb="GetRecord" identifier="https://api.aiscr.cz/id/M-FT-110598700" metadataPrefix="oai_amcr" >https://api.aiscr.cz/oai</request>
   <GetRecord>
-    <record>
-      <header>
-        <identifier>https://api.aiscr.cz/id/M-FT-110598700</identifier>
-        <datestamp>2024-05-09T12:39:30.474Z</datestamp>
-        <setSpec>dokument</setSpec>
-      </header>
-      <metadata>
-        <amcr:amcr xsi:schemaLocation="https://api.aiscr.cz/schema/amcr/2.0/ https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd"> HTTP/1.1 403 Forbidden </amcr:amcr>
-      </metadata>
-    </record>
+  <record>
+    <header>
+      <identifier>https://api.aiscr.cz/id/M-FT-110598700</identifier>
+      <datestamp>2024-07-26T10:36:29.973Z</datestamp>
+      <setSpec>dokument</setSpec>
+    </header>
+    <metadata>
+      <amcr:amcr xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:amcr="https://api.aiscr.cz/schema/amcr/2.0/" xsi:schemaLocation="https://api.aiscr.cz/schema/amcr/2.0/ https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd">
+        <amcr:dokument>
+          <amcr:ident_cely>M-FT-110598700</amcr:ident_cely>
+          <amcr:stav>3</amcr:stav>
+          <amcr:typ_dokumentu xml:lang="cs" id="HES-001094">fotografie objektu</amcr:typ_dokumentu>
+          [...]
+          <amcr:licence xml:lang="cs" id="HES-001489">Creative Commons Uveďte původ-Neužívejte komerčně 4.0 Mezinárodní</amcr:licence>
+          <amcr:historie>
+            [...]
+          </amcr:historie>
+          <amcr:soubor>
+            [...]
+          </amcr:soubor>
+          [...]
+        </amcr:dokument>
+      </amcr:amcr>
+    </metadata>
+  </record>
   </GetRecord>
 </OAI-PMH>
 ```
