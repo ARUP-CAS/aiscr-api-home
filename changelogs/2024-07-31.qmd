@@ -1,8 +1,8 @@
 ---
 title: "Version 2.0 of OAI-PMH API"
 date: 2024-07-31
-categories: [oai-pmh]
+categories: [OAI-PMH]
 ---
 
-New AMČR API version is released together with other tools and services updated after the end of life of the AMČR desktop client.
+New AMCR API version is released together with other tools and services updated after the end of life of the AMČR desktop client.
 See [changelog](https://github.com/ARUP-CAS/aiscr-webamcr/blob/dev/webclient/xml_generator/definitions/oai_amcr_v1-2_v2-0_changelog.xsd){.external} for more details.

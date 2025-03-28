@@ -1,0 +1,304 @@
+---
+title: "AMCR Authentication API"
+subtitle: API serving authentication tokens and user information
+date: 2025-03-28
+---
+
+## Overview
+
+- **AMCR Authentication API** implements token authentication and user information retrieval.
+- Base URL for the authentication API is `https://amcr.aiscr.cz/`.
+
+<!-- ## Variables
+
+| Variable | Description | Default Value |
+|----------|-------------|---------------|
+| `amcr_url` | Base URL for the API | - |
+| `amcr_user` | Username for authentication | - |
+| `amcr_password` | Password for authentication | - |
+| `token` | Bearer token for authenticated requests | (empty) | -->
+
+## Endpoints
+
+### Authentication token endpoint
+
+`POST` method to obtain bearer authentication token after posting user credentials.
+
+- Method: `POST`
+- Endpoint: `https://amcr.aiscr.cz/api/token-auth/`
+- Response: JSON with the token, token is valid for next 24 hours
+
+#### Request body
+
+JSON with username and password.
+
+```json
+{
+    "username": "string",
+    "password": "string"
+}
+```
+
+#### Variables 
+
+| Name | Type | Description | Required |
+|------|------|-------------|----------|
+| `username` | *string* | User's username | `true` |
+| `password` | *string* | User's password | `true` |
+
+#### Example requests
+
+##### Python script
+
+Prompts for username and password.
+
+```{.python filename="auth.py"}
+#!/usr/bin/env python
+
+import requests
+import getpass
+
+# Base URL
+base_url = "https://amcr.aiscr.cz"
+
+# Authentication
+username = input("Enter your username: ")
+password = getpass.getpass("Enter your password: ")
+
+# POST request to obtain token
+response = requests.post(
+    f"{base_url}/api/token-auth/",
+    json={
+        "username": username,
+        "password": password
+    }
+)
+
+# Extract token from response
+token = response.json()['token']
+
+print(token)
+```
+
+#### Response 
+
+```json
+{'token': <token>}
+```
+
+### User information endpoint
+
+`GET` method to request information about the user.
+
+- Method: `GET`
+- Endpoint: `https://amcr.aiscr.cz/api/uzivatel-info/`  
+- Authentication: Bearer token 
+- Response: XML file (follows AMCR OAI-PMH API XSD [schema](/oai-pmh/index.qmd#schema))
+
+#### Headers
+
+| Name | Value | Description |
+|------|-------|-------------|
+| `Authorization` | Bearer {token} | Authentication token obtained from `token-auth` endpoint |
+
+#### Example requests
+
+##### cURL 
+
+`curl -H "Authorization: Bearer <token>" "https://amcr.aiscr.cz/api/uzivatel-info/"`
+
+##### Python script
+
+Prompts for the bearer token and has very basic HTML error handling.
+
+```{.python filename="userinfo.py"}
+#!/usr/bin/env python
+import requests
+
+# Base URL
+base_url = "https://amcr.aiscr.cz"
+
+# Token auth
+token = input("Enter token: ")
+
+# Headers
+headers = {
+    "Authorization": f"Bearer {token}"
+}
+
+# GET request to obtain user info
+response = requests.get(
+    f"{base_url}/api/uzivatel-info/",
+    headers=headers
+)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Print the raw XML
+    print(response.text)
+else:
+    print(f"Failed to retrieve user info. Status code: {response.status_code}")
+    print(f"Response: {response.text}")
+```
+
+#### Example response 
+
+```xml 
+<?xml version='1.0' encoding='utf-8'?>
+<amcr:amcr xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:amcr="https://api.aiscr.cz/schema/amcr/2.1/" xsi:schemaLocation="https://api.aiscr.cz/schema/amcr/2.1/ https://api.aiscr.cz/schema/amcr/2.1/amcr.xsd">
+  <amcr:uzivatel>
+    <amcr:ident_cely>[...]</amcr:ident_cely>
+    <amcr:jmeno>[...]</amcr:jmeno>
+    <amcr:prijmeni>[...]</amcr:prijmeni>
+    <amcr:email>[...]</amcr:email>
+    <amcr:osoba id="OS-[...]">[...]</amcr:osoba>
+    <amcr:orcid>[...]</amcr:orcid>
+    <amcr:organizace xml:lang="cs" id="ORG-[...]">[...]</amcr:organizace>
+    <amcr:jazyk>cs</amcr:jazyk>
+    <amcr:telefon>[...]</amcr:telefon>
+    <amcr:aktivni>true</amcr:aktivni>
+    <amcr:admin>false</amcr:admin>
+    <amcr:superadmin>false</amcr:superadmin>
+    <amcr:skupina xml:lang="cs">[...]</amcr:skupina>
+    <amcr:notifikace>[...]</amcr:notifikace>
+    <amcr:hlidaci_pes xml:lang="cs" id="ruian-[...]">[...]</amcr:hlidaci_pes>
+    <amcr:datum_registrace>[...]</amcr:datum_registrace>
+    <amcr:historie>
+      [...]
+    </amcr:historie>
+    [...]
+  </amcr:uzivatel>
+</amcr:amcr>
+```
+
+
+## Notes 
+
+### Authentication Flow
+
+1. Request an authentication token by sending username and password to `/api/token-auth/`.
+2. Receive a bearer token in the response.
+3. Use the token in the Authorization header for subsequent API requests.
+4. Retrieve user information using the `/api/uzivatel-info/` endpoint.
+
+### Error Handling
+
+#### Common Error Codes
+
+| Code | Description | Possible Cause |
+|------|-------------|----------------|
+| 400 | Bad Request | Invalid request format |
+| 401 | Unauthorized | Invalid credentials or expired token |
+| 403 | Forbidden | Insufficient permissions |
+
+## Postman definition 
+
+```{.json filename="amcr_auth_postman.json"}
+{
+	"info": {
+		"_postman_id": "73876a94-0acc-4ca3-a77b-e7e3d8a0f43f",
+		"name": "AMCR - auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27641694"
+	},
+	"item": [
+		{
+			"name": "Ziskej token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.collectionVariables.set(\"token\", jsonData.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"{{amcr_user}}\",\n    \"password\":\"{{amcr_password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{amcr_url}}/api/token-auth/",
+					"host": [
+						"{{amcr_url}}"
+					],
+					"path": [
+						"api",
+						"token-auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Uzivatel info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{amcr_url}}/api/uzivatel-info/",
+					"host": [
+						"{{amcr_url}}"
+					],
+					"path": [
+						"api",
+						"uzivatel-info",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
+```

@@ -30,15 +30,15 @@ If you have any questions or need assistance, please [contact us](about/index.qm
 
 
 **Archaeological Map of the Czech Republic** (AMCR) is part of a large research infrastructure **Archaeological Information System of the Czech Republic** (AIS CR).
-**AMCR API** is a homepage of AMCR application programming interfaces, currently providing data stored in the AMCR database using the *OpenArchives Initiative Protocol for Metadata Harvesting* ([OAI-PMH API](/oai-pmh/index.qmd)).
+**AMCR API** is a homepage of AMCR application programming interfaces, currently providing data stored in the AMCR database using the *OpenArchives Initiative Protocol for Metadata Harvesting* ([OAI-PMH API](/oai-pmh/index.qmd)), documents and document thumbnails in the [File API](/file-api/index.qmd) and user information and authentication in the [Authentication API](/auth-api/index.qmd).
 
 ::: {.callout-note}
 
 ## Other AIS CR websites
 
-- AMCR homepage is available here: [https://amcr-info.aiscr.cz](https://amcr-info.aiscr.cz){.external}.
-- Digital Archive of the AMCR, the main interface for browsing the AMCR data, is available here: [https://digiarchiv.aiscr.cz/](https://digiarchiv.aiscr.cz/){.external}.
-- Main page of AIS CR infrastructure is available here: [https://www.aiscr.cz/](https://www.aiscr.cz/){.external}.
+- **AMCR homepage** is available here: [https://amcr-info.aiscr.cz](https://amcr-info.aiscr.cz){.external}.
+- **Digital Archive of the AMCR**, the main interface for browsing the AMCR data, is available here: [https://digiarchiv.aiscr.cz/](https://digiarchiv.aiscr.cz/){.external}.
+- Main page of **AIS CR infrastructure** is available here: [https://www.aiscr.cz/](https://www.aiscr.cz/){.external}.
 
 :::
 
@@ -78,8 +78,8 @@ Every AIS CR user is therefore **obliged** to:
 
 Please cite the use of the data queried from the API in scientific publications as follows:
 
-> AMCR: *Archaeological Map of the Czech Republic.* [cit. YYYY-MM-DD]. Available from: [https://api.aiscr.cz/](https://api.aiscr.cz/)
+> AIS CR: *Archaeological Map of the Czech Republic.* [cit. YYYY-MM-DD]. Available from: [https://api.aiscr.cz/](https://api.aiscr.cz/)
 
 And the API documentation as:
 
-> Pajdla P., Novák D. 2024: AMCR API Documentation. DOI: [10.5281/zenodo.13220182](https://zenodo.org/doi/10.5281/zenodo.13220182). Website: [https://arup-cas.github.io/aiscr-api-home/](https://arup-cas.github.io/aiscr-api-home/). Source: [https://github.com/ARUP-CAS/aiscr-api-home](https://github.com/ARUP-CAS/aiscr-api-home).
+> Pajdla P., Novák D. 2024: AMCR API Documentation. DOI: [10.5281/zenodo.13220182](https://zenodo.org/doi/10.5281/zenodo.13220182). Website: [https://api.aiscr.cz/](https://api.aiscr.cz). Source: [https://github.com/ARUP-CAS/aiscr-api-home](https://github.com/ARUP-CAS/aiscr-api-home).

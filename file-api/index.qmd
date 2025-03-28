@@ -1,0 +1,399 @@
+---
+title: "AMCR File API"
+subtitle: API serving files and file thumbnails
+date: 2025-03-28
+---
+
+## Overview
+
+**AMCR File API** serves files and their thumbnails from the AMCR repository.
+File URLs can be obtained from the [OAI-PMH API](/oai-pmh/index.qmd) response.
+They are in the `soubor/url` element of the response, see example below.
+
+- Base URL for the file API is `https://digiarchiv.aiscr.cz/id/`.
+
+### Example response from OAI-PMH API
+
+Note that in the examples on this page files accessible to anyone on the internet are accessed, i.e. their `dokument/pristupnost` element equals value `A`.
+
+#### Samostatný nález / Individual find
+
+This is part of the response of one of the records from `setSpec`: `samostatny_nalez`.
+
+Request: <https://api.aiscr.cz/oai?verb=GetRecord&metadataPrefix=oai_amcr&identifier=https://api.aiscr.cz/id/M-202301215-N00001>
+
+```xml
+<amcr:soubor>
+	<amcr:id>soub-565387</amcr:id>
+	<amcr:path>rest/AMCR/record/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b</amcr:path>
+	<amcr:nazev>M202301215N00001F01.JPG</amcr:nazev>
+	<amcr:mimetype>image/jpeg</amcr:mimetype>
+	<amcr:rozsah>1</amcr:rozsah>
+	<amcr:size_mb>0.4693031311</amcr:size_mb>
+	<amcr:sha_512>[...]</amcr:sha_512>
+	<amcr:url>https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b</amcr:url>
+	<amcr:historie>
+		[...]
+	</amcr:historie>
+</amcr:soubor> 
+```
+
+#### Dokument / Document
+
+This is part of the response of one of the records from `setSpec`: `dokument`.
+
+Request: <https://api.aiscr.cz/oai?verb=GetRecord&metadataPrefix=oai_amcr&identifier=https://api.aiscr.cz/id/C-TX-198603094>
+
+```xml 
+<amcr:soubor>
+	<amcr:id>soub-121748</amcr:id>
+	<amcr:path>rest/AMCR/record/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af</amcr:path>
+	<amcr:nazev>CTX198603094.pdf</amcr:nazev>
+	<amcr:mimetype>application/pdf</amcr:mimetype>
+	<amcr:rozsah>2</amcr:rozsah>
+	<amcr:size_mb>0.5069980621</amcr:size_mb>
+	<amcr:sha_512>[...]</amcr:sha_512>
+	<amcr:url>https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af</amcr:url>
+	<amcr:historie>
+		[...]
+	</amcr:historie>
+</amcr:soubor> 
+```
+
+#### Schema explanation
+
+Below is an explanation of the schema with examples.
+Note that namespace prefix `amcr:` is stripped from the element tags.
+
+| Element tag | Description | Example |
+|-------------|-------------|---------|
+| `<id>` | File ID | `soub-565387` |
+| `<path>` | Path to the file | `rest/AMCR/record/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b` |
+| `<nazev>` | Filename | `M202301215N00001F01.JPG` |
+| `<mimetype>` | Mimetype | `image/jpeg` |
+| `<rozsah>` | Page count | `1` |
+| `<size_mb>` | Size in MB | `0.4693031311` |
+| `<sha_512>` | SHA-512 checksum | `53aaf...` |
+| `<url>` | URL to the file | `https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b` |
+| `<historie>` | Element with a record of changes | *individual subelements* |
+
+### Access rules
+
+Different access rules apply to different files and access groups.
+There are three main groups of users:
+
+- **A** (*Anonym*/*Anonymous*) -- anyone in the internet, non authenticated user;
+- **B** (*Badatel*/*Researcher*) -- any user registered in the system;
+- **C** (*Archeolog*/*Archaeologist*) -- archaeologist from a licensed organisation.
+
+Furthermore, groups **D** (*Archivář*/*Archivist*) and **E** (*Administrátor*/*Admin*) exist and no restrictions apply to them.
+
+::: {.column-page-inset-right}
+```{r}
+#| tbl-cap: "Basic rules for file access"
+
+read.csv("tabs/access.csv", tryLogical = FALSE) |> 
+  dplyr::mutate(dplyr::across(dplyr::everything(), \(x) dplyr::if_else(x == TRUE, "&#x2714;", x)),
+                dplyr::across(dplyr::everything(), \(x) dplyr::if_else(x == FALSE, "&#x2718;", x))) |>
+  knitr::kable(align = "llll")
+```
+:::
+
+### Authentication
+
+#### Basic authentication
+
+Only basic access authentication using AMCR credentials (username and password) is supported.
+
+::: {.callout-tip}
+User registration is available here: [https://amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external}. 
+:::
+
+##### cURL example
+
+```sh 
+curl -u <username> "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb" \
+    -o thumbnail.jpg
+```
+
+#### Authentication API 
+
+- Authentication using bearer token returned by the AMCR Authentication API is **not** (yet) supported.
+
+### Variables 
+
+| Name | Type | Description | Required | Example |
+|------|------|-------------|----------|---------|
+| `digiarchiv_url` | *string* | Base URL for the API | `true` | `https://digiarchiv.aiscr.cz/` |
+| `ident_cely` | *string* | Full identifier of the record | `true` | `M-202301215-N00001`, `C-TX-198603094` |
+| `file_id` | *string* | Unique identifier of the file | `true` | `aa0cdd95-4bc4-4358-a831-2cf8672a3e4b`, `3e28c562-17f6-48dc-b8f5-787d14fb55af` |
+| `page` | *integer* | Specific page number | `true` for large thumbnails endpoint | `1`, `2` |
+
+
+## Endpoints 
+
+### Small thumbnails
+
+`GET` method for thumbnails of images and documents. 
+In case of multipage documents (i.e. value of `<rozsah>` tag > 1), this method returns its first page.
+Thumbnails are in **JPEG** file format, with the maximum **size of 100x100 px**.
+All small thumbnails are available without authentication.
+
+- Method: `GET`
+- Endpoint: `/id/{ident_cely}/file/{file_id}/thumb`
+
+#### Example requests
+
+##### cURL
+
+```sh 
+curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb" \
+    -o thumbnail.jpeg
+```
+
+##### BASH script 
+
+Prompts for username and password.
+
+```{.bash filename="thumb.sh"} 
+#!/bin/bash
+
+# Prompt for username
+read -p "Enter username: " username
+
+# Prompt for password securely
+read -sp "Enter password: " password
+echo 
+
+# Curl command with authentication and output
+curl -u "$username:$password" \
+    "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb" \
+    -o thumbnail.jpeg
+```
+
+##### Python script
+
+Prompts for username and password and checks status code of the response.
+
+```{.python filename="thumb.py"}
+#!/usr/bin/env python 
+
+import requests
+import getpass
+
+# Base URL
+base_url = "https://digiarchiv.aiscr.cz"
+
+# File download parameters
+ident_cely = "M-202301215-N00001"
+file_id = "aa0cdd95-4bc4-4358-a831-2cf8672a3e4b"
+
+# Download thumbnail
+response = requests.get(
+    f"{base_url}/id/{ident_cely}/file/{file_id}/thumb",
+)
+
+# Save file if file download was successful
+if response.status_code == 200:
+    # Save the file
+    with open(f"{file_id}.jpeg", "wb") as file:
+        file.write(response.content)
+    print("Thumbnail downloaded successfully.")
+else:
+    print(f"Failed to download thumbnail. Status code: {response.status_code}")
+    print(f"Response: {response.text}")
+
+```
+
+
+### Large thumbnails
+
+`GET` method to request large thumbnail of any page in the document.
+Large thumbnails are in **JPEG** file format, with the maximum **size of 800x800 px**.
+Without authentication, only some of the large thumbnails are available, see section [Authentication](index.qmd#authentication) above.
+
+- Method: `GET`
+- Endpoint: `/id/{ident_cely}/file/{file_id}/thumb/page/{page}`
+
+#### Example requests
+
+##### cURL 
+
+```sh 
+curl "https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af/thumb/page/2" \
+    -o thumbnail.jpeg
+```
+
+
+### Original files
+
+`GET` method to request original files.
+Without authentication, only some original files are available, see section [Authentication](index.qmd#authentication) above.
+
+- Method: `GET`
+- Endpoint: `/id/{ident_cely}/file/{file_id}`
+
+
+#### Example requests 
+
+##### cURL 
+
+```sh 
+curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b" \
+    -o file.jpeg
+```
+
+## Notes
+
+### Error Handling
+
+#### Common Error Codes
+
+| Code | Description | Possible Cause |
+|------|-------------|----------------|
+| 401 | Unauthorized | Invalid credentials |
+| 403 | Forbidden | Insufficient permissions |
+| 404 | Not Found | Invalid identifier or file ID |
+| 429 | Too many requests | Too frequent requests (parallelisation not allowed, 1s or more between requests)
+
+
+## Postman definition
+
+```{.json filename="amcr_file_postman.json"}
+{
+	"info": {
+		"_postman_id": "6904ca89-9b29-4afd-8770-37627755da67",
+		"name": "AMCR - files",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27641694"
+	},
+	"item": [
+		{
+			"name": "Download thumbnail",
+			"protocolProfileBehavior": {
+				"disableCookies": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digiarchiv_url}}/id/{{ident_cely}}/file/{{file_id}}/thumb",
+					"host": [
+						"{{digiarchiv_url}}"
+					],
+					"path": [
+						"id",
+						"{{ident_cely}}",
+						"file",
+						"{{file_id}}",
+						"thumb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download page thumbnail",
+			"protocolProfileBehavior": {
+				"disableCookies": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digiarchiv_url}}/id/{{ident_cely}}/file/{{file_id}}/thumb/page/{{page}}",
+					"host": [
+						"{{digiarchiv_url}}"
+					],
+					"path": [
+						"id",
+						"{{ident_cely}}",
+						"file",
+						"{{file_id}}",
+						"thumb",
+						"page",
+						"{{page}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download original",
+			"protocolProfileBehavior": {
+				"disableCookies": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digiarchiv_url}}/id/{{ident_cely}}/file/{{file_id}}",
+					"host": [
+						"{{digiarchiv_url}}"
+					],
+					"path": [
+						"id",
+						"{{ident_cely}}",
+						"file",
+						"{{file_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{amcr_password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{amcr_user}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ident_cely",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "file_id",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "page",
+			"value": "1"
+		}
+	]
+}
+```
