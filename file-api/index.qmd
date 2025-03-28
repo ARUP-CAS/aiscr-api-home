@@ -107,7 +107,7 @@ User registration is available here: [https://amcr.aiscr.cz/accounts/register/](
 ##### cURL example
 
 ```sh 
-curl -u <username>:<password> "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb" \
+curl -u <username> "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb" \
     -o thumbnail.jpg
 ```
 
@@ -122,7 +122,7 @@ curl -u <username>:<password> "https://digiarchiv.aiscr.cz/id/M-202301215-N00001
 | `digiarchiv_url` | *string* | Base URL for the API | `true` | `https://digiarchiv.aiscr.cz/` |
 | `ident_cely` | *string* | Full identifier of the record | `true` | `M-202301215-N00001`, `C-TX-198603094` |
 | `file_id` | *string* | Unique identifier of the file | `true` | `aa0cdd95-4bc4-4358-a831-2cf8672a3e4b`, `3e28c562-17f6-48dc-b8f5-787d14fb55af` |
-| `page` | *integer* | Specific page number | `true` for multipage thumbnails endpoint | `1`, `2` |
+| `page` | *integer* | Specific page number | `true` if requesting exact page nr. | `1`, `2` |
 
 
 ## Endpoints 
