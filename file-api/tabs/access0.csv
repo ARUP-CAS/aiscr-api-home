@@ -1,0 +1,4 @@
+"XPath","A","B","C"
+"`//projekt/soubor`","FALSE","FALSE","`stav` = 1<br>OR (`stav` >= 2 AND `stav` <= 6 AND `organizace` = {user}.organizace)"
+"`//dokument/soubor`","`pristupnost` = A<br>AND `stav` = 3","(`pristupnost` <= B AND `stav` = 3)<br>OR `historie[typ_zmeny='D01']/uzivatel` = {user}","(`pristupnost` <= C AND `stav` = 3)<br>OR `historie[typ_zmeny='D01']/uzivatel.organizace` = {user}.organizace"
+"`//samostatny_nalez/soubor`","`pristupnost` = A<br>AND `stav` = 4","(`pristupnost` <= C AND `stav` = 4)<br>OR `historie[typ_zmeny='SN01']/uzivatel` = {user}","(`pristupnost` <= B AND `stav` = 4)<br>OR `historie[typ_zmeny='SN01']/uzivatel` = {user}<br>OR `projekt/organizace` = {user}.organizace"

@@ -1,7 +1,7 @@
 ---
 title: "AMCR File API"
 subtitle: API serving files and file thumbnails
-date: 2025-03-27
+date: 2025-03-28
 ---
 
 ## Overview
@@ -73,9 +73,9 @@ Note that namespace prefix `amcr:` is stripped from the element tags.
 | `<mimetype>` | Mimetype | `image/jpeg` |
 | `<rozsah>` | Page count | `1` |
 | `<size_mb>` | Size in MB | `0.4693031311` |
-| `<sha_512>` | SHA-512 sum | - |
+| `<sha_512>` | SHA-512 checksum | `53aaf...` |
 | `<url>` | URL to the file | `https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b` |
-| `<historie>` | Element with a record of changes | - |
+| `<historie>` | Element with a record of changes | *individual subelements* |
 
 ### Access rules
 
@@ -88,11 +88,16 @@ There are three main groups of users:
 
 Furthermore, groups **D** (*Archivář*/*Archivist*) and **E** (*Administrátor*/*Admin*) exist and no restrictions apply to them.
 
-| Path | A | B | C |
-|------|---|---|---|
-| `projekt/soubor` | Never | Never | `projekt/stav` = 1 OR (`projekt/stav` >= 2 AND `projekt/stav` <= 6 AND `projekt/organizace` = `{user}.organizace`) |
-| `dokument/soubor` | `dokument/pristupnost` = A AND `dokument/stav` = 3 | (`dokument/pristupnost` <= B AND `dokument/stav` = 3) OR `dokument/historie[typ_zmeny='D01']/uzivatel` = `{user}` | (`dokument/pristupnost` <= C AND `dokument/stav` = 3) OR `dokument/historie[typ_zmeny='D01']/uzivatel.organizace` = `{user}.organizace` |
-| `samostatny_nalez/soubor` | `samostatny_nalez/pristupnost` = A AND `samostatny_nalez/stav` = 4 | (`samostatny_nalez/pristupnost` <= B AND `samostatny_nalez/stav` = 4) OR `samostatny_nalez/historie[typ_zmeny='SN01']/uzivatel` = `{user}` | (`samostatny_nalez/pristupnost` <= B AND `samostatny_nalez/stav` = 4) OR `samostatny_nalez/historie[typ_zmeny='SN01']/uzivatel` = `{user}` OR `projekt/organizace` = `{user}.organizace` |
+::: {.column-page-inset-right}
+```{r}
+#| tbl-cap: "Basic rules for file access"
+
+read.csv("tabs/access.csv", tryLogical = FALSE) |> 
+  dplyr::mutate(dplyr::across(dplyr::everything(), \(x) dplyr::if_else(x == TRUE, "&#x2714;", x)),
+                dplyr::across(dplyr::everything(), \(x) dplyr::if_else(x == FALSE, "&#x2718;", x))) |>
+  knitr::kable(align = "llll")
+```
+:::
 
 ### Authentication
 
@@ -122,23 +127,22 @@ curl -u <username> "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cd
 | `digiarchiv_url` | *string* | Base URL for the API | `true` | `https://digiarchiv.aiscr.cz/` |
 | `ident_cely` | *string* | Full identifier of the record | `true` | `M-202301215-N00001`, `C-TX-198603094` |
 | `file_id` | *string* | Unique identifier of the file | `true` | `aa0cdd95-4bc4-4358-a831-2cf8672a3e4b`, `3e28c562-17f6-48dc-b8f5-787d14fb55af` |
-| `page` | *integer* | Specific page number | `true` if requesting exact page nr. | `1`, `2` |
+| `page` | *integer* | Specific page number | `true` for large thumbnails endpoint | `1`, `2` |
 
 
 ## Endpoints 
 
-### Thumbnails
+### Small thumbnails
 
 `GET` method for thumbnails of images and documents. 
 In case of multipage documents (i.e. value of `<rozsah>` tag > 1), this method returns its first page.
-Thumbnails are in **JPEG** file format.
+Thumbnails are in **JPEG** file format, with the maximum **size of 100x100 px**.
+All small thumbnails are available without authentication.
 
 - Method: `GET`
 - Endpoint: `/id/{ident_cely}/file/{file_id}/thumb`
 
 #### Example requests
-
-Without authentication, only some thumbnails are available, see section [Authentication](index.qmd#authentication) above.
 
 ##### cURL
 
@@ -202,9 +206,11 @@ else:
 ```
 
 
-### Multipage document thumbnails
+### Large thumbnails
 
-`GET` method to request any page of a multipage document.
+`GET` method to request large thumbnail of any page in the document.
+Large thumbnails are in **JPEG** file format, with the maximum **size of 800x800 px**.
+Without authentication, only some of the large thumbnails are available, see section [Authentication](index.qmd#authentication) above.
 
 - Method: `GET`
 - Endpoint: `/id/{ident_cely}/file/{file_id}/thumb/page/{page}`
@@ -222,6 +228,7 @@ curl "https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5
 ### Original files
 
 `GET` method to request original files.
+Without authentication, only some original files are available, see section [Authentication](index.qmd#authentication) above.
 
 - Method: `GET`
 - Endpoint: `/id/{ident_cely}/file/{file_id}`
@@ -247,6 +254,7 @@ curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-
 | 401 | Unauthorized | Invalid credentials |
 | 403 | Forbidden | Insufficient permissions |
 | 404 | Not Found | Invalid identifier or file ID |
+| 429 | Too many requests | Too frequent requests (parallelisation not allowed, 1s or more between requests)
 
 
 ## Postman definition

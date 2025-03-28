@@ -8,7 +8,15 @@ date: 2025-03-28
 
 API is available here: [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}.  
 User registration is available here: [https://amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external}.  
-This guide is valid for **version 2.1** of the service and the schema.
+
+:::
+
+::: {.callout-important}
+
+## v2.1
+
+This guide is valid for **version 2.1** of the service and the schema.  
+Endpoint for this version is: `https://api.aiscr.cz/2.1/oai`  
 
 :::
 
@@ -22,8 +30,16 @@ OAI-PMH AMCR API provides metadata from the AMCR database using the *OpenArchive
 The API response is an XML file.
 
 - Endpoint: `https://api.aiscr.cz/2.1/oai`  
-      *Note:* Generic `https://api.aiscr.cz/oai` endpoint resolves to the most recent version of data and schema.
 - Schema: [https://api.aiscr.cz/schema/amcr/2.1/](https://api.aiscr.cz/schema/amcr/2.1/)
+
+::: {.callout-tip}
+
+## Note
+
+Generic `https://api.aiscr.cz/oai` endpoint resolves to the most recent version of the data, i.e. returns data in the schema used in the time of the last update of the specific record.  
+Data in the previous version of the schema (v2.0) are available on the endpoint: `https://api.aiscr.cz/2.0/oai`
+
+:::
 
 ### Access
 
@@ -76,7 +92,7 @@ Main entities are represented as records in individual sets (see below), with al
 #### Sets
 
 Selective querying can be achieved using predefined sets.
-Description of sets' contents is available at: [https://api.aiscr.cz/oai?verb=ListSets](https://api.aiscr.cz/oai?verb=ListSets){.external}.
+Description of sets' contents is available at: [https://api.aiscr.cz/2.1/oai?verb=ListSets](https://api.aiscr.cz/2.1/oai?verb=ListSets){.external}.
 
 ```{r}
 #| tbl-cap: "Available sets"
@@ -134,10 +150,10 @@ OAI-PMH protocol defines several verbs that allow metadata harvesting, the speci
 
 Verb `Identify` is used to get information about the repository. 
 
-*Request:* [https://api.aiscr.cz/oai?verb=Identify](https://api.aiscr.cz/oai?verb=Identify){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=Identify](https://api.aiscr.cz/2.1/oai?verb=Identify){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=Identify'
+curl 'https://api.aiscr.cz/2.1/oai?verb=Identify'
 ```
 
 *Sample response:*
@@ -182,10 +198,10 @@ curl 'https://api.aiscr.cz/oai?verb=Identify'
 
 Verb `ListMetadataFormats` returns available metadata formats/standards.
 
-*Request:* [https://api.aiscr.cz/oai?verb=ListMetadataFormats](https://api.aiscr.cz/oai?verb=ListMetadataFormats){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=ListMetadataFormats](https://api.aiscr.cz/2.1/oai?verb=ListMetadataFormats){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=ListMetadataFormats'
+curl 'https://api.aiscr.cz/2.1/oai?verb=ListMetadataFormats'
 ```
 
 *Sample response:*
@@ -214,17 +230,17 @@ curl 'https://api.aiscr.cz/oai?verb=ListMetadataFormats'
 Supported metadata formats are:
 
 - Dublin Core -- `metadataPrefix=oai_dc`, schema available [here](http://www.openarchives.org/OAI/2.0/oai_dc.xsd){.external},
-- native AMCR *.xml* format -- `metadataPrefix=oai_amcr`, schema available [here](https://api.aiscr.cz/schema/amcr/2.0/).
+- native AMCR *.xml* format -- `metadataPrefix=oai_amcr`, schema available [here](https://api.aiscr.cz/schema/amcr/2.1/).
 
 
 ### ListSets
 
 Verb `ListSets` lists available sets.
 
-*Request:* [https://api.aiscr.cz/oai?verb=ListSets](https://api.aiscr.cz/oai?verb=ListSets){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=ListSets](https://api.aiscr.cz/2.1/oai?verb=ListSets){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=ListSets'
+curl 'https://api.aiscr.cz/2.1/oai?verb=ListSets'
 ```
 
 *Sample response:*
@@ -262,10 +278,10 @@ Verb `ListIdentifiers` lists record headers.
 Required argument is `metadataPrefix`, optional arguments allow filtering based on predefined sets (`set`) and/or datestamps (`from`, `until`).
 Only first page with limited amount of records is returned, to go to the next page, user has to submit a `resumptionToken` returned in the response.
 
-*Request:* [https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr](https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr'
+curl 'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr'
 ```
 
 *Sample response:*
@@ -311,10 +327,10 @@ Verb `ListRecords` lists records.
 Required argument is `metadataPrefix`, optional arguments allow filtering based on predefined sets (`set`) and/or datestamps (`from`, `until`).
 Only first page with limited amount of records is returned, to go to the next page, user has to submit a `resumptionToken` returned in the response.
 
-*Request:* [https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc](https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=ListRecords&metadataPrefix=oai_dc](https://api.aiscr.cz/2.1/oai?verb=ListRecords&metadataPrefix=oai_dc){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_dc'
+curl 'https://api.aiscr.cz/2.1/oai?verb=ListRecords&metadataPrefix=oai_dc'
 ```
 
 *Sample response:*
@@ -361,10 +377,10 @@ The contents of `<identifier>` element is derived from a unique identifier of th
 Resulting URL acts as an alias to `GetRecord` in the `oai_amcr` schema for the specified record, and is automatically translated into the appropriate request. 
 Therefore it can be used to easily refer specific records in the API.
 
-*Request:* [https://api.aiscr.cz/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr](https://api.aiscr.cz/2.1/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr'
+curl 'https://api.aiscr.cz/2.1/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr'
 ```
 
 *Sample response:*
@@ -424,10 +440,10 @@ In case of `ListIdentifiers`, `ListRecords` and `ListSets` requests, only the fi
 To get another page, a `resumptionToken` returned at the end of the response must be used as an argument in the following request.
 Argument `resumptionToken` should be always the last argument in the request.
 
-*Request:* [https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_amcr){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=ListRecords&metadataPrefix=oai_amcr](https://api.aiscr.cz/2.1/oai?verb=ListRecords&metadataPrefix=oai_amcr){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_amcr'
+curl 'https://api.aiscr.cz/2.1/oai?verb=ListRecords&metadataPrefix=oai_amcr'
 ```
 
 *Sample response:* 
@@ -452,10 +468,10 @@ curl 'https://api.aiscr.cz/oai?verb=ListRecords&metadataPrefix=oai_amcr'
 ```
 :::
 
-*Follow up request with `resumptionToken`:* [https://api.aiscr.cz/oai?verb=ListRecords&resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90](https://api.aiscr.cz/oai?verb=ListRecords&resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90){.external}
+*Follow up request with `resumptionToken`:* [https://api.aiscr.cz/2.1/oai?verb=ListRecords&resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90](https://api.aiscr.cz/2.1/oai?verb=ListRecords&resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=ListRecords&resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90'
+curl 'https://api.aiscr.cz/2.1/oai?verb=ListRecords&resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90'
 ```
 
 ::: {.small}
@@ -494,10 +510,10 @@ Selective harvesting is allowed thanks to datestamps of records and sets.
 Available sets of records are returned using the `ListSets` verb.
 The contents of the `<setSpec>` element can be used in a `set` argument in `ListIdentifiers` and `ListRecords` requests.
 
-*Request:* [https://api.aiscr.cz/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr'
+curl 'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_amcr'
 ```
 
 *Sample response:* 
@@ -528,10 +544,10 @@ curl 'https://api.aiscr.cz/oai?verb=ListIdentifiers&set=pian&metadataPrefix=oai_
 Arguments `from` and `until` in `ListIdentifiers` and `ListRecords` requests allow filtering based on a datestamp of the given record.
 Use timestamps in ISO-8601 standard format, i.e. YYYY-MM-DDThh:mm:ssZ or its subset.
 
-*Request:* [https://api.aiscr.cz/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr](https://api.aiscr.cz/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr){.external}
+*Request:* [https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr](https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr){.external}
 
 ```zsh
-curl 'https://api.aiscr.cz/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr'
+curl 'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&set=projekt&from=2023-04-21&until=2024-04-27&metadataPrefix=oai_amcr'
 ```
 
 *Sample response:* 

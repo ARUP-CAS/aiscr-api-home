@@ -1,12 +1,15 @@
 ---
 title: "Version 2.1 of OAI-PMH API"
-date: 2025-03-21
+date: 2025-03-28
 categories: [OAI-PMH]
 ---
 
-New AMCR OAI-PMH API version is released together with updated [schema](https://api.aiscr.cz/schema/amcr/2.1/){.external}.
+New AMCR OAI-PMH API version is released together with updated [schema](https://api.aiscr.cz/schema/amcr/2.1/).
 This version reacts to development of AMCR and its v1.1.0 release (see [changelog](https://github.com/ARUP-CAS/aiscr-webamcr/releases/tag/v1.1.0){.external}), major change  being introduction of persistent identifiers (DOIs, IGSNs etc.)
+Changes to the API are mostly related to the addition of elements with PIDs and some minor changes to the handling of spatial data.
+All changes are marked by comments with "v2.1" string in the [XSD schema](https://api.aiscr.cz/schema/amcr/2.1/).
 
 Data following the old (**v2.0**) schema remain available under <https://api.aiscr.cz/2.0/oai> endpoint, while data following the new (**v2.1**) schema are available under <https://api.aiscr.cz/2.1/oai> endpoint.
+The data are automatically transformed to the respective schema using XSLT for all records.
 
-Default endpoint (<https://api.aiscr.cz/oai>) returns data in the most recent version of the schema.
+Default endpoint (<https://api.aiscr.cz/oai>) returns data in the most recent version of the schema, i.e. the schema version used in the time of the last update of the specific record.

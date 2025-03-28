@@ -1,0 +1,4 @@
+"XPath","A","B","C"
+"`//projekt/soubor`","FALSE","FALSE","`stav` = 1<br>OR (`stav` >= 2 AND `stav` <= 6<br>AND my organisation record)"
+"`//dokument/soubor`","`pristupnost` = A<br>AND `stav` = 3","(`pristupnost` <= B AND `stav` = 3)<br>OR my record","(`pristupnost` <= C AND `stav` = 3)<br>OR my organisation record"
+"`//samostatny_nalez/soubor`","`pristupnost` = A<br>AND `stav` = 4","(`pristupnost` <= C AND `stav` = 4)<br>OR my record","(`pristupnost` <= B AND `stav` = 4)<br>OR my record <br>OR my organisation record"

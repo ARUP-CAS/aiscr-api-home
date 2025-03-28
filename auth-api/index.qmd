@@ -1,7 +1,7 @@
 ---
 title: "AMCR Authentication API"
 subtitle: API serving authentication tokens and user information
-date: 2025-03-27
+date: 2025-03-28
 ---
 
 ## Overview
@@ -26,6 +26,7 @@ date: 2025-03-27
 
 - Method: `POST`
 - Endpoint: `https://amcr.aiscr.cz/api/token-auth/`
+- Response: JSON with the token, token is valid for next 24 hours
 
 #### Request body
 
@@ -79,6 +80,11 @@ token = response.json()['token']
 print(token)
 ```
 
+#### Response 
+
+```json
+{'token': <token>}
+```
 
 ### User information endpoint
 
@@ -87,6 +93,7 @@ print(token)
 - Method: `GET`
 - Endpoint: `https://amcr.aiscr.cz/api/uzivatel-info/`  
 - Authentication: Bearer token 
+- Response: XML file (follows AMCR OAI-PMH API XSD [schema](/oai-pmh/index.qmd#schema))
 
 #### Headers
 
