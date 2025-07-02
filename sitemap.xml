@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/file-api/index.html</loc>
-    <lastmod>2025-03-28T13:04:48.755Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/index.html</loc>
-    <lastmod>2025-03-28T13:04:48.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/about/index.html</loc>
-    <lastmod>2025-03-28T13:04:48.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/oai-pmh/v2.0.html</loc>
-    <lastmod>2025-03-28T13:04:48.756Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/oai-pmh/index.html</loc>
-    <lastmod>2025-03-28T13:04:48.756Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/index.html</loc>
-    <lastmod>2025-03-28T13:04:48.755Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/auth-api/index.html</loc>
-    <lastmod>2025-03-28T13:04:48.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/2024-07-31.html</loc>
-    <lastmod>2025-03-28T13:04:48.753Z</lastmod>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/2025-06-27.html</loc>
+    <lastmod>2025-07-02T08:23:49.823Z</lastmod>
   </url>
   <url>
     <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/2025-03-21.html</loc>
-    <lastmod>2025-03-28T13:04:48.753Z</lastmod>
+    <lastmod>2025-07-02T08:23:49.823Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/auth-api/index.html</loc>
+    <lastmod>2025-07-02T08:23:49.822Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/oai-pmh/v2.0.html</loc>
+    <lastmod>2025-07-02T08:23:49.826Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/about/index.html</loc>
+    <lastmod>2025-07-02T08:23:49.822Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/file-api/index.html</loc>
+    <lastmod>2025-07-02T08:23:49.824Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/oai-pmh/index.html</loc>
+    <lastmod>2025-07-02T08:23:49.825Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/index.html</loc>
+    <lastmod>2025-07-02T08:23:49.825Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/index.html</loc>
+    <lastmod>2025-07-02T08:23:49.823Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ARUP-CAS.github.io/aiscr-api-home/changelogs/2024-07-31.html</loc>
+    <lastmod>2025-07-02T08:23:49.823Z</lastmod>
   </url>
 </urlset>

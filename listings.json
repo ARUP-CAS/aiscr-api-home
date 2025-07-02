@@ -1,14 +1,16 @@
 [
   {
-    "listing": "/changelogs/index.html",
+    "listing": "/index.html",
     "items": [
+      "/changelogs/2025-06-27.html",
       "/changelogs/2025-03-21.html",
       "/changelogs/2024-07-31.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/changelogs/index.html",
     "items": [
+      "/changelogs/2025-06-27.html",
       "/changelogs/2025-03-21.html",
       "/changelogs/2024-07-31.html"
     ]
