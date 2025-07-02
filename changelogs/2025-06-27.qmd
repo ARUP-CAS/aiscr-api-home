@@ -1,0 +1,18 @@
+---
+title: "Version 2.2 of the schema"
+date: 2025-06-27
+categories: [OAI-PMH]
+---
+
+New schema for AMCR OAI-PMH API is released ([v2.2](https://api.aiscr.cz/schema/amcr/2.2/), 2025-06-18).
+This version contains only minor updates in the structure of the response.
+
+**Changes**
+
+- addition of element `email` in the set `ruian_kraj`
+- change in some of the elements from `xs:string` to `xs:anyURI`
+
+**URLs**
+
+- Schema: [https://api.aiscr.cz/schema/amcr/2.2/](https://api.aiscr.cz/schema/amcr/2.2/), 
+- Endpoint: `https://api.aiscr.cz/2.2/oai`
