@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8483835c035d4922da9ab7af2994f86f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-97b403d9bbbde048636950362d7f0e66.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -145,7 +146,8 @@ cookieconsent.run({
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../figs/cover_g.png" alt="" class="navbar-logo">
+    <img src="../figs/cover_g.png" alt="" class="navbar-logo light-content">
+    <img src="../figs/cover_g.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AMCR API</span>
@@ -158,11 +160,11 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../oai-pmh/index.html" aria-current="page"> 
+    <a class="nav-link" href="../oai-pmh/index.html"> 
 <span class="menu-text">Oai-pmh Api</span></a>
   </li>  
   <li class="nav-item">
@@ -206,6 +208,10 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
 <p><a href="../oai-pmh/index.html"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
 </div></div>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -317,7 +323,7 @@ User registration is available here: <a href="https://amcr.aiscr.cz/accounts/reg
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-v2.2
+<span class="screen-reader-only">Important</span>v2.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -685,7 +691,7 @@ Functionality of the service described in this manual remains the same.</p>
 <section id="curl" class="level4">
 <h4 class="anchored" data-anchor-id="curl">cURL</h4>
 <p>Use flag <code>-u</code> tu put in your username and password in each request.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-u</span> <span class="op">&lt;</span>username<span class="op">&gt;</span> <span class="op">&lt;</span>GET request<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-u</span> <span class="op">&lt;</span>username<span class="op">&gt;</span> <span class="op">&lt;</span>GET request<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="postman" class="level4">
 <h4 class="anchored" data-anchor-id="postman">Postman</h4>
@@ -709,10 +715,10 @@ Functionality of the service described in this manual remains the same.</p>
 <h3 class="anchored" data-anchor-id="identify">Identify</h3>
 <p>Verb <code>Identify</code> is used to get information about the repository.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=Identify" class="external">https://api.aiscr.cz/2.1/oai?verb=Identify</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=Identify'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=Identify'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T12:26:50Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"Identify"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">Identify</span>&gt;</span>
@@ -741,17 +747,17 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      &lt;/<span class="kw">oai_dc:dc</span>&gt;</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">description</span>&gt;</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">Identify</span>&gt;</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="listmetadataformats" class="level3">
 <h3 class="anchored" data-anchor-id="listmetadataformats">ListMetadataFormats</h3>
 <p>Verb <code>ListMetadataFormats</code> returns available metadata formats/standards.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=ListMetadataFormats" class="external">https://api.aiscr.cz/2.1/oai?verb=ListMetadataFormats</a></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListMetadataFormats'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListMetadataFormats'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb5"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T12:46:31Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListMetadataFormats"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListMetadataFormats</span>&gt;</span>
@@ -766,7 +772,7 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">metadataNamespace</span>&gt;https://api.aiscr.cz/schema/amcr/2.0/&lt;/<span class="kw">metadataNamespace</span>&gt;</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">metadataFormat</span>&gt;</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListMetadataFormats</span>&gt;</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Supported metadata formats are:</p>
 <ul>
@@ -778,10 +784,10 @@ Functionality of the service described in this manual remains the same.</p>
 <h3 class="anchored" data-anchor-id="listsets">ListSets</h3>
 <p>Verb <code>ListSets</code> lists available sets.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=ListSets" class="external">https://api.aiscr.cz/2.1/oai?verb=ListSets</a></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListSets'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListSets'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb7"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T13:28:01Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListSets"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListSets</span>&gt;</span>
@@ -801,17 +807,17 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">set</span>&gt;</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    [...]</span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListSets</span>&gt;</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="listidentifiers" class="level3">
 <h3 class="anchored" data-anchor-id="listidentifiers">ListIdentifiers</h3>
 <p>Verb <code>ListIdentifiers</code> lists record headers. Required argument is <code>metadataPrefix</code>, optional arguments allow filtering based on predefined sets (<code>set</code>) and/or datestamps (<code>from</code>, <code>until</code>). Only first page with limited amount of records is returned, to go to the next page, user has to submit a <code>resumptionToken</code> returned in the response.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr</a></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;metadataPrefix=oai_amcr'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb9"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T12:51:03Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListIdentifiers</span>&gt;</span>
@@ -839,17 +845,17 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    [...]</span>
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListIdentifiers</span>&gt;</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="listrecords" class="level3">
 <h3 class="anchored" data-anchor-id="listrecords">ListRecords</h3>
 <p>Verb <code>ListRecords</code> lists records. Required argument is <code>metadataPrefix</code>, optional arguments allow filtering based on predefined sets (<code>set</code>) and/or datestamps (<code>from</code>, <code>until</code>). Only first page with limited amount of records is returned, to go to the next page, user has to submit a <code>resumptionToken</code> returned in the response.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;metadataPrefix=oai_dc" class="external">https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;metadataPrefix=oai_dc</a></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;metadataPrefix=oai_dc'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;metadataPrefix=oai_dc'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb11"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-11T13:25:02Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_dc"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListRecords</span>&gt;</span>
@@ -874,7 +880,7 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListRecords</span>&gt;</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="getrecord" class="level3">
@@ -882,10 +888,10 @@ Functionality of the service described in this manual remains the same.</p>
 <p>Verb <code>GetRecord</code> returns individual record. Required arguments are <code>metadataPrefix</code> and <code>identifier</code> (unique identifier of the record, URI). Unique identifier of individual record is in the header of each record in the element with tag <code>&lt;identifier&gt;</code>. The contents of <code>&lt;identifier&gt;</code> element is derived from a unique identifier of the given record usually stored in the <code>&lt;amcr:ident_cely&gt;</code> prefixed with namespace according to the API endpoint, i.e.&nbsp;string <code>https://api.aiscr.cz/id/</code>.</p>
 <p>Resulting URL acts as an alias to <code>GetRecord</code> in the <code>oai_amcr</code> schema for the specified record, and is automatically translated into the appropriate request. Therefore it can be used to easily refer specific records in the API.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=GetRecord&amp;identifier=https://api.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/2.1/oai?verb=GetRecord&amp;identifier=https://api.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr</a></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=GetRecord&amp;identifier=https://api.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=GetRecord&amp;identifier=https://api.aiscr.cz/id/M-FT-110598700&amp;metadataPrefix=oai_amcr'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb13"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xmlns=</span><span class="st">"http://www.openarchives.org/OAI/2.0/"</span><span class="ot"> xmlns:xsi=</span><span class="st">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xmlns=</span><span class="st">"http://www.openarchives.org/OAI/2.0/"</span><span class="ot"> xmlns:xsi=</span><span class="st">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2025-03-28T08:50:52Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"GetRecord"</span><span class="ot"> identifier=</span><span class="st">"https://api.aiscr.cz/id/M-FT-110598700"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span> &gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">GetRecord</span>&gt;</span>
@@ -915,7 +921,7 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">metadata</span>&gt;</span>
 <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">record</span>&gt;</span>
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">GetRecord</span>&gt;</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -977,10 +983,10 @@ Functionality of the service described in this manual remains the same.</p>
 <h3 class="anchored" data-anchor-id="pagination">Pagination</h3>
 <p>In case of <code>ListIdentifiers</code>, <code>ListRecords</code> and <code>ListSets</code> requests, only the first page of results is returned. To get another page, a <code>resumptionToken</code> returned at the end of the response must be used as an argument in the following request. Argument <code>resumptionToken</code> should be always the last argument in the request.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;metadataPrefix=oai_amcr</a></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;metadataPrefix=oai_amcr'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb15"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T11:57:23Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListRecords</span>&gt;</span>
@@ -994,12 +1000,12 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListRecords</span>&gt;</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>Follow up request with <code>resumptionToken</code>:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90" class="external">https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90</a></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListRecords&amp;resumptionToken=BF0A0598B38E42E3FEB4E639B2911C90'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="small">
-<div class="sourceCode" id="cb17"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T12:01:28Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListRecords"</span><span class="ot"> resumptionToken=</span><span class="st">"BF0A0598B38E42E3FEB4E639B2911C90"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListRecords</span>&gt;</span>
@@ -1013,7 +1019,7 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859206"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-24T16:12:38Z"</span><span class="ot"> cursor=</span><span class="st">"100"</span>&gt;7C6DD5774E7C5493819FF48540A24546&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListRecords</span>&gt;</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Notice the attributes of the <code>resumptionToken</code> element <code>completeListSize</code> indicating total number of results and <code>cursor</code> indicating that the first record in the given response is n-th returned record.</p>
 <p>Each resumption token also has set expiration date until when it can be used to acquire the next page. Please note that the data in the API is constantly updated so it is advisable to harvest the results at once to avoid possible inconsistencies in the response.</p>
@@ -1025,10 +1031,10 @@ Functionality of the service described in this manual remains the same.</p>
 <h4 class="anchored" data-anchor-id="sets-1">Sets</h4>
 <p>Available sets of records are returned using the <code>ListSets</code> verb. The contents of the <code>&lt;setSpec&gt;</code> element can be used in a <code>set</code> argument in <code>ListIdentifiers</code> and <code>ListRecords</code> requests.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/oai?verb=ListIdentifiers&amp;set=pian&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;set=pian&amp;metadataPrefix=oai_amcr</a></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;set=pian&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;set=pian&amp;metadataPrefix=oai_amcr'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb19"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T12:17:21Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> set=</span><span class="st">"pian"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListIdentifiers</span>&gt;</span>
@@ -1042,17 +1048,17 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    [...]</span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListIdentifiers</span>&gt;</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="datestamps" class="level4">
 <h4 class="anchored" data-anchor-id="datestamps">Datestamps</h4>
 <p>Arguments <code>from</code> and <code>until</code> in <code>ListIdentifiers</code> and <code>ListRecords</code> requests allow filtering based on a datestamp of the given record. Use timestamps in ISO-8601 standard format, i.e.&nbsp;YYYY-MM-DDThh:mm:ssZ or its subset.</p>
 <p><em>Request:</em> <a href="https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;set=projekt&amp;from=2023-04-21&amp;until=2024-04-27&amp;metadataPrefix=oai_amcr" class="external">https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;set=projekt&amp;from=2023-04-21&amp;until=2024-04-27&amp;metadataPrefix=oai_amcr</a></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;set=projekt&amp;from=2023-04-21&amp;until=2024-04-27&amp;metadataPrefix=oai_amcr'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode zsh code-with-copy"><code class="sourceCode zsh"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">'https://api.aiscr.cz/2.1/oai?verb=ListIdentifiers&amp;set=projekt&amp;from=2023-04-21&amp;until=2024-04-27&amp;metadataPrefix=oai_amcr'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Sample response:</em></p>
 <div class="small">
-<div class="sourceCode" id="cb21"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">OAI-PMH</span><span class="ot"> xsi:schemaLocation=</span><span class="st">"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"</span>&gt;</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">responseDate</span>&gt;2024-07-15T12:20:21Z&lt;/<span class="kw">responseDate</span>&gt;</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">request</span><span class="ot"> verb=</span><span class="st">"ListIdentifiers"</span><span class="ot"> set=</span><span class="st">"projekt"</span><span class="ot"> from=</span><span class="st">"2023-04-21"</span><span class="ot"> until=</span><span class="st">"2024-04-27"</span><span class="ot"> metadataPrefix=</span><span class="st">"oai_amcr"</span>&gt;https://api.aiscr.cz/oai&lt;/<span class="kw">request</span>&gt;</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">ListIdentifiers</span>&gt;</span>
@@ -1073,7 +1079,7 @@ Functionality of the service described in this manual remains the same.</p>
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">record</span>&gt;</span>
 <span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">resumptionToken</span><span class="ot"> completeListSize=</span><span class="st">"859203"</span><span class="ot"> expirationDate=</span><span class="st">"2024-07-23T06:33:12Z"</span><span class="ot"> cursor=</span><span class="st">"0"</span>&gt;BF0A0598B38E42E3FEB4E639B2911C90&lt;/<span class="kw">resumptionToken</span>&gt;</span>
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">ListIdentifiers</span>&gt;</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">OAI-PMH</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -1133,13 +1139,14 @@ Functionality of the service described in this manual remains the same.</p>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
