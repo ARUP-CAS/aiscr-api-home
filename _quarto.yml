@@ -102,8 +102,8 @@ format:
     theme:
       - spacelab
       - theme.scss
-    css:
-      - museo.css
+    # css:
+    #   - museo.css
     mainfont: "Alegreya Sans"
     fontsize: 1.1em
     df-print: kable
