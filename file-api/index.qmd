@@ -8,7 +8,8 @@ date: 2025-03-28
 
 **AMCR File API** serves files and their thumbnails from the AMCR repository.
 File URLs can be obtained from the [OAI-PMH API](/oai-pmh/index.qmd) response.
-They are in the `soubor/url` element of the response, see example below.
+They are in the `soubor/url` element of the response, see example below. 
+Mimetype and the filename of the returned file are in the response headers.
 
 - Base URL for the file API is `https://digiarchiv.aiscr.cz/id/`.
 
@@ -136,7 +137,7 @@ curl -u <username> "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cd
 
 `GET` method for thumbnails of images and documents. 
 In case of multipage documents (i.e. value of `<rozsah>` tag > 1), this method returns its first page.
-Thumbnails are in **JPEG** file format, with the maximum **size of 100x100 px**.
+Thumbnails are in **PNG** file format, with the maximum **size of 100x100 px**.
 All small thumbnails are available without authentication.
 
 - Method: `GET`
@@ -209,7 +210,7 @@ else:
 ### Large thumbnails
 
 `GET` method to request large thumbnail of any page in the document.
-Large thumbnails are in **JPEG** file format, with the maximum **size of 800x800 px**.
+Large thumbnails are in **JPEG** file format in case of (textual) documents and **PNG** file format in case of images (photographs), with the maximum **size of 800x800 px**.
 Without authentication, only some of the large thumbnails are available, see section [Authentication](index.qmd#authentication) above.
 
 - Method: `GET`
