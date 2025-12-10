@@ -41,7 +41,7 @@ website:
   sidebar:
     - id: main
       collapse-level: 1
-      style: "floating"
+      style: "docked"
       header: |
         [![](/figs/logo-amcr-hor.png)](index.qmd)
       contents:
