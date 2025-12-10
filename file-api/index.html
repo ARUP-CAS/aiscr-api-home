@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-03-28">
+<meta name="dcterms.date" content="2025-12-10">
 
 <title>AMCR File API – AMCR API</title>
 <style>
@@ -75,10 +75,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-97b403d9bbbde048636950362d7f0e66.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c3e5c64e5db8bf9b5c6e0e3e70a789ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -135,10 +135,9 @@ cookieconsent.run({
   
 
 
-<link rel="stylesheet" href="../museo.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -160,7 +159,7 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -168,7 +167,7 @@ cookieconsent.run({
 <span class="menu-text">Oai-pmh Api</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../file-api/index.html"> 
+    <a class="nav-link active" href="../file-api/index.html" aria-current="page"> 
 <span class="menu-text">File Api</span></a>
   </li>  
   <li class="nav-item">
@@ -205,13 +204,9 @@ cookieconsent.run({
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
 <p><a href="../oai-pmh/index.html"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
 </div></div>
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -268,7 +263,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 28, 2025</p>
+      <p class="date">December 10, 2025</p>
     </div>
   </div>
   
@@ -282,7 +277,7 @@ cookieconsent.run({
 
 <section id="overview" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p><strong>AMCR File API</strong> serves files and their thumbnails from the AMCR repository. File URLs can be obtained from the <a href="../oai-pmh/index.html">OAI-PMH API</a> response. They are in the <code>soubor/url</code> element of the response, see example below.</p>
+<p><strong>AMCR File API</strong> serves files and their thumbnails from the AMCR repository. File URLs can be obtained from the <a href="../oai-pmh/index.html">OAI-PMH API</a> response. They are in the <code>soubor/url</code> element of the response, see example below. Mimetype and the filename of the returned file are in the response headers.</p>
 <ul>
 <li>Base URL for the file API is <code>https://digiarchiv.aiscr.cz/id/</code>.</li>
 </ul>
@@ -528,7 +523,7 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="endpoints">Endpoints</h2>
 <section id="small-thumbnails" class="level3">
 <h3 class="anchored" data-anchor-id="small-thumbnails">Small thumbnails</h3>
-<p><code>GET</code> method for thumbnails of images and documents. In case of multipage documents (i.e.&nbsp;value of <code>&lt;rozsah&gt;</code> tag &gt; 1), this method returns its first page. Thumbnails are in <strong>JPEG</strong> file format, with the maximum <strong>size of 100x100 px</strong>. All small thumbnails are available without authentication.</p>
+<p><code>GET</code> method for thumbnails of images and documents. In case of multipage documents (i.e.&nbsp;value of <code>&lt;rozsah&gt;</code> tag &gt; 1), this method returns its first page. Thumbnails are in <strong>PNG</strong> file format, with the maximum <strong>size of 100x100 px</strong>. All small thumbnails are available without authentication.</p>
 <ul>
 <li>Method: <code>GET</code></li>
 <li>Endpoint: <code>/id/{ident_cely}/file/{file_id}/thumb</code></li>
@@ -601,7 +596,7 @@ cookieconsent.run({
 </section>
 <section id="large-thumbnails" class="level3">
 <h3 class="anchored" data-anchor-id="large-thumbnails">Large thumbnails</h3>
-<p><code>GET</code> method to request large thumbnail of any page in the document. Large thumbnails are in <strong>JPEG</strong> file format, with the maximum <strong>size of 800x800 px</strong>. Without authentication, only some of the large thumbnails are available, see section <a href="../file-api/index.html#authentication">Authentication</a> above.</p>
+<p><code>GET</code> method to request large thumbnail of any page in the document. Large thumbnails are in <strong>JPEG</strong> file format in case of (textual) documents and <strong>PNG</strong> file format in case of images (photographs), with the maximum <strong>size of 800x800 px</strong>. Without authentication, only some of the large thumbnails are available, see section <a href="../file-api/index.html#authentication">Authentication</a> above.</p>
 <ul>
 <li>Method: <code>GET</code></li>
 <li>Endpoint: <code>/id/{ident_cely}/file/{file_id}/thumb/page/{page}</code></li>
