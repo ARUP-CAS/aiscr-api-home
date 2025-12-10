@@ -10,9 +10,12 @@ about:
     - icon: github
       text: Github
       href: https://github.com/ARUP-CAS/
-    - icon: twitter-x
-      text: X (Twitter)
-      href: https://x.com/AISCRproject/
+    # - icon: twitter-x
+    #   text: X (Twitter)
+    #   href: https://x.com/AISCRproject/
+    - icon: bluesky
+      text: Bluesky 
+      href: https://bsky.app/profile/aiscr.bsky.social
     - icon: facebook
       text: Facebook
       href: https://www.facebook.com/ArcheologickyInformacniSystem/
