@@ -1,0 +1,10 @@
+---
+title: "Update to the OAI-PMH API"
+date: 2025-12-19
+categories: [OAI-PMH]
+---
+
+**Changes**
+
+- The generic OAI-PMH endpoint (`https://api.aiscr.cz/oai`) now automatically translates to the most recent version, preventing the API to return mixed versions of the records. Previous version can by still reached directly by calling approprite endopint version (e.g.: `https://api.aiscr.cz/2.0/oai`, `https://api.aiscr.cz/2.1/oai`, `https://api.aiscr.cz/2.2/oai`)
+- New subsets of the set `heslo` are available to allow requests for specific vocabularies. See <https://arup-cas.github.io/aiscr-api-home/oai-pmh/#sets> for details.

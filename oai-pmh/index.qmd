@@ -37,10 +37,9 @@ The API response is an XML file.
 
 ### Endpoints 
 
-Generic endpoint `https://api.aiscr.cz/oai` always resolves to the most recent version of the data, i.e. returns the data in the schema used in the time of the last update of the specific record.
-This means that a query using this endpoint will result in the service returning records with different structure, ie. following different schemas.
+Generic endpoint `https://api.aiscr.cz/oai` always redirects to the most recent endpoint version, i.e. returns metadata records tranformed consistently to the schema with the highest version.
 
-We recommend using a specific version of the service, ie. an endpoint `https://api.aiscr.cz/x.y/oai` with its associated schema at `https://api.aiscr.cz/schema/amcr/x.y/`, where `x` is a major version and `y` is a minor version.
+For the sake of your implementation persistence, we recommend using a specific version of the service, ie. an endpoint `https://api.aiscr.cz/x.y/oai` with its associated schema at `https://api.aiscr.cz/schema/amcr/x.y/`, where `x` is a major version and `y` is a minor version.
 
 **Versions**
 
