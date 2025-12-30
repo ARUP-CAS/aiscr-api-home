@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-27">
+<meta name="dcterms.date" content="2025-12-19">
 
 <title>OAI-PMH API – AMCR API</title>
 <style>
@@ -289,7 +289,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 27, 2025</p>
+      <p class="date">December 19, 2025</p>
     </div>
   </div>
   
@@ -335,13 +335,13 @@ Functionality of the service described in this manual remains the same.</p>
 <p>OAI-PMH AMCR API provides metadata from the AMCR database using the <em>OpenArchives Initiative Protocol for Metadata Harvesting</em> (<a href="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" class="external">OAI-PMH</a>). The implementation supports two metadata standards:</p>
 <ul>
 <li><a href="http://dublincore.org/" class="external">Dublin Core</a> – AMCR basic metadata serialised using Dublin Core elements from the DCMI schema for unqualified Dublin Core according to OAI-PMH specification;</li>
-<li><a href="https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd">AMCR XML</a> – native format with a complete representation of the whole AMCR database.</li>
+<li><a href="https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd">AMCR XML</a> – native format with a complete representation of the whole AMCR database.</li>
 </ul>
 <p>The API response is an XML file.</p>
 <section id="endpoints" class="level3">
 <h3 class="anchored" data-anchor-id="endpoints">Endpoints</h3>
-<p>Generic endpoint <code>https://api.aiscr.cz/oai</code> always resolves to the most recent version of the data, i.e.&nbsp;returns the data in the schema used in the time of the last update of the specific record. This means that a query using this endpoint will result in the service returning records with different structure, ie. following different schemas.</p>
-<p>We recommend using a specific version of the service, ie. an endpoint <code>https://api.aiscr.cz/x.y/oai</code> with its associated schema at <code>https://api.aiscr.cz/schema/amcr/x.y/</code>, where <code>x</code> is a major version and <code>y</code> is a minor version.</p>
+<p>Generic endpoint <code>https://api.aiscr.cz/oai</code> always redirects to the most recent endpoint version, i.e.&nbsp;returns metadata records tranformed consistently to the schema with the highest version.</p>
+<p>For the sake of your implementation persistence, we recommend using a specific version of the service, ie. an endpoint <code>https://api.aiscr.cz/x.y/oai</code> with its associated schema at <code>https://api.aiscr.cz/schema/amcr/x.y/</code>, where <code>x</code> is a major version and <code>y</code> is a minor version.</p>
 <p><strong>Versions</strong></p>
 <ul>
 <li><strong>v2.2</strong> (2025-06-18) – endpoint <code>https://api.aiscr.cz/2.2/oai</code> and schema <a href="https://api.aiscr.cz/schema/amcr/2.2/">https://api.aiscr.cz/schema/amcr/2.2/</a></li>
@@ -567,9 +567,9 @@ Functionality of the service described in this manual remains the same.</p>
 <table class="caption-top table table-sm table-striped small">
 <caption>Available sets</caption>
 <colgroup>
-<col style="width: 26%">
-<col style="width: 62%">
-<col style="width: 10%">
+<col style="width: 23%">
+<col style="width: 67%">
+<col style="width: 9%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -645,18 +645,268 @@ Functionality of the service described in this manual remains the same.</p>
 <td style="text-align: center;">✔</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">heslo:adb_podnet</td>
+<td style="text-align: left;">Heslář: Podnět / Vocabulary: Intervention Motivation</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:adb_typ</td>
+<td style="text-align: left;">Heslář: Typ sondy / Vocabulary: Trench Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:akce_typ</td>
+<td style="text-align: left;">Heslář: Typ akce / Vocabulary: Fieldwork Event Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:akce_typ_kat</td>
+<td style="text-align: left;">Heslář: Typ akce (kategorie) / Vocabulary: Fieldwork Event Type (category)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:aktivita</td>
+<td style="text-align: left;">Heslář: Aktivita / Vocabulary: Activity</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:areal</td>
+<td style="text-align: left;">Heslář: Areál / Vocabulary: Activity Area</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:areal_kat</td>
+<td style="text-align: left;">Heslář: Areál (kategorie) / Vocabulary: Activity Area (category)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:datum_specifikace</td>
+<td style="text-align: left;">Heslář: Specifikace data / Vocabulary: Execution Date Accuracy</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:dohlednost</td>
+<td style="text-align: left;">Heslář: Dohlednost / Vocabulary: Visibility</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:dok_jednotka_typ</td>
+<td style="text-align: left;">Heslář: Typ dokumentační jednotky / Vocabulary: Documentation Unit Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:dokument_format</td>
+<td style="text-align: left;">Heslář: Formát dokumentu / Vocabulary: Document Format</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:dokument_licence</td>
+<td style="text-align: left;">Heslář: Licence / Vocabulary: Licence</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:dokument_material</td>
+<td style="text-align: left;">Heslář: Materiál dokumentu / Vocabulary: Document Material</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:dokument_nahrada</td>
+<td style="text-align: left;">Heslář: Náhrada dokumentu / Vocabulary: Document Substitution</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:dokument_rada</td>
+<td style="text-align: left;">Heslář: Řada dokumentu / Vocabulary: Document Series</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:dokument_typ</td>
+<td style="text-align: left;">Heslář: Typ dokumentu / Vocabulary: Document Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:dokument_ulozeni</td>
+<td style="text-align: left;">Heslář: Uložení dokumentu / Vocabulary: Location of Original Document</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:dokument_zachovalost</td>
+<td style="text-align: left;">Heslář: Zachovalost dokumentu / Vocabulary: State of Document Preservation</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:ext_zdroj_typ</td>
+<td style="text-align: left;">Heslář: Typ externího zdroje / Vocabulary: External Source Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:jazyk</td>
+<td style="text-align: left;">Heslář: Jazyk / Vocabulary: Language</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:jistota_urceni</td>
+<td style="text-align: left;">Heslář: Jistota určení / Vocabulary: Level of Confidence</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:letfoto_tvar</td>
+<td style="text-align: left;">Heslář: Tvar příznaku / Vocabulary: Feature Shape</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:letiste</td>
+<td style="text-align: left;">Heslář: Letiště / Vocabulary: Airport</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:lokalita_druh</td>
+<td style="text-align: left;">Heslář: Druh lokality / Vocabulary: Site Class</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:lokalita_druh_kat</td>
+<td style="text-align: left;">Heslář: Druh lokality (kategorie) / Vocabulary: Site Class (category)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:lokalita_typ</td>
+<td style="text-align: left;">Heslář: Typ lokality / Vocabulary: Site Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:nalez_typ</td>
+<td style="text-align: left;">Heslář: Typ nálezu / Vocabulary: Find Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:nalezove_okolnosti</td>
+<td style="text-align: left;">Heslář: Nálezové okolnosti / Vocabulary: Finding Context</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:obdobi</td>
+<td style="text-align: left;">Heslář: Období / Vocabulary: Period</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:obdobi_kat</td>
+<td style="text-align: left;">Heslář: Období (kategorie) / Vocabulary: Period (category)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:objekt_druh</td>
+<td style="text-align: left;">Heslář: Druh objektu / Vocabulary: Feature Class</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:objekt_druh_kat</td>
+<td style="text-align: left;">Heslář: Druh objektu (kategorie) / Vocabulary: Feature Class (category)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:objekt_specifikace</td>
+<td style="text-align: left;">Heslář: Specifikace objektu / Vocabulary: Feature Specification</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:objekt_specifikace_kat</td>
+<td style="text-align: left;">Heslář: Specifikace objektu (kategorie) / Vocabulary: Feature Specification (category)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:organizace_typ</td>
+<td style="text-align: left;">Heslář: Typ organizace / Vocabulary: Organisation Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:pamatkova_ochrana</td>
+<td style="text-align: left;">Heslář: Památková ochrana / Vocabulary: Monument Protection</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:pian_presnost</td>
+<td style="text-align: left;">Heslář: Přesnost PIAN / Vocabulary: Spatial Unit Accuracy</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:pian_typ</td>
+<td style="text-align: left;">Heslář: Typ PIAN / Vocabulary: Spatial Unit Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:pocasi</td>
+<td style="text-align: left;">Heslář: Počasí / Vocabulary: Weather</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:posudek_typ</td>
+<td style="text-align: left;">Heslář: Posudek / Vocabulary: Analysis</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:posudek_typ_kat</td>
+<td style="text-align: left;">Heslář: Posudek (kategorie) / Vocabulary: Analysis (category)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:predmet_druh</td>
+<td style="text-align: left;">Heslář: Druh předmětu / Vocabulary: Object Class</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:predmet_druh_kat</td>
+<td style="text-align: left;">Heslář: Druh předmětu (kategorie) / Vocabulary: Object Class (category)</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:predmet_specifikace</td>
+<td style="text-align: left;">Heslář: Specifikace předmětu / Vocabulary: Object Specification</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:pristupnost</td>
+<td style="text-align: left;">Heslář: Přístupnost / Vocabulary: Acessibility</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:projekt_typ</td>
+<td style="text-align: left;">Heslář: Typ projektu / Vocabulary: Project Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:stav_dochovani</td>
+<td style="text-align: left;">Heslář: Stav dochování lokality / Vocabulary: State of Site Preservation</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:udalost_typ</td>
+<td style="text-align: left;">Heslář: Typ události / Vocabulary: Event Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heslo:vyskovy_bod_typ</td>
+<td style="text-align: left;">Heslář: Typ výškového bodu / Vocabulary: Elevation Point Type</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heslo:zeme</td>
+<td style="text-align: left;">Heslář: Země / Vocabulary: Country</td>
+<td style="text-align: center;">✔</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">ruian_kraj</td>
-<td style="text-align: left;">RÚIAN - Kraje / RÚIAN – Regions</td>
+<td style="text-align: left;">RÚIAN - Kraje / RUIAN – Regions</td>
 <td style="text-align: center;">✔</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ruian_okres</td>
-<td style="text-align: left;">RÚIAN - Okresy / RÚIAN – Districts</td>
+<td style="text-align: left;">RÚIAN - Okresy / RUIAN – Districts</td>
 <td style="text-align: center;">✔</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ruian_katastr</td>
-<td style="text-align: left;">RÚIAN - Katastrální území / RÚIAN - Cadastral Municipality</td>
+<td style="text-align: left;">RÚIAN - Katastrální území / RUIAN - Cadastral Areas</td>
 <td style="text-align: center;">✔</td>
 </tr>
 <tr class="odd">

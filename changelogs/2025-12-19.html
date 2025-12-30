@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-12-19">
 
-<title>Changelogs – AMCR API</title>
+<title>Update to the OAI-PMH API – AMCR API</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +31,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../figs/cover.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -72,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-changelogs .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-changelogs'] = new List('listing-changelogs', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-E32YT41EWT"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -129,35 +99,6 @@ cookieconsent.run({
 </script> 
   
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -219,7 +160,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2025-12-19.html">Update to the OAI-PMH API</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -235,7 +176,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../changelogs/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../changelogs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Changelogs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -262,7 +203,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../changelogs/2025-12-19.html" class="sidebar-item-text sidebar-link">
+  <a href="../changelogs/2025-12-19.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Update to the OAI-PMH API</span></a>
   </div>
 </li>
@@ -274,21 +215,30 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="T0FJLVBNSA==">OAI-PMH <span class="quarto-category-count">(4)</span></div></div></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2025-12-19.html">Update to the OAI-PMH API</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Changelogs</h1>
-</div>
+<h1 class="title">Update to the OAI-PMH API</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">OAI-PMH</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 19, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -298,90 +248,11 @@ window.Quarto = {
 </header>
 
 
-<div id="listing-changelogs" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table table-striped">
-<thead>
-<tr>
-
-<th>
-Date
-</th>
-
-<th>
-Title
-</th>
-
-<th>
-Categories
-</th>
-
-</tr>
-</thead>
-<tbody class="list">
-
-<tr data-index="0" data-categories="T0FJLVBNSA==" data-listing-date-sort="1766102400000" data-listing-file-modified-sort="1767092517721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="58" data-listing-title-sort="Update to the OAI-PMH API" data-listing-filename-sort="2025-12-19.qmd">
-<td>
-<span class="listing-date">2025-12-19</span>
-</td>
-<td>
-<a href="../changelogs/2025-12-19.html" class="title listing-title">Update to the OAI-PMH API</a>
-</td>
-<td>
-<span class="listing-categories">OAI-PMH</span>
-</td>
-
-</tr>
-
-<tr data-index="1" data-categories="T0FJLVBNSA==" data-listing-date-sort="1750982400000" data-listing-file-modified-sort="1767092517721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44" data-listing-title-sort="Version 2.2 of the schema" data-listing-filename-sort="2025-06-27.qmd">
-<td>
-<span class="listing-date">2025-06-27</span>
-</td>
-<td>
-<a href="../changelogs/2025-06-27.html" class="title listing-title">Version 2.2 of the schema</a>
-</td>
-<td>
-<span class="listing-categories">OAI-PMH</span>
-</td>
-
-</tr>
-
-<tr data-index="2" data-categories="T0FJLVBNSA==" data-listing-date-sort="1743120000000" data-listing-file-modified-sort="1767092517721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="132" data-listing-title-sort="Version 2.1 of OAI-PMH API" data-listing-filename-sort="2025-03-21.qmd">
-<td>
-<span class="listing-date">2025-03-28</span>
-</td>
-<td>
-<a href="../changelogs/2025-03-21.html" class="title listing-title">Version 2.1 of OAI-PMH API</a>
-</td>
-<td>
-<span class="listing-categories">OAI-PMH</span>
-</td>
-
-</tr>
-
-<tr data-index="3" data-categories="T0FJLVBNSA==" data-listing-date-sort="1722384000000" data-listing-file-modified-sort="1767092517721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="27" data-listing-title-sort="Version 2.0 of OAI-PMH API" data-listing-filename-sort="2024-07-31.qmd">
-<td>
-<span class="listing-date">2024-07-31</span>
-</td>
-<td>
-<a href="../changelogs/2024-07-31.html" class="title listing-title">Version 2.0 of OAI-PMH API</a>
-</td>
-<td>
-<span class="listing-categories">OAI-PMH</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div>
-
+<p><strong>Changes</strong></p>
+<ul>
+<li>The generic OAI-PMH endpoint (<code>https://api.aiscr.cz/oai</code>) now automatically translates to the most recent version, preventing the API to return mixed versions of the records. Previous version can by still reached directly by calling approprite endopint version (e.g.: <code>https://api.aiscr.cz/2.0/oai</code>, <code>https://api.aiscr.cz/2.1/oai</code>, <code>https://api.aiscr.cz/2.2/oai</code>)</li>
+<li>New subsets of the set <code>heslo</code> are available to allow requests for specific vocabularies. See <a href="https://arup-cas.github.io/aiscr-api-home/oai-pmh/#sets" class="uri">https://arup-cas.github.io/aiscr-api-home/oai-pmh/#sets</a> for details.</li>
+</ul>
 
 
 
