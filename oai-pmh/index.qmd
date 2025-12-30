@@ -1,7 +1,7 @@
 ---
 title: "OAI-PMH API"
 subtitle: OpenArchives Initiative Protocol for Metadata Harvesting API
-date: 2025-06-27
+date: 2025-12-19
 ---
 
 ::: {.callout-note}
@@ -30,17 +30,16 @@ Functionality of the service described in this manual remains the same.
 OAI-PMH AMCR API provides metadata from the AMCR database using the *OpenArchives Initiative Protocol for Metadata Harvesting* ([OAI-PMH](http://www.openarchives.org/OAI/2.0/oai_dc.xsd){.external}). The implementation supports two metadata standards:
 
 - [Dublin Core](http://dublincore.org/){.external} -- AMCR basic metadata serialised using Dublin Core elements from the DCMI schema for unqualified Dublin Core according to OAI-PMH specification;
-- [AMCR XML](https://api.aiscr.cz/schema/amcr/2.0/amcr.xsd) -- native format with a complete representation of the whole AMCR database. 
+- [AMCR XML](https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd) -- native format with a complete representation of the whole AMCR database. 
 
 The API response is an XML file.
 
 
 ### Endpoints 
 
-Generic endpoint `https://api.aiscr.cz/oai` always resolves to the most recent version of the data, i.e. returns the data in the schema used in the time of the last update of the specific record.
-This means that a query using this endpoint will result in the service returning records with different structure, ie. following different schemas.
+Generic endpoint `https://api.aiscr.cz/oai` always redirects to the most recent endpoint version, i.e. returns metadata records tranformed consistently to the schema with the highest version.
 
-We recommend using a specific version of the service, ie. an endpoint `https://api.aiscr.cz/x.y/oai` with its associated schema at `https://api.aiscr.cz/schema/amcr/x.y/`, where `x` is a major version and `y` is a minor version.
+For the sake of your implementation persistence, we recommend using a specific version of the service, ie. an endpoint `https://api.aiscr.cz/x.y/oai` with its associated schema at `https://api.aiscr.cz/schema/amcr/x.y/`, where `x` is a major version and `y` is a minor version.
 
 **Versions**
 

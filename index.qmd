@@ -2,7 +2,7 @@
 title: "AMCR API"
 format-links: false
 repo-actions: false
-date: 2025-12-10
+date: 2025-12-23
 # date: 2025-03-28
 doi: 10.5281/zenodo.13220182
 listing: 
