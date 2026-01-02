@@ -1,8 +1,10 @@
 ---
 title: "Update to the OAI-PMH API"
-date: 2025-12-19
+date: 2026-01-02
 categories: [OAI-PMH]
 ---
+
+An updated version of AMCR OAI-PMH API is released featuring two main changes -- now the endpoint automatically translates to the most recent version, preventing the API to return mixed versions of the records, and subsets of set `heslo` are now available to allow requests for specific vocabularies.
 
 **Changes**
 
