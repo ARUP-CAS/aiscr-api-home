@@ -37,7 +37,7 @@
     "href": "changelogs/2025-12-19.html",
     "title": "Update to the OAI-PMH API",
     "section": "",
-    "text": "Changes\n\nThe generic OAI-PMH endpoint (https://api.aiscr.cz/oai) now automatically translates to the most recent version, preventing the API to return mixed versions of the records. Previous version can by still reached directly by calling approprite endopint version (e.g.: https://api.aiscr.cz/2.0/oai, https://api.aiscr.cz/2.1/oai, https://api.aiscr.cz/2.2/oai)\nNew subsets of the set heslo are available to allow requests for specific vocabularies. See https://arup-cas.github.io/aiscr-api-home/oai-pmh/#sets for details.",
+    "text": "An updated version of AMCR OAI-PMH API is released featuring two main changes – now the endpoint automatically translates to the most recent version, preventing the API to return mixed versions of the records, and subsets of set heslo are now available to allow requests for specific vocabularies.\nChanges\n\nThe generic OAI-PMH endpoint (https://api.aiscr.cz/oai) now automatically translates to the most recent version, preventing the API to return mixed versions of the records. Previous version can by still reached directly by calling approprite endopint version (e.g.: https://api.aiscr.cz/2.0/oai, https://api.aiscr.cz/2.1/oai, https://api.aiscr.cz/2.2/oai)\nNew subsets of the set heslo are available to allow requests for specific vocabularies. See https://arup-cas.github.io/aiscr-api-home/oai-pmh/#sets for details.",
     "crumbs": [
       "Changelogs",
       "Update to the OAI-PMH API"
@@ -114,7 +114,7 @@
     "href": "index.html#api-changelog",
     "title": "AMCR API",
     "section": "API Changelog",
-    "text": "API Changelog\n\n\n\n\n\n\n\nUpdate to the OAI-PMH API\n\n\n\n\n\n\n2025-12-19\n\n\n\n\n\n\n\n\n\n\nVersion 2.2 of the schema\n\n\n\n\n\n\n2025-06-27\n\n\n\n\n\n\n\n\n\n\nVersion 2.1 of OAI-PMH API\n\n\n\n\n\n\n2025-03-28\n\n\n\n\n\n\nNo matching items\n\nOlder changelogs can be browsed here.",
+    "text": "API Changelog\n\n\n\n\n\n\n\nUpdate to the OAI-PMH API\n\n\n\n\n\n\n2026-01-02\n\n\n\n\n\n\n\n\n\n\nVersion 2.2 of the schema\n\n\n\n\n\n\n2025-06-27\n\n\n\n\n\n\n\n\n\n\nVersion 2.1 of OAI-PMH API\n\n\n\n\n\n\n2025-03-28\n\n\n\n\n\n\nNo matching items\n\nOlder changelogs can be browsed here.",
     "crumbs": [
       "Home",
       "AMCR API"
@@ -329,7 +329,7 @@
     "href": "changelogs/index.html",
     "title": "Changelogs",
     "section": "",
-    "text": "Date\n\n\n\nTitle\n\n\n\nCategories\n\n\n\n\n\n\n\n\n2025-12-19\n\n\nUpdate to the OAI-PMH API\n\n\nOAI-PMH\n\n\n\n\n\n\n2025-06-27\n\n\nVersion 2.2 of the schema\n\n\nOAI-PMH\n\n\n\n\n\n\n2025-03-28\n\n\nVersion 2.1 of OAI-PMH API\n\n\nOAI-PMH\n\n\n\n\n\n\n2024-07-31\n\n\nVersion 2.0 of OAI-PMH API\n\n\nOAI-PMH\n\n\n\n\n\n\nNo matching items",
+    "text": "Date\n\n\n\nTitle\n\n\n\nCategories\n\n\n\n\n\n\n\n\n2026-01-02\n\n\nUpdate to the OAI-PMH API\n\n\nOAI-PMH\n\n\n\n\n\n\n2025-06-27\n\n\nVersion 2.2 of the schema\n\n\nOAI-PMH\n\n\n\n\n\n\n2025-03-28\n\n\nVersion 2.1 of OAI-PMH API\n\n\nOAI-PMH\n\n\n\n\n\n\n2024-07-31\n\n\nVersion 2.0 of OAI-PMH API\n\n\nOAI-PMH\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Changelogs"
     ]

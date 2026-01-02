@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-12-19">
+<meta name="dcterms.date" content="2026-01-02">
 
 <title>Update to the OAI-PMH API – AMCR API</title>
 <style>
@@ -236,7 +236,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 19, 2025</p>
+      <p class="date">January 2, 2026</p>
     </div>
   </div>
   
@@ -248,6 +248,7 @@ cookieconsent.run({
 </header>
 
 
+<p>An updated version of AMCR OAI-PMH API is released featuring two main changes – now the endpoint automatically translates to the most recent version, preventing the API to return mixed versions of the records, and subsets of set <code>heslo</code> are now available to allow requests for specific vocabularies.</p>
 <p><strong>Changes</strong></p>
 <ul>
 <li>The generic OAI-PMH endpoint (<code>https://api.aiscr.cz/oai</code>) now automatically translates to the most recent version, preventing the API to return mixed versions of the records. Previous version can by still reached directly by calling approprite endopint version (e.g.: <code>https://api.aiscr.cz/2.0/oai</code>, <code>https://api.aiscr.cz/2.1/oai</code>, <code>https://api.aiscr.cz/2.2/oai</code>)</li>
