@@ -68,9 +68,18 @@ At the start of every agent session, execute in this exact order:
 3. Read `docs_agents/review_cache.json` — load session state and previous findings.
 4. Check `docs_agents/bugs.md` and `docs_agents/refactoring_backlog.md`.
 5. Run **Step 0 — Live API Verification** (see below).
-6. Select the next pending session from the session type registry.
-7. Execute the session, respecting scope limits.
-8. Update `review_cache.json`, `bugs.md`, `refactoring_backlog.md` and write a report.
+6. **Check for `in_progress` sessions first.**
+   - If any session has `"status": "in_progress"`, resume it from where it stopped
+     (see `progress_notes` in `review_cache.json`).
+   - Only if no `in_progress` session exists, select the next `pending` session.
+   - **Never skip an `in_progress` session** — mark it `done` only after full completion.
+7. At the start of the selected session, immediately set its status to `in_progress`
+   and write `progress_notes` describing which step you are about to execute.
+   Update `review_cache.json` before doing any further work.
+8. Execute the session step by step. After completing each major step, update
+   `progress_notes` in `review_cache.json` so that a future agent can resume correctly.
+9. Update `review_cache.json` (set `status` to `done`), `bugs.md`,
+   `refactoring_backlog.md` and write a report.
 
 ---
 
@@ -313,20 +322,24 @@ Create and maintain: `docs_agents/review_cache.json`
 
 ```json
 {
-  "schema_version": "2",
+  "schema_version": "3",
   "last_updated": "<iso8601>",
   "sessions": {
     "S01": {
-      "status": "pending|done|skipped",
+      "status": "pending|in_progress|done|skipped",
+      "started_at": null,
       "completed_at": null,
       "report_path": null,
-      "step0_results": null
+      "step0_results": null,
+      "progress_notes": null
     },
     "S02": {
-      "status": "pending|done|skipped",
+      "status": "pending|in_progress|done|skipped",
+      "started_at": null,
       "completed_at": null,
       "report_path": null,
-      "step0_results": null
+      "step0_results": null,
+      "progress_notes": null
     }
   },
   "known_issues": {
@@ -422,3 +435,11 @@ Agents must not self-modify `PROMPT.md`.
 6. All PRs target `main`. Branch naming: `agents/<agent>/<topic>`.
 7. Never push directly to `main`.
 8. Changes to `docs_agents/` require human review before merge.
+9. **Never skip an `in_progress` session.** If `review_cache.json` contains a session
+   with `"status": "in_progress"`, that session must be resumed and completed before
+   starting any other session. A session is only `done` when its report has been written
+   and `review_cache.json` has been updated accordingly.
+10. **Set `in_progress` before starting work.** Always update `review_cache.json`
+    to `"status": "in_progress"` (with `started_at` and initial `progress_notes`)
+    before executing any steps of a session. This ensures a future agent can detect
+    and resume a partially completed session even if the current run is interrupted.
