@@ -1,0 +1,229 @@
+# review_config.yaml — AI review configuration for aiscr-api-home
+#
+# Static API documentation site (Quarto / JS / Lua / Python).
+# No application backend in this repository.
+
+repository:
+  name: aiscr-api-home
+  url: https://github.com/ARUP-CAS/aiscr-api-home
+  type: api-documentation
+  organisation: ARUP-CAS
+  primary_language: en  # English (API docs); some UI strings in Czech
+  licence: CC-BY-NC-4.0
+  published_url: https://api.aiscr.cz/
+  default_branch: main
+  development_branch: main  # single-branch workflow — PRs always target main
+
+stack:
+  documentation_framework: quarto
+  quarto_version: ">=1.4"
+  scripting:
+    - javascript   # 50.3% — build scripts / interactive elements
+    - python       # 7.2%  — auxiliary build scripts only (not an app backend)
+  lua_filters: true  # 14.2%
+  styling:
+    - scss
+    - css
+  extensions:
+    - quarto-ext/fontawesome
+
+  # Explicitly disabled (not applicable to this repo):
+  backend: false
+  database: false
+  docker: false
+  orm: false
+  celery: false
+
+ci_cd:
+  provider: github-actions
+  workflows_path: .github/
+  deployment_target: github-pages
+  custom_domain: api.aiscr.cz
+
+# ─── Live endpoints ───────────────────────────────────────────────────────────
+# These are the real, testable endpoints agents must verify against.
+# Run curl checks from here before editing any documentation section.
+
+live_endpoints:
+  oai_pmh:
+    generic: https://api.aiscr.cz/oai
+    current_version: "2.2"
+    current_endpoint: https://api.aiscr.cz/2.2/oai
+    previous_endpoint: https://api.aiscr.cz/2.1/oai
+    schema_current: https://api.aiscr.cz/schema/amcr/2.2/
+    schema_previous: https://api.aiscr.cz/schema/amcr/2.1/
+
+    # Verbs and their verification URLs (all publicly accessible)
+    verbs:
+      Identify:
+        url: https://api.aiscr.cz/2.2/oai?verb=Identify
+        curl: "curl -s 'https://api.aiscr.cz/2.2/oai?verb=Identify'"
+        expected_http: 200
+        check: "<protocolVersion>2.0</protocolVersion> present in response"
+      ListMetadataFormats:
+        url: https://api.aiscr.cz/2.2/oai?verb=ListMetadataFormats
+        curl: "curl -s 'https://api.aiscr.cz/2.2/oai?verb=ListMetadataFormats'"
+        expected_prefixes: [oai_dc, oai_amcr]
+      ListSets:
+        url: https://api.aiscr.cz/2.2/oai?verb=ListSets
+        curl: "curl -s 'https://api.aiscr.cz/2.2/oai?verb=ListSets'"
+        expected_sets:
+          - projekt
+          - archeologicky_zaznam
+          - archeologicky_zaznam:akce
+          - archeologicky_zaznam:lokalita
+          - let
+          - adb
+          - dokument
+          - dokument:3d
+          - ext_zdroj
+          - pian
+          - samostatny_nalez
+          - uzivatel
+          - heslo
+          - organizace
+          - osoba
+          - ruian_kraj
+          - ruian_okres
+          - ruian_katastr
+      ListIdentifiers:
+        example_url: "https://api.aiscr.cz/2.2/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr&set=projekt"
+        curl: "curl -s 'https://api.aiscr.cz/2.2/oai?verb=ListIdentifiers&metadataPrefix=oai_amcr&set=projekt'"
+        expected_http: 200
+      ListRecords:
+        example_url: "https://api.aiscr.cz/2.2/oai?verb=ListRecords&metadataPrefix=oai_dc&set=projekt"
+        curl: "curl -s 'https://api.aiscr.cz/2.2/oai?verb=ListRecords&metadataPrefix=oai_dc&set=projekt'"
+        expected_http: 200
+        check: "<resumptionToken completeListSize=...> present"
+      GetRecord:
+        example_url: "https://api.aiscr.cz/2.2/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr"
+        curl: "curl -s 'https://api.aiscr.cz/2.2/oai?verb=GetRecord&identifier=https://api.aiscr.cz/id/M-FT-110598700&metadataPrefix=oai_amcr'"
+        known_stable_identifier: "https://api.aiscr.cz/id/M-FT-110598700"
+
+    authentication:
+      type: HTTP Basic Authentication
+      required_for: records with limited accessibility (roles B, C, D)
+      registration_url: https://amcr.aiscr.cz/accounts/register/
+      anonymous_role: A
+
+    identifier_pattern: "https://api.aiscr.cz/id/[ident_cely]"
+    example_identifier: "https://api.aiscr.cz/id/C-202013149"
+
+  file_api:
+    docs_url: https://api.aiscr.cz/file-api/
+    section_path: file-api/
+    backend_repo: https://github.com/ARUP-CAS/aiscr-digiarchiv-2
+    backend_stack: Java / Spring + Solr
+    live_base_url: https://digiarchiv.aiscr.cz/
+    note: >
+      File API is served by the aiscr-digiarchiv-2 application at digiarchiv.aiscr.cz —
+      NOT at api.aiscr.cz (which is only the documentation site).
+      File download endpoints provide access to document files and thumbnails
+      referenced via links available in OAI-PMH API responses (<amcr:soubor> elements).
+      Verify specific endpoint paths against aiscr-digiarchiv-2 Spring controller routes
+      (web/src/main/java/) or by inspecting network requests in Browser DevTools at
+      https://digiarchiv.aiscr.cz/. Authentication uses the same HTTP Basic Auth
+      as the OAI-PMH API where applicable.
+    curl_base_check: "curl -s -o /dev/null -w '%{http_code}' 'https://digiarchiv.aiscr.cz/'"
+    authentication:
+      type: HTTP Basic Authentication
+      note: "Same credentials as OAI-PMH; required for restricted files"
+      registration_url: https://amcr.aiscr.cz/accounts/register/
+
+  auth_api:
+    docs_url: https://api.aiscr.cz/auth-api/
+    section_path: auth-api/
+    backend_repo: https://github.com/ARUP-CAS/aiscr-webamcr
+    backend_stack: Django REST Framework / Python
+    live_base_url: https://amcr.aiscr.cz/
+    note: >
+      Auth API is served by the aiscr-webamcr application at amcr.aiscr.cz —
+      NOT at api.aiscr.cz (which is only the documentation site).
+      Verify specific endpoint paths against aiscr-webamcr Django views and serialisers:
+      webclient/urls.py, webclient/*/urls.py, webclient/*/views.py,
+      webclient/*/serializers.py.
+    curl_base_check: "curl -s -o /dev/null -w '%{http_code}' 'https://amcr.aiscr.cz/'"
+
+# ─── Source code repositories ─────────────────────────────────────────────────
+source_repos:
+  auth_api_backend:
+    url: https://github.com/ARUP-CAS/aiscr-webamcr
+    live_url: https://amcr.aiscr.cz/
+    stack: Django REST Framework / Python
+    verify: endpoint paths, request/response schemas, HTTP status codes, auth flow
+    key_files:
+      - webclient/urls.py
+      - webclient/*/urls.py
+      - webclient/*/views.py
+      - webclient/*/serializers.py
+  file_api_backend:
+    url: https://github.com/ARUP-CAS/aiscr-digiarchiv-2
+    live_url: https://digiarchiv.aiscr.cz/
+    stack: Java / Spring + Solr
+    verify: controller routes, file serving paths, Solr schema field names
+    key_files:
+      - web/src/main/java/
+    note: >
+      File API endpoints are accessible from OAI-PMH response links (<amcr:soubor>).
+      Use Browser DevTools on https://digiarchiv.aiscr.cz/ to inspect actual
+      file and thumbnail request URLs before editing file-api/ documentation.
+  oai_pmh_backend:
+    url: https://github.com/ARUP-CAS/aiscr-digiarchiv-2
+    live_url: https://api.aiscr.cz/oai
+    stack: Java / Spring + Solr
+    verify: set definitions, field mappings, access control rules
+
+technical_docs:
+  amcr_readthedocs: https://aiscr-webamcr.readthedocs.io/
+
+# ─── Active domain analyses ───────────────────────────────────────────────────
+domain_analyses:
+  cicd_analysis:
+    enabled: true
+    path: docs_agents/cicd_analysis.json
+
+  frontend_analysis:
+    enabled: true
+    path: docs_agents/frontend_analysis.json
+    description: SCSS/CSS theme, Lua filters, JS build scripts, Quarto config
+
+  # Disabled — not applicable to this repo:
+  docker_analysis:
+    enabled: false
+  orm_analysis:
+    enabled: false
+  security_analysis:
+    enabled: false
+    note: "Static documentation site — no backend to audit"
+  solr_analysis:
+    enabled: false
+  xslt_analysis:
+    enabled: false
+
+# ─── Review configuration ─────────────────────────────────────────────────────
+review:
+  focus_areas:
+    - api_accuracy            # Documented endpoints vs. live API and source code
+    - endpoint_verification   # curl-based checks against live endpoints
+    - schema_conformance      # OAI-PMH XSD schema consistency
+    - oai_pmh_standard        # Conformance with OAI-PMH v2.0 standard
+    - quarto_configuration
+    - content_completeness
+    - internal_links
+    - external_links
+    - changelog_accuracy
+    - navigation_structure
+    - styling_consistency
+    - lua_filters
+    - cicd_health
+
+  exclusions:
+    - _freeze/
+    - _site/
+    - fonts/
+    - figs/
+
+  report_path: docs_agents/review_reports/
+  cache_path: docs_agents/review_cache.json
+  bugs_path: docs_agents/bugs.md
+  backlog_path: docs_agents/refactoring_backlog.md

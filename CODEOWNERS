@@ -1,0 +1,29 @@
+# CODEOWNERS — aiscr-api-home
+#
+# Definuje vlastníky částí repozitáře a automatické přiřazování reviewerů v PR.
+# Dokumentace: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Výchozí vlastník pro celý repozitář
+* @petrpajdla, @motyc
+
+# Hlavní konfigurace projektu
+_quarto.yml                    @petrpajdla, @motyc
+
+# Styling
+theme.scss                     @petrpajdla, @motyc
+museo.css                      @petrpajdla, @motyc
+
+# CI/CD workflows — vyžadují review
+.github/                       @petrpajdla, @motyc
+
+# Dokumentace jednotlivých API
+auth-api/                      @petrpajdla, @motyc
+file-api/                      @petrpajdla, @motyc
+oai-pmh/                       @petrpajdla, @motyc
+
+# Changelog — vyžaduje review při každé změně
+changelogs/                    @petrpajdla, @motyc
+
+# AI review infrastruktura — VŽDY vyžaduje lidský review před mergem
+docs_agents/                   @petrpajdla, @motyc
+AGENTS.md                      @petrpajdla, @motyc
