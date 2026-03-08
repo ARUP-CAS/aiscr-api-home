@@ -28,13 +28,10 @@
   },
 
   "sections_reviewed": {
-    "amcr": false,
-    "digiarchiv": false,
-    "metodika": false,
-    "o-systemu": false,
-    "slovnik": false,
-    "zakladni-info": false,
-    "zpravodaj": false,
+    "oai-pmh": false,
+    "file-api": false,
+    "auth-api": false,
+    "changelogs": false,
     "about": false
   },
 

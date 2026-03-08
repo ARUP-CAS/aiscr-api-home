@@ -114,21 +114,53 @@ live_endpoints:
     section_path: file-api/
     backend_repo: https://github.com/ARUP-CAS/aiscr-digiarchiv-2
     backend_stack: Java / Spring + Solr
-    live_base_url: https://digiarchiv.aiscr.cz/
+    live_base_url: https://digiarchiv.aiscr.cz/id/
     note: >
       File API is served by the aiscr-digiarchiv-2 application at digiarchiv.aiscr.cz —
       NOT at api.aiscr.cz (which is only the documentation site).
-      File download endpoints provide access to document files and thumbnails
-      referenced via links available in OAI-PMH API responses (<amcr:soubor> elements).
+      File URLs come from the <amcr:url> element inside <amcr:soubor> in OAI-PMH responses.
       Verify specific endpoint paths against aiscr-digiarchiv-2 Spring controller routes
       (web/src/main/java/) or by inspecting network requests in Browser DevTools at
-      https://digiarchiv.aiscr.cz/. Authentication uses the same HTTP Basic Auth
-      as the OAI-PMH API where applicable.
+      https://digiarchiv.aiscr.cz/.
     curl_base_check: "curl -s -o /dev/null -w '%{http_code}' 'https://digiarchiv.aiscr.cz/'"
     authentication:
       type: HTTP Basic Authentication
-      note: "Same credentials as OAI-PMH; required for restricted files"
+      note: >
+        HTTP Basic Auth (username + password) only.
+        Bearer token from Auth API is NOT (yet) supported for File API.
       registration_url: https://amcr.aiscr.cz/accounts/register/
+    known_endpoints:
+      small_thumbnail:
+        method: GET
+        pattern: "/id/{ident_cely}/file/{file_id}/thumb"
+        example_url: "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb"
+        curl: "curl -s -o /dev/null -w '%{http_code}' 'https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb'"
+        description: "PNG, max 100x100 px; first page for multipage documents"
+        expected_http_public: 200
+        auth_required: false  # for role-A accessible files
+      large_thumbnail:
+        method: GET
+        pattern: "/id/{ident_cely}/file/{file_id}/thumb/page/{page}"
+        example_url: "https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af/thumb/page/2"
+        curl: "curl -s -o /dev/null -w '%{http_code}' 'https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af/thumb/page/2'"
+        description: "JPEG (documents) or PNG (images), max 800x800 px; page-specific"
+        auth_required: true  # for restricted files
+      original_file:
+        method: GET
+        pattern: "/id/{ident_cely}/file/{file_id}"
+        example_url: "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b"
+        curl: "curl -s -o /dev/null -w '%{http_code}' 'https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b'"
+        expected_http_public: 200
+        auth_required: false  # for role-A accessible files
+    error_codes:
+      401: "Unauthorized — invalid credentials"
+      403: "Forbidden — insufficient permissions"
+      404: "Not Found — invalid ident_cely or file_id"
+      429: "Too Many Requests — parallelisation not supported; use >=1s between requests"
+    variables:
+      ident_cely: "Full record identifier, e.g. M-202301215-N00001 or C-TX-198603094"
+      file_id: "UUID of the file, e.g. aa0cdd95-4bc4-4358-a831-2cf8672a3e4b"
+      page: "Integer — page number for large thumbnail endpoint"
 
   auth_api:
     docs_url: https://api.aiscr.cz/auth-api/
@@ -139,10 +171,32 @@ live_endpoints:
     note: >
       Auth API is served by the aiscr-webamcr application at amcr.aiscr.cz —
       NOT at api.aiscr.cz (which is only the documentation site).
+      The bearer token obtained here is used ONLY for uzivatel-info endpoint.
+      OAI-PMH API and File API use HTTP Basic Authentication directly — NOT the bearer token.
       Verify specific endpoint paths against aiscr-webamcr Django views and serialisers:
       webclient/urls.py, webclient/*/urls.py, webclient/*/views.py,
       webclient/*/serializers.py.
     curl_base_check: "curl -s -o /dev/null -w '%{http_code}' 'https://amcr.aiscr.cz/'"
+    known_endpoints:
+      token_auth:
+        method: POST
+        url: "https://amcr.aiscr.cz/api/token-auth/"
+        curl: "curl -X POST https://amcr.aiscr.cz/api/token-auth/ -H 'Content-Type: application/json' -d '{\"username\":\"<user>\",\"password\":\"<pass>\"}'"
+        auth: none  # credentials in request body
+        request_body: '{"username": "string", "password": "string"}'
+        response_format: JSON
+        response_example: '{"token": "<token>"}'
+        token_validity: 24 hours
+        expected_http: 200
+      uzivatel_info:
+        method: GET
+        url: "https://amcr.aiscr.cz/api/uzivatel-info/"
+        curl: "curl -H 'Authorization: Bearer <token>' 'https://amcr.aiscr.cz/api/uzivatel-info/'"
+        auth: Bearer token (obtained from token_auth endpoint)
+        response_format: XML  # follows AMCR OAI-PMH schema
+        expected_http_authenticated: 200
+        expected_http_unauthenticated: 401
+    registration_url: https://amcr.aiscr.cz/accounts/register/
 
 # ─── Source code repositories ─────────────────────────────────────────────────
 source_repos:

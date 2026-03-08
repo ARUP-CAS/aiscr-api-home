@@ -59,11 +59,33 @@ api.aiscr.cz/oai    — LIVE OAI-PMH API
 
 ⚠️ **Never use `api.aiscr.cz` as a base URL when verifying File API or Auth API endpoints.**
 
+### Three-API Relationship
+
+The three documented APIs work together in a specific workflow:
+
+```
+1. Auth API (amcr.aiscr.cz)
+   POST /api/token-auth/ — submit username + password → receive bearer token
+   GET  /api/uzivatel-info/ — use bearer token → receive user info XML
+
+2. OAI-PMH API (api.aiscr.cz/oai)
+   Auth: HTTP Basic Authentication (username + password directly)
+   Returns XML metadata including <amcr:soubor><amcr:url> links pointing to File API
+
+3. File API (digiarchiv.aiscr.cz)
+   Auth: HTTP Basic Authentication (username + password directly)
+   Bearer token from Auth API is NOT (yet) supported
+   Uses {ident_cely} and {file_id} (UUID) from OAI-PMH <amcr:url> elements
+```
+
+Key distinction: the bearer token from Auth API is **only** used for `uzivatel-info`.
+For data access, both OAI-PMH and File API use HTTP Basic Auth directly.
+
 ---
 
 ### OAI-PMH API
 
-Publicly accessible. No authentication required.
+Publicly accessible for anonymous (role A) records. HTTP Basic Authentication required to access records with limited accessibility (roles B, C, D). Use `-u <username>` flag in curl calls requiring auth.
 
 #### Identify
 
@@ -205,21 +227,65 @@ Expected:
 
 ---
 
-#### Example Endpoints
+#### Endpoint Patterns
+
+File URLs are obtained from the `<amcr:url>` element within `<amcr:soubor>` in OAI-PMH responses.
+The URL format is:
+
+```plain
+https://digiarchiv.aiscr.cz/id/{ident_cely}/file/{file_id}
+```
+
+where `file_id` is a UUID.
+
+Three endpoint types are available:
+
+```plain
+/id/{ident_cely}/file/{file_id}/thumb            — small thumbnail (PNG, max 100×100 px)
+/id/{ident_cely}/file/{file_id}/thumb/page/{page} — large thumbnail (JPEG/PNG, max 800×800 px)
+/id/{ident_cely}/file/{file_id}                  — original file
+```
+
+#### Example Verification Calls
+
+Small thumbnail (publicly accessible for role-A files):
 
 ```bash
-https://digiarchiv.aiscr.cz/<PATH>/<document-id>
-https://digiarchiv.aiscr.cz/<PATH>/<document-id>/thumbnail
+curl -s -o /dev/null -w "%{http_code}" \
+"https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb"
+```
+
+Expected: `200`
+
+Large thumbnail with authentication (HTTP Basic Auth):
+
+```bash
+curl -u "<username>:<password>" \
+"https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af/thumb/page/2" \
+-o thumb_p2.jpeg
+```
+
+Original file (publicly accessible for role-A files):
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" \
+"https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b"
 ```
 
 Expected:
 
 ```plain
-200 for accessible
-403 for restricted
+200 for accessible (role A)
+401 for unauthenticated request to restricted file
+403 for authenticated user with insufficient permissions
+404 for invalid identifier or file_id
+429 Too Many Requests — parallelisation not supported; use ≥1 s between requests
 ```
 
-Verification method:
+> ⚠️ **Authentication note:** File API supports **HTTP Basic Auth** (username + password) only.
+> Bearer token from Auth API is **not** (yet) supported for File API.
+
+Verification method via browser:
 
 1. Open **https://digiarchiv.aiscr.cz/**
 2. Open a document
@@ -270,21 +336,42 @@ Expected:
 
 ---
 
-#### Token Example
+#### Token Endpoint
+
+Obtain a bearer token by posting user credentials:
 
 ```bash
-curl -X POST https://amcr.aiscr.cz/<PATH> \
+curl -X POST https://amcr.aiscr.cz/api/token-auth/ \
 -H "Content-Type: application/json" \
--d '{"username":"<test>","password":"<test>"}'
+-d '{"username":"<username>","password":"<password>"}'
 ```
+
+Expected response (HTTP 200):
+
+```json
+{"token": "<token>"}
+```
+
+Token is valid for **24 hours**.
 
 ---
 
-#### Unauthenticated Endpoint
+#### User Info Endpoint (requires bearer token)
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+'https://amcr.aiscr.cz/api/uzivatel-info/'
+```
+
+Expected: HTTP 200, XML response following AMCR OAI-PMH schema.
+
+---
+
+#### Unauthenticated Request to Protected Endpoint
 
 ```bash
 curl -o /dev/null -w "%{http_code}" \
-'https://amcr.aiscr.cz/<PATH>'
+'https://amcr.aiscr.cz/api/uzivatel-info/'
 ```
 
 Expected:
@@ -292,6 +379,10 @@ Expected:
 ```plain
 401
 ```
+
+> ⚠️ **Important:** The bearer token from Auth API is used for `uzivatel-info` only.
+> OAI-PMH API and File API use **HTTP Basic Authentication** directly.
+> Bearer token is **not** (yet) supported by the File API.
 
 ---
 

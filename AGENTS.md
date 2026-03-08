@@ -281,7 +281,7 @@ Verify that all sets documented in `oai-pmh/` exist.
 
 ListRecords:
 
-```bsh
+```bash
 curl -s 'https://api.aiscr.cz/2.2/oai?verb=ListRecords&metadataPrefix=oai_dc&set=projekt'
 ```
 
@@ -321,17 +321,14 @@ The File API is **not** served from `api.aiscr.cz`.
 Architecture:
 
 - **Documentation** for File API: `https://api.aiscr.cz/file-api/`
-- **Live API** serving files and thumbnails: `https://digiarchiv.aiscr.cz/`
+- **Live API** serving files and thumbnails: `https://digiarchiv.aiscr.cz/id/`
 - **Backend repository**: `aiscr-digiarchiv-2` (Java / Spring)
+- **Authentication**: HTTP Basic Auth only — bearer token from Auth API is **not** (yet) supported
 
-File API endpoints provide access to document files and thumbnails referenced
-via links available in OAI-PMH API responses (`<amcr:soubor>` elements within
-`oai_amcr` metadata records).
+File URLs are obtained from the `<amcr:url>` element inside `<amcr:soubor>` in OAI-PMH responses.
+The URL format is: `https://digiarchiv.aiscr.cz/id/{ident_cely}/file/{file_id}` (file_id is a UUID).
 
-**Step 1 — Discover actual endpoints using Browser DevTools:**
-
-Open `https://digiarchiv.aiscr.cz/` in a browser, open DevTools → Network tab,
-navigate to a document record and inspect file and thumbnail request URLs.
+**Step 1 — Reachability check:**
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}" 'https://digiarchiv.aiscr.cz/'
@@ -339,18 +336,39 @@ curl -s -o /dev/null -w "%{http_code}" 'https://digiarchiv.aiscr.cz/'
 
 Expected: HTTP 200.
 
-**Step 2 — Verify against source code:**
+**Step 2 — Verify known public endpoints:**
 
-Inspect Spring controller routes in:
+Small thumbnail (publicly accessible for role-A files):
 
-```markdown
-web/src/main/java/
+```bash
+curl -s -o /dev/null -w "%{http_code}" \
+"https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb"
 ```
 
-in the `aiscr-digiarchiv-2` repository. Verify that documented endpoint paths
-match actual controller mappings.
+Expected: `200`
 
-**Step 3 — Compare documentation:**
+Large thumbnail (page 2 of a document, auth required for restricted files):
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" \
+"https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af/thumb/page/2"
+```
+
+Original file:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" \
+"https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b"
+```
+
+Expected status codes: `200` (accessible), `401` (auth required), `403` (insufficient permissions), `404` (invalid ID), `429` (rate limit — use ≥1 s between requests).
+
+**Step 3 — Verify against source code:**
+
+Inspect Spring controller routes in `web/src/main/java/` in the `aiscr-digiarchiv-2` repository.
+Verify that documented endpoint patterns match actual controller mappings.
+
+**Step 4 — Compare documentation:**
 
 Check that endpoint paths, parameters and example URLs in `file-api/` match
 what the live `digiarchiv.aiscr.cz` application actually serves.
@@ -369,7 +387,10 @@ Architecture:
 - **Live API**: `https://amcr.aiscr.cz/`
 - **Backend repository**: `aiscr-webamcr` (Django REST Framework / Python)
 
-**Step 1 — Check live endpoint availability:**
+> **Important:** The bearer token from Auth API is used **only** for `uzivatel-info`.
+> OAI-PMH API and File API use HTTP Basic Authentication directly.
+
+**Step 1 — Reachability check:**
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}" 'https://amcr.aiscr.cz/'
@@ -377,7 +398,26 @@ curl -s -o /dev/null -w "%{http_code}" 'https://amcr.aiscr.cz/'
 
 Expected: HTTP 200.
 
-**Step 2 — Verify against source code:**
+**Step 2 — Verify token endpoint:**
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" -X POST \
+-H "Content-Type: application/json" \
+-d '{"username":"invalid","password":"invalid"}' \
+'https://amcr.aiscr.cz/api/token-auth/'
+```
+
+Expected: `400` (invalid credentials format) or `403` (wrong credentials).
+
+**Step 3 — Verify unauthenticated access to protected endpoint:**
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" 'https://amcr.aiscr.cz/api/uzivatel-info/'
+```
+
+Expected: `401`
+
+**Step 4 — Verify against source code:**
 
 Inspect:
 

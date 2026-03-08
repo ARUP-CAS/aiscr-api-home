@@ -92,18 +92,57 @@
       }
     }
   },
+  "api_workflow": {
+    "description": "Popis vztahu tří dokumentovaných API",
+    "steps": {
+      "1_auth": "POST https://amcr.aiscr.cz/api/token-auth/ → bearer token (platný 24h) — používá se POUZE pro uzivatel-info",
+      "2_oai_pmh": "GET https://api.aiscr.cz/oai (HTTP Basic Auth) → XML metadata včetně <amcr:soubor><amcr:url> odkazů na File API",
+      "3_file_api": "GET https://digiarchiv.aiscr.cz/id/{ident_cely}/file/{file_id} (HTTP Basic Auth) → soubory a náhledy"
+    },
+    "auth_note": "OAI-PMH i File API používají HTTP Basic Auth přímo. Bearer token z Auth API NENÍ (zatím) pro tyto API podporován."
+  },
   "documented_apis": {
     "auth_api": {
       "section": "auth-api/",
       "description": "Autentizace a správa přístupu k AMČR API",
       "backend_repo": "https://github.com/ARUP-CAS/aiscr-webamcr",
-      "backend_stack": "Django REST Framework / Python"
+      "backend_stack": "Django REST Framework / Python",
+      "note": "Bearer token z Auth API je určen POUZE pro endpoint uzivatel-info. OAI-PMH API a File API používají HTTP Basic Auth přímo.",
+      "endpoints": {
+        "token_auth": {
+          "method": "POST",
+          "url": "https://amcr.aiscr.cz/api/token-auth/",
+          "auth": "none (credentials in request body)",
+          "response": "JSON: {\"token\": \"<token>\"} — platný 24 hodin"
+        },
+        "uzivatel_info": {
+          "method": "GET",
+          "url": "https://amcr.aiscr.cz/api/uzivatel-info/",
+          "auth": "Bearer token (from token-auth endpoint)",
+          "response": "XML following AMCR OAI-PMH schema"
+        }
+      },
+      "registration_url": "https://amcr.aiscr.cz/accounts/register/"
     },
     "file_api": {
       "section": "file-api/",
       "description": "Přístup k souborům a dokumentům Digitálního archivu AMČR",
       "backend_repo": "https://github.com/ARUP-CAS/aiscr-digiarchiv-2",
-      "backend_stack": "Java / Spring"
+      "backend_stack": "Java / Spring",
+      "live_base_url": "https://digiarchiv.aiscr.cz/id/",
+      "auth": "HTTP Basic Authentication only — bearer token z Auth API není (zatím) podporován",
+      "note": "File URLs jsou dostupné v elementu <amcr:url> uvnitř <amcr:soubor> v odpovědích OAI-PMH API. file_id je UUID.",
+      "endpoints": {
+        "small_thumbnail": "/id/{ident_cely}/file/{file_id}/thumb",
+        "large_thumbnail": "/id/{ident_cely}/file/{file_id}/thumb/page/{page}",
+        "original_file": "/id/{ident_cely}/file/{file_id}"
+      },
+      "example_urls": {
+        "small_thumbnail": "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb",
+        "large_thumbnail": "https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af/thumb/page/2",
+        "original_file": "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b"
+      },
+      "rate_limit": "429 Too Many Requests — parallelisace není podporována; >=1s mezi požadavky"
     },
     "oai_pmh": {
       "section": "oai-pmh/",
