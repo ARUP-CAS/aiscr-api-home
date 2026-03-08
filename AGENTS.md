@@ -45,15 +45,25 @@ Purpose:
 These files contain accumulated knowledge from previous review sessions.
 Reading them prevents duplicated work and ensures continuity between agent runs.
 
-If information inside `docs_agents` contradicts governance rules defined in:
+### Resolving Inconsistencies
 
-- `AGENTS.md`
-- `CONTRIBUTING.md`
-- repository conventions
+If content in `docs_agents/` contradicts high-level repository rules or governance
+defined in this document (`AGENTS.md`), `CONTRIBUTING.md`, or other authoritative
+project documentation, agents must treat those higher-level documents as the
+**source of truth**.
 
-those higher-level rules must be treated as authoritative.
+In such cases agents should:
 
-Agents should update the affected `docs_agents` files to restore consistency.
+1. Prefer the high-level governance rules defined in:
+   - `AGENTS.md`
+   - `CONTRIBUTING.md`
+   - repository coding standards
+2. Adapt or update affected files in `docs_agents/` to align with those rules.
+3. Record the adjustment in the review history (for example `review_cache.json`
+   or `refactoring_backlog.md`) when relevant.
+
+This ensures long-running AI review artefacts remain consistent with
+current repository governance.
 
 ---
 
@@ -115,15 +125,13 @@ Agents must follow these behavioural rules:
    - `docs_agents/refactoring_backlog.md`
 5. Suggest improvements to this file if agent workflows evolve.
 
----
-
-## Recommended Skills
+### Recommended Skills
 
 The following specialised agent skills may be useful when working in this repository.
 
 These skills are optional helpers and not mandatory tools.
 
-### doc
+#### doc
 
 Reviewing and editing documentation artefacts, including:
 
@@ -132,7 +140,7 @@ Reviewing and editing documentation artefacts, including:
 - API descriptions
 - examples and code snippets
 
-### gh-fix-ci
+#### gh-fix-ci
 
 Diagnosing and fixing CI failures in:
 
@@ -140,7 +148,7 @@ Diagnosing and fixing CI failures in:
 - Quarto build pipelines
 - documentation deployment processes
 
-### gh-address-comments
+#### gh-address-comments
 
 Incorporating Pull Request review comments and ensuring proposed changes remain consistent with repository conventions.
 
@@ -527,7 +535,6 @@ The `docs_agents` directory stores persistent AI review artefacts.
 ```markdown
 docs_agents/
 ├── PROMPT.md
-├── PROMPT_RUN.md
 ├── review_config.yaml
 ├── repository_map.json
 ├── dependency_graph.json
@@ -542,8 +549,8 @@ docs_agents/
 
 Purpose of individual files:
 
-- `PROMPT.md` — instructions for long-running AI review sessions
-- `PROMPT_RUN.md` — how to execute a review session
+- `PROMPT.md` — instructions for long-running AI review sessions;
+  contains the initialization sequence, task registry and execution procedure
 - `review_config.yaml` — enabled review modules
 - `repository_map.json` — high-level repository structure
 - `dependency_graph.json` — dependencies and technologies
