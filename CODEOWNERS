@@ -25,5 +25,5 @@ oai-pmh/                       @petrpajdla, @motyc
 changelogs/                    @petrpajdla, @motyc
 
 # AI review infrastruktura — VŽDY vyžaduje lidský review před mergem
-docs_agents/                   @petrpajdla, @motyc
+/.agents/                      @motyc
 AGENTS.md                      @petrpajdla, @motyc

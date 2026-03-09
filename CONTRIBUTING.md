@@ -150,18 +150,18 @@ Větve vytvořené AI agenty musí:
 1. Dodržovat konvenci pojmenování `agents/<jmeno-agenta>/<tema>`
 2. Cílit výhradně na větev `main` přes PR
 3. Obsahovat v popisu PR jasné označení, že jde o AI-generovaný obsah
-4. Projít standardním code review — změny v `docs_agents/` vyžadují **lidský review**
+4. Projít standardním code review — změny v `.agents/` vyžadují **lidský review**
 
 ### Jak spustit review session
 
 Otevřete nový kontext AI agenta a jako první zprávu vložte:
 
 ```
-Přečti docs_agents/PROMPT.md a spusť review session.
+Přečti .agents/prompts/review_codebase.md a spusť review session.
 ```
 
-Agent si načte `AGENTS.md`, kontext z `docs_agents/` a zahájí session dle instrukcí
-v `docs_agents/PROMPT.md`. Typy sezení (general-review, oai-pmh-accuracy,
+Agent si načte `AGENTS.md`, kontext z `.agents/` a zahájí session dle instrukcí
+v `.agents/prompts/review_codebase.md`. Typy sezení (general-review, oai-pmh-accuracy,
 file-api-accuracy, auth-api-accuracy aj.) jsou popsány tamtéž.
 
 ---
