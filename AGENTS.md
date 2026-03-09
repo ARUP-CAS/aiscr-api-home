@@ -34,11 +34,11 @@ Before starting any work, agents must gather repository context.
 
 Agents must read the following files first:
 
-- `docs_agents/repository_map.json`
-- `docs_agents/review_cache.json`
-- `docs_agents/bugs.md`
-- `docs_agents/refactoring_backlog.md`
-- `docs_agents/PROMPT.md`
+- `.agents/analysis/repository_map.json`
+- `.agents/config/review_cache.json`
+- `.agents/reports/bugs.md`
+- `.agents/reports/refactoring_backlog.md`
+- `.agents/prompts/review_codebase.md`
 
 Purpose:
 
@@ -47,7 +47,7 @@ Reading them prevents duplicated work and ensures continuity between agent runs.
 
 ### Resolving Inconsistencies
 
-If content in `docs_agents/` contradicts high-level repository rules or governance
+If content in `.agents/` contradicts high-level repository rules or governance
 defined in this document (`AGENTS.md`), `CONTRIBUTING.md`, or other authoritative
 project documentation, agents must treat those higher-level documents as the
 **source of truth**.
@@ -58,7 +58,7 @@ In such cases agents should:
    - `AGENTS.md`
    - `CONTRIBUTING.md`
    - repository coding standards
-2. Adapt or update affected files in `docs_agents/` to align with those rules.
+2. Adapt or update affected files in `.agents/` to align with those rules.
 3. Record the adjustment in the review history (for example `review_cache.json`
    or `refactoring_backlog.md`) when relevant.
 
@@ -72,7 +72,7 @@ current repository governance.
 All AI-generated artefacts must be stored inside:
 
 ```markdown
-docs_agents/
+.agents/
 ```
 
 Typical artefacts include:
@@ -118,11 +118,11 @@ Agents must avoid large unrelated refactors.
 Agents must follow these behavioural rules:
 
 1. Always gather repository context first.
-2. Avoid repeating work already recorded in `docs_agents/`.
+2. Avoid repeating work already recorded in `.agents/`.
 3. Prefer small incremental improvements.
 4. Record discovered issues in:
-   - `docs_agents/bugs.md`
-   - `docs_agents/refactoring_backlog.md`
+   - `.agents/bugs.md`
+   - `.agents/refactoring_backlog.md`
 5. Suggest improvements to this file if agent workflows evolve.
 
 ### Recommended Skills
@@ -234,7 +234,7 @@ When reviewing or modifying API documentation, agents must:
 1. Verify endpoints against the live API.
 2. Verify parameter names and schemas against source code.
 3. Execute example `curl` commands from documentation.
-4. Record discrepancies in `docs_agents/bugs.md`.
+4. Record discrepancies in `.agents/bugs.md`.
 5. Verify OAI-PMH conformance with the official specification:
 
 https://www.openarchives.org/OAI/openarchivesprotocol.html
@@ -242,7 +242,7 @@ https://www.openarchives.org/OAI/openarchivesprotocol.html
 ---
 
 For detailed verification procedures, curl commands and expected responses
-for all three APIs, see [`docs_agents/PROMPT.md`](docs_agents/PROMPT.md).
+for all three APIs, see [`.agents/prompts/review_codebase.md`](.agents/prompts/review_codebase.md).
 
 ---
 
@@ -330,43 +330,53 @@ docs/update-oai-examples
 fix/broken-endpoint-link
 ```
 
-Changes to `docs_agents/` require **human review before merge**.
+Changes to `.agents/` require **human review before merge**.
 
 ---
 
-## docs_agents Structure
+## .agents Structure
 
-The `docs_agents` directory stores persistent AI review artefacts.
+The `.agents/` directory stores persistent AI review artefacts.
+It is organized into subfolders:
 
-```markdown
-docs_agents/
-├── PROMPT.md
-├── review_config.yaml
-├── repository_map.json
-├── dependency_graph.json
-├── review_cache.json
-├── bugs.md
-├── refactoring_backlog.md
-├── review_reports/
-├── prompt_evolution/
-├── cicd_analysis.json
-└── frontend_analysis.json
-```
+### prompts/
 
-Purpose of individual files:
+`review_codebase.md`\
+Instructions for running long-term AI review sessions.\
+Contains the initialization sequence, session registry and execution procedure.
 
-- `PROMPT.md` — instructions for long-running AI review sessions;
-  contains the initialization sequence, task registry and execution procedure
-- `review_config.yaml` — enabled review modules
-- `repository_map.json` — high-level repository structure
-- `dependency_graph.json` — dependencies and technologies
-- `review_cache.json` — persistent review session state
-- `bugs.md` — structured list of discovered issues
-- `refactoring_backlog.md` — long-term improvement backlog
-- `review_reports/` — generated technical audit reports
-- `prompt_evolution/` — prompt development history
-- `cicd_analysis.json` — CI/CD diagnostics
-- `frontend_analysis.json` — documentation frontend analysis
+`prompt_evolution/`\
+Suggestions for improving the review prompt, accumulated across sessions.
+
+### config/
+
+`review_config.yaml`\
+Enabled review modules and live endpoint configuration.
+
+`review_cache.json`\
+Persistent review session state.
+
+### analysis/
+
+`repository_map.json`\
+High-level repository structure.
+
+`dependency_graph.json`\
+Dependencies and technologies.
+
+`*_analysis.json`\
+Task-specific analysis outputs (CI/CD, frontend, etc.).
+
+### reports/
+
+`review_reports/`\
+Generated technical audit reports.
+
+`bugs.md`\
+Structured list of discovered issues.
+
+`refactoring_backlog.md`\
+Long-term improvement backlog.
 
 Additional analysis artefacts may be generated during review sessions.
 

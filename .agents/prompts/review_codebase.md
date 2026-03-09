@@ -64,9 +64,9 @@ For data access, both OAI-PMH and File API use HTTP Basic Auth directly.
 At the start of every agent session, execute in this exact order:
 
 1. Read `AGENTS.md` — contains repository-specific governance rules that take precedence.
-2. Read `docs_agents/review_config.yaml` — load configuration including live endpoint definitions.
-3. Read `docs_agents/review_cache.json` — load session state and previous findings.
-4. Check `docs_agents/bugs.md` and `docs_agents/refactoring_backlog.md`.
+2. Read `.agents/review_config.yaml` — load configuration including live endpoint definitions.
+3. Read `.agents/review_cache.json` — load session state and previous findings.
+4. Check `.agents/bugs.md` and `.agents/refactoring_backlog.md`.
 5. Run **Step 0 — Live API Verification** (see below).
 6. **Check for `in_progress` sessions first.**
    - If any session has `"status": "in_progress"`, resume it from where it stopped
@@ -87,7 +87,7 @@ At the start of every agent session, execute in this exact order:
 
 Run these checks **before loading any documentation files**.
 Record results in the session report under "Step 0 results".
-Log any failures in `docs_agents/bugs.md`.
+Log any failures in `.agents/bugs.md`.
 
 ### OAI-PMH API
 
@@ -253,43 +253,43 @@ sessions:
   - id: S01
     name: general_review
     description: Full repository — structure, navigation, content, links
-    target: docs_agents/review_reports/YYYY-MM-DD-general-review.md
+    target: .agents/review_reports/YYYY-MM-DD-general-review.md
     trigger: after each release
 
   - id: S02
     name: oai_pmh_accuracy
     description: OAI-PMH documentation vs live API and aiscr-digiarchiv-2 source
-    target: docs_agents/review_reports/YYYY-MM-DD-oai-pmh-accuracy.md
+    target: .agents/review_reports/YYYY-MM-DD-oai-pmh-accuracy.md
     trigger: after API changes or schema updates
 
   - id: S03
     name: file_api_accuracy
     description: File API documentation vs live digiarchiv.aiscr.cz and source
-    target: docs_agents/review_reports/YYYY-MM-DD-file-api-accuracy.md
+    target: .agents/review_reports/YYYY-MM-DD-file-api-accuracy.md
     trigger: after File API changes
 
   - id: S04
     name: auth_api_accuracy
     description: Auth API documentation vs live amcr.aiscr.cz and aiscr-webamcr source
-    target: docs_agents/review_reports/YYYY-MM-DD-auth-api-accuracy.md
+    target: .agents/review_reports/YYYY-MM-DD-auth-api-accuracy.md
     trigger: after Auth API changes
 
   - id: S05
     name: linkcheck
     description: Broken internal and external links
-    target: docs_agents/review_reports/YYYY-MM-DD-linkcheck.md
+    target: .agents/review_reports/YYYY-MM-DD-linkcheck.md
     trigger: monthly
 
   - id: S06
     name: changelog_review
     description: CHANGELOG accuracy and version coverage
-    target: docs_agents/review_reports/YYYY-MM-DD-changelog.md
+    target: .agents/review_reports/YYYY-MM-DD-changelog.md
     trigger: before releases
 
   - id: S07
     name: cicd_review
     description: GitHub Actions workflows — build and deploy health
-    target: docs_agents/review_reports/YYYY-MM-DD-cicd.md
+    target: .agents/review_reports/YYYY-MM-DD-cicd.md
     trigger: when workflows change
 ```
 
@@ -300,25 +300,32 @@ sessions:
 Create and maintain:
 
 ```plain
-docs_agents/
-  bugs.md
-  cicd_analysis.json
-  dependency_graph.json
-  frontend_analysis.json
-  PROMPT.md
-  prompt_evolution/README.md
-  review_reports/README.md
-  refactoring_backlog.md
-  repository_map.json
-  review_cache.json
-  review_config.yaml
+.agents/
+  README.md
+  prompts/
+    review_codebase.md
+    prompt_evolution/
+      README.md
+  config/
+    review_config.yaml
+    review_cache.json
+  analysis/
+    repository_map.json
+    dependency_graph.json
+    cicd_analysis.json
+    frontend_analysis.json
+  reports/
+    review_reports/
+      README.md
+    bugs.md
+    refactoring_backlog.md
 ```
 
 ---
 
 ## REVIEW CACHE
 
-Create and maintain: `docs_agents/review_cache.json`
+Create and maintain: `.agents/review_cache.json`
 
 ```json
 {
@@ -356,7 +363,7 @@ Create and maintain: `docs_agents/review_cache.json`
 
 ## BUG TRACKING
 
-Create and maintain: `docs_agents/bugs.md`
+Create and maintain: `.agents/bugs.md`
 
 Before adding a bug entry:
 
@@ -384,7 +391,7 @@ Each bug entry:
 
 ## REPORT OUTPUT
 
-Each completed session must produce: `docs_agents/review_reports/YYYY-MM-DD-<session-type>.md`
+Each completed session must produce: `.agents/review_reports/YYYY-MM-DD-<session-type>.md`
 
 The report must be written in Czech and include:
 
@@ -417,11 +424,11 @@ At the end of each session report, include a section:
 - Co by pristımu agentovi pomohlo
 ```
 
-Save to: `docs_agents/prompt_evolution/<session_id>_prompt_update.md`
+Save to: `.agents/prompts/prompt_evolution/<session_id>_prompt_update.md`
 
 Suggestions accumulate across sessions. A human reviewer applies accepted
-suggestions to `docs_agents/PROMPT.md` before starting a new audit cycle.
-Agents must not self-modify `PROMPT.md`.
+suggestions to `.agents/prompts/review_codebase.md` before starting a new audit cycle.
+Agents must not self-modify `review_codebase.md`.
 
 ---
 
@@ -434,7 +441,7 @@ Agents must not self-modify `PROMPT.md`.
 5. All session outputs must be written in Czech.
 6. All PRs target `main`. Branch naming: `agents/<agent>/<topic>`.
 7. Never push directly to `main`.
-8. Changes to `docs_agents/` require human review before merge.
+8. Changes to `.agents/` require human review before merge.
 9. **Never skip an `in_progress` session.** If `review_cache.json` contains a session
    with `"status": "in_progress"`, that session must be resumed and completed before
    starting any other session. A session is only `done` when its report has been written

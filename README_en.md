@@ -61,7 +61,7 @@ aiscr-api-home/
 ├── CITATION.cff           # Citation metadata
 ├── CODEOWNERS             # Code ownership
 ├── AGENTS.md              # Instructions for AI agents
-└── docs_agents/           # AI review infrastructure
+└── .agents/           # AI review infrastructure
 ```
 
 ---

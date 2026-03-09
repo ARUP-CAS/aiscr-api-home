@@ -25,7 +25,7 @@ Příklady:
 
 ## Aktuální prompt
 
-Vždy v: `docs_agents/PROMPT.md`
+Vždy v: `.agents/prompts/review_codebase.md`
 
 ## Historie verzí
 
