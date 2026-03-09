@@ -234,11 +234,11 @@ technical_docs:
 domain_analyses:
   cicd_analysis:
     enabled: true
-    path: .agents/cicd_analysis.json
+    path: .agents/analysis/cicd_analysis.json
 
   frontend_analysis:
     enabled: true
-    path: .agents/frontend_analysis.json
+    path: .agents/analysis/frontend_analysis.json
     description: SCSS/CSS theme, Lua filters, JS build scripts, Quarto config
 
   # Disabled — not applicable to this repo:
@@ -277,7 +277,7 @@ review:
     - fonts/
     - figs/
 
-  report_path: .agents/review_reports/
-  cache_path: .agents/review_cache.json
-  bugs_path: .agents/bugs.md
-  backlog_path: .agents/refactoring_backlog.md
+  report_path: .agents/reports/review_reports/
+  cache_path: .agents/config/review_cache.json
+  bugs_path: .agents/reports/bugs.md
+  backlog_path: .agents/reports/refactoring_backlog.md

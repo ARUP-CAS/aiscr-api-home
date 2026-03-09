@@ -64,9 +64,9 @@ For data access, both OAI-PMH and File API use HTTP Basic Auth directly.
 At the start of every agent session, execute in this exact order:
 
 1. Read `AGENTS.md` — contains repository-specific governance rules that take precedence.
-2. Read `.agents/review_config.yaml` — load configuration including live endpoint definitions.
-3. Read `.agents/review_cache.json` — load session state and previous findings.
-4. Check `.agents/bugs.md` and `.agents/refactoring_backlog.md`.
+2. Read `.agents/config/review_config.yaml` — load configuration including live endpoint definitions.
+3. Read `.agents/config/review_cache.json` — load session state and previous findings.
+4. Check `.agents/reports/bugs.md` and `.agents/reports/refactoring_backlog.md`.
 5. Run **Step 0 — Live API Verification** (see below).
 6. **Check for `in_progress` sessions first.**
    - If any session has `"status": "in_progress"`, resume it from where it stopped
@@ -87,7 +87,7 @@ At the start of every agent session, execute in this exact order:
 
 Run these checks **before loading any documentation files**.
 Record results in the session report under "Step 0 results".
-Log any failures in `.agents/bugs.md`.
+Log any failures in `.agents/reports/bugs.md`.
 
 ### OAI-PMH API
 
@@ -253,43 +253,43 @@ sessions:
   - id: S01
     name: general_review
     description: Full repository — structure, navigation, content, links
-    target: .agents/review_reports/YYYY-MM-DD-general-review.md
+    target: .agents/reports/review_reports/YYYY-MM-DD-general-review.md
     trigger: after each release
 
   - id: S02
     name: oai_pmh_accuracy
     description: OAI-PMH documentation vs live API and aiscr-digiarchiv-2 source
-    target: .agents/review_reports/YYYY-MM-DD-oai-pmh-accuracy.md
+    target: .agents/reports/review_reports/YYYY-MM-DD-oai-pmh-accuracy.md
     trigger: after API changes or schema updates
 
   - id: S03
     name: file_api_accuracy
     description: File API documentation vs live digiarchiv.aiscr.cz and source
-    target: .agents/review_reports/YYYY-MM-DD-file-api-accuracy.md
+    target: .agents/reports/review_reports/YYYY-MM-DD-file-api-accuracy.md
     trigger: after File API changes
 
   - id: S04
     name: auth_api_accuracy
     description: Auth API documentation vs live amcr.aiscr.cz and aiscr-webamcr source
-    target: .agents/review_reports/YYYY-MM-DD-auth-api-accuracy.md
+    target: .agents/reports/review_reports/YYYY-MM-DD-auth-api-accuracy.md
     trigger: after Auth API changes
 
   - id: S05
     name: linkcheck
     description: Broken internal and external links
-    target: .agents/review_reports/YYYY-MM-DD-linkcheck.md
+    target: .agents/reports/review_reports/YYYY-MM-DD-linkcheck.md
     trigger: monthly
 
   - id: S06
     name: changelog_review
     description: CHANGELOG accuracy and version coverage
-    target: .agents/review_reports/YYYY-MM-DD-changelog.md
+    target: .agents/reports/review_reports/YYYY-MM-DD-changelog.md
     trigger: before releases
 
   - id: S07
     name: cicd_review
     description: GitHub Actions workflows — build and deploy health
-    target: .agents/review_reports/YYYY-MM-DD-cicd.md
+    target: .agents/reports/review_reports/YYYY-MM-DD-cicd.md
     trigger: when workflows change
 ```
 
@@ -325,7 +325,7 @@ Create and maintain:
 
 ## REVIEW CACHE
 
-Create and maintain: `.agents/review_cache.json`
+Create and maintain: `.agents/config/review_cache.json`
 
 ```json
 {
@@ -363,7 +363,7 @@ Create and maintain: `.agents/review_cache.json`
 
 ## BUG TRACKING
 
-Create and maintain: `.agents/bugs.md`
+Create and maintain: `.agents/reports/bugs.md`
 
 Before adding a bug entry:
 
@@ -391,7 +391,7 @@ Each bug entry:
 
 ## REPORT OUTPUT
 
-Each completed session must produce: `.agents/review_reports/YYYY-MM-DD-<session-type>.md`
+Each completed session must produce: `.agents/reports/review_reports/YYYY-MM-DD-<session-type>.md`
 
 The report must be written in Czech and include:
 

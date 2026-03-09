@@ -121,8 +121,8 @@ Agents must follow these behavioural rules:
 2. Avoid repeating work already recorded in `.agents/`.
 3. Prefer small incremental improvements.
 4. Record discovered issues in:
-   - `.agents/bugs.md`
-   - `.agents/refactoring_backlog.md`
+   - `.agents/reports/bugs.md`
+   - `.agents/reports/refactoring_backlog.md`
 5. Suggest improvements to this file if agent workflows evolve.
 
 ### Recommended Skills
@@ -234,7 +234,7 @@ When reviewing or modifying API documentation, agents must:
 1. Verify endpoints against the live API.
 2. Verify parameter names and schemas against source code.
 3. Execute example `curl` commands from documentation.
-4. Record discrepancies in `.agents/bugs.md`.
+4. Record discrepancies in `.agents/reports/bugs.md`.
 5. Verify OAI-PMH conformance with the official specification:
 
 https://www.openarchives.org/OAI/openarchivesprotocol.html
