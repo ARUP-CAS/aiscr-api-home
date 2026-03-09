@@ -1,2 +1,9 @@
 /.quarto/
 _site/
+
+# vscode
+.vscode/
+
+# agents
+.codex/
+.claude/
