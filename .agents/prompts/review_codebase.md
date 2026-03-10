@@ -1,4 +1,4 @@
-# PROMPT.md — AI Review System for aiscr-api-home
+# review_codebase.md — AI Review System for aiscr-api-home
 
 This file defines the **system prompt and full execution procedure** for
 AI-assisted review of the `ARUP-CAS/aiscr-api-home` repository.
