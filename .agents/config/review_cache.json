@@ -1,0 +1,39 @@
+{
+  "repository": "ARUP-CAS/aiscr-api-home",
+  "framework_version": "1.0.0",
+  "framework_bootstrapped": "2026-03-07",
+  "note": "Tento soubor slouží jako cache stavu AI review. Aktualizuje se po každé review session.",
+
+  "last_review": {
+    "date": null,
+    "type": null,
+    "agent": null,
+    "branch": null,
+    "report": null
+  },
+
+  "review_history": [],
+
+  "content_checksums": {
+    "note": "Po prvním review doplnit checksums klíčových souborů pro detekci změn",
+    "_quarto.yml": null,
+    "index.qmd": null
+  },
+
+  "known_issues_count": {
+    "bugs": 0,
+    "refactoring_items": 0,
+    "last_counted": null
+  },
+
+  "sections_reviewed": {
+    "oai-pmh": false,
+    "file-api": false,
+    "auth-api": false,
+    "changelogs": false,
+    "about": false
+  },
+
+  "ci_cd_last_reviewed": null,
+  "frontend_last_reviewed": null
+}

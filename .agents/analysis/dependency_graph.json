@@ -1,0 +1,71 @@
+{
+  "repository": "ARUP-CAS/aiscr-api-home",
+  "analysis_type": "dependency_graph",
+  "last_updated": null,
+  "note": "Dokumentační projekt — závislosti jsou Quarto extensions, Lua filtry a build skripty.",
+
+  "quarto": {
+    "version_required": ">=1.4",
+    "output_format": "html",
+    "theme_base": "bootstrap",
+    "custom_scss": "theme.scss",
+    "additional_css": ["museo.css"],
+    "freeze_enabled": true,
+    "extensions": [
+      {
+        "name": "fontawesome",
+        "author": "quarto-ext",
+        "source": "github:quarto-ext/fontawesome",
+        "path": "_extensions/quarto-ext/fontawesome",
+        "purpose": "Font Awesome ikony (shortcodes) v dokumentaci"
+      }
+    ]
+  },
+
+  "lua_filters": {
+    "note": "Repozitář obsahuje Lua filtry (14.2 % kódu) — přesný seznam doplnit při první review session po prozkoumání _extensions/ a kořenového adresáře",
+    "location_expected": "_extensions/ nebo kořenový adresář",
+    "purpose": "Rozšíření Quarto renderování — vlastní transformace dokumentů"
+  },
+
+  "javascript": {
+    "note": "JS tvoří 50.3 % kódu — přesný účel doplnit při review; pravděpodobně build skripty nebo interaktivní prvky dokumentace",
+    "role_expected": "build_scripts_or_interactive_components"
+  },
+
+  "python": {
+    "note": "Python tvoří 7.2 % kódu — pomocné build skripty; ne aplikační backend",
+    "role": "build_scripts_only",
+    "version_required": null
+  },
+
+  "css_scss_dependencies": {
+    "theme_scss": {
+      "file": "theme.scss",
+      "base": "Bootstrap 5 (prostřednictvím Quarto)",
+      "purpose": "Vlastní přepisování Bootstrap proměnných pro vizuální identitu AIS CR"
+    },
+    "museo_css": {
+      "file": "museo.css",
+      "purpose": "Deklarace @font-face pro font Museo",
+      "font_files_path": "fonts/"
+    }
+  },
+
+  "ci_cd": {
+    "provider": "GitHub Actions",
+    "workflows": ".github/workflows/",
+    "deployment": {
+      "type": "GitHub Pages",
+      "custom_domain": "api.aiscr.cz",
+      "cname_file": "CNAME"
+    }
+  },
+
+  "external_services": {
+    "software_heritage": {
+      "purpose": "Archivace zdrojového kódu",
+      "badge": "https://archive.softwareheritage.org/badge/origin/https://github.com/ARUP-CAS/aiscr-api-home/"
+    }
+  }
+}
