@@ -26,4 +26,5 @@ changelogs/                    @petrpajdla @motyc
 
 # AI review infrastruktura — VŽDY vyžaduje lidský review před mergem
 /.agents/                      @motyc
-AGENTS.md                      @petrpajdla @motyc
+AGENTS.md                      @motyc
+CLAUDE.md                      @motyc
