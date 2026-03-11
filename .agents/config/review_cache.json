@@ -17,8 +17,7 @@
   "content_checksums": {
     "note": "Po prvním review doplnit checksums klíčových souborů pro detekci změn",
     "_quarto.yml": null,
-    "index.qmd": null,
-    "soucasti.yml": null
+    "index.qmd": null
   },
 
   "known_issues_count": {

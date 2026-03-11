@@ -131,30 +131,32 @@ The following specialised agent skills may be useful when working in this reposi
 
 These skills are optional helpers and not mandatory tools.
 
-#### doc
+#### Documentation (Quarto)
 
-Reviewing and editing documentation artefacts, including:
-
-- Quarto `.qmd` files
-- navigation structure
-- API descriptions
-- examples and code snippets
+When editing Quarto content (`.qmd` files, `_quarto.yml`, API descriptions, or code examples): follow CONTRIBUTING.md, verify against live APIs and source code (see [Verification Sources](#verification-sources)), and use the procedure in [.agents/prompts/review_codebase.md](.agents/prompts/review_codebase.md) for full review sessions. No external skill required — this is the primary documentation workflow for the repo.
 
 #### gh-fix-ci
 
-Diagnosing and fixing CI failures in:
+Use when a user asks to **debug or fix failing GitHub PR checks** (GitHub Actions). The skill uses `gh` to inspect checks and logs, summarize failures, and propose a fix after approval. Relevant for:
 
 - GitHub Actions workflows
-- Quarto build pipelines
-- documentation deployment processes
+- Quarto build and deploy pipelines
+- Documentation deployment failures
+
+Requires `gh` CLI and authentication with repo/workflow scopes.
 
 #### gh-address-comments
 
-Incorporating Pull Request review comments and ensuring proposed changes remain consistent with repository conventions.
+Use when addressing **review or issue comments on the open PR for the current branch**. The skill uses `gh` to fetch comments and review threads, then apply fixes for comments the user selects. Ensures changes stay consistent with repository conventions. Requires `gh` CLI and authentication.
+
+### Automation and shared rules
+
+Shared automation recommendations (MCP servers, skills, hooks, subagents) are versioned in this repository so all tools (Cursor, Claude Code, Copilot, etc.) and contributors use one source of truth.
+
+- **Canonical locations:** `AGENTS.md` and `.agents/` — **not** `.cursor/`, `.claude/`, or `.codex/` (those directories are gitignored and not shared).
+- **Full list:** [`.agents/prompts/automation_recommendations.md`](.agents/prompts/automation_recommendations.md) — recommended MCP servers, skills, hooks, and subagents; implement in your local editor config as needed.
 
 ---
-
-## Critical Requirement: Verify Documentation Against Real Systems
 
 This repository documents **live APIs used by external developers**.
 
@@ -344,6 +346,9 @@ It is organized into subfolders:
 `review_codebase.md`\
 Instructions for running long-term AI review sessions.\
 Contains the initialization sequence, session registry and execution procedure.
+
+`automation_recommendations.md`\
+Recommended MCP servers, skills, hooks, and subagents; shared rules live in AGENTS.md and .agents/ (not .cursor/).
 
 `prompt_evolution/`\
 Suggestions for improving the review prompt, accumulated across sessions.

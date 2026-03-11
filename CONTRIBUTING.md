@@ -70,9 +70,9 @@ ci:      Změny GitHub Actions workflows
 2. **Proveďte změny** v `.qmd` souborech nebo konfiguračních souborech
 3. **Lokálně sestavte** dokumentaci: `quarto render`
 4. **Zkontrolujte výstup** v `_site/` — ověřte, že se stránky správně generují
-5. **Ověřte správnost dokumentovaných endpointů** vůči živému API na https://api.aiscr.cz/ nebo vůči zdrojovému kódu backendů
+5. **Ověřte správnost dokumentovaných endpointů** vůči živým API nebo zdrojovému kódu backendů (OAI-PMH: api.aiscr.cz/oai; File API: digiarchiv.aiscr.cz; Auth API: amcr.aiscr.cz — api.aiscr.cz je jen dokumentace). Viz AGENTS.md — Verification Sources.
 6. **Otevřete PR do `main`** s popisem změn
-7. **Počkejte na review** od vlastníků (viz `CODEOWNERS`)
+7. **Počkejte na review** od vlastníků (viz soubor `CODEOWNERS` v kořeni repozitáře)
 8. Po schválení bude PR mergován
 
 ### Co kontrolovat před odesláním PR
@@ -137,9 +137,22 @@ Repozitář obsahuje Lua filtry. Při úpravách Lua kódu otestujte render výs
 
 Při úpravě popisu endpointů nebo parametrů vždy ověřte vůči:
 
-- Živému API: https://api.aiscr.cz/
-- Zdrojovému kódu Auth API: https://github.com/ARUP-CAS/aiscr-webamcr
-- Zdrojovému kódu File API + OAI-PMH: https://github.com/ARUP-CAS/aiscr-digiarchiv-2
+- **Živým API** (api.aiscr.cz je jen dokumentační web; skutečná API):
+  - OAI-PMH: https://api.aiscr.cz/oai
+  - File API: https://digiarchiv.aiscr.cz/
+  - Auth API: https://amcr.aiscr.cz/
+- **Zdrojovému kódu** Auth API: https://github.com/ARUP-CAS/aiscr-webamcr
+- **Zdrojovému kódu** File API + OAI-PMH: https://github.com/ARUP-CAS/aiscr-digiarchiv-2
+
+Podrobně viz **AGENTS.md** — Verification Sources.
+
+---
+
+## Dokumentace a vlastnictví pravidel
+
+- **AGENTS.md** — vlastní pravidla pro AI agenty, rozsah změn, zdroje pro ověřování API, struktura `.agents/`.
+- **CONTRIBUTING.md** — vlastní pracovní postup přispěvatelů (větve, PR, commity, Quarto).
+- Ostatní soubory (CLAUDE.md, .cursor/rules, …) pouze odkazují na tyto zdroje; pravidla se nekopírují.
 
 ---
 
