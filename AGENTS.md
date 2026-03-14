@@ -154,7 +154,7 @@ Use when addressing **review or issue comments on the open PR for the current br
 Shared automation recommendations (MCP servers, skills, hooks, subagents) are versioned in this repository so all tools (Cursor, Claude Code, Copilot, etc.) and contributors use one source of truth.
 
 - **Canonical locations:** `AGENTS.md` and `.agents/` — **not** `.cursor/`, `.claude/`, or `.codex/` (those directories are gitignored and not shared).
-- **Full list:** [`.agents/prompts/automation_recommendations.md`](.agents/prompts/automation_recommendations.md) — recommended MCP servers, skills, hooks, and subagents; implement in your local editor config as needed.
+- **Full list:** [`.agents/reports/automation_recommendations.md`](.agents/reports/automation_recommendations.md) — recommended MCP servers, skills, hooks, and subagents; implement in your local editor config as needed.
 
 ---
 
@@ -347,7 +347,7 @@ It is organized into subfolders:
 Instructions for running long-term AI review sessions.\
 Contains the initialization sequence, session registry and execution procedure.
 
-`automation_recommendations.md`\
+`automation_recommendations.md` (under `.agents/reports/`)\
 Recommended MCP servers, skills, hooks, and subagents; shared rules live in AGENTS.md and .agents/ (not .cursor/).
 
 `prompt_evolution/`\

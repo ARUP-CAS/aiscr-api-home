@@ -33,7 +33,7 @@
 | `.cursor/rules/arena-model-sync.mdc` | 27 | English | Cursor AI (local; gitignored) |
 | `.agents/README.md` | 22 | Czech | Contributors browsing .agents |
 | `.agents/prompts/review_codebase.md` | 453 | English | AI agents (review sessions) |
-| `.agents/prompts/automation_recommendations.md` | 56 | English | All AI tools / contributors |
+| `.agents/reports/automation_recommendations.md` | 56 | English | All AI tools / contributors |
 | `.agents/prompts/audit_doc_hygiene.md` | 239 | English | AI agents (this audit) |
 | `.agents/prompts/prompt_evolution/README.md` | 32 | Czech | Maintainers |
 | `.agents/config/review_config.yaml` | 284 | YAML | AI agents, config tooling |
@@ -56,7 +56,7 @@
 - **.cursor/rules/*.mdc:** Cursor only (local); gotchas and model sync. Points to AGENTS.md / CONTRIBUTING.md; no full duplication of rules.
 - **.agents/README.md:** Explains .agents layout; points to AGENTS.md. Clear.
 - **.agents/prompts/review_codebase.md:** Review-session procedure and API verification. Unique.
-- **.agents/prompts/automation_recommendations.md:** MCP, skills, hooks; shared list. Points to AGENTS.md for “Recommended skills”.
+- **.agents/reports/automation_recommendations.md:** MCP, skills, hooks; shared list. Points to AGENTS.md for “Recommended skills”.
 - **.agents/prompts/audit_doc_hygiene.md:** Portable audit prompt. Unique.
 - **.agents/config/*:** Config and cache; no audience overlap with prose docs.
 - **.agents/reports/*.md:** Bugs, backlog, report conventions. Clear responsibility.

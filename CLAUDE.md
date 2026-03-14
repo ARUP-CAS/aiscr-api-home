@@ -37,4 +37,4 @@ For key files, gotchas, verification URLs, and where to record issues, see [AGEN
 
 ## Automation
 
-Shared automation (MCP, skills, hooks, subagents) is documented in [.agents/prompts/automation_recommendations.md](.agents/prompts/automation_recommendations.md). Canonical locations for shared rules: **AGENTS.md** and **.agents/** — not `.cursor/`, `.claude/`, or `.codex/`.
+Shared automation (MCP, skills, hooks, subagents) is documented in [.agents/reports/automation_recommendations.md](.agents/reports/automation_recommendations.md). Canonical locations for shared rules: **AGENTS.md** and **.agents/** — not `.cursor/`, `.claude/`, or `.codex/`.

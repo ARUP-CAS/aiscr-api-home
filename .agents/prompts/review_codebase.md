@@ -243,55 +243,13 @@ https://www.openarchives.org/OAI/openarchivesprotocol.html — OAI-PMH standard
 
 ---
 
-## SESSION TYPE REGISTRY
+## SESSION REGISTRY
+
+**Single source of truth:** `.agents/config/review_config.yaml` → `sessions:`.
+Do not duplicate the session list here. This prompt contains per-session execution instructions and Step 0 procedures below.
 
 Unlike application repositories, this documentation repo uses **session-based** rather
 than sequential tasks. Sessions are tracked in `review_cache.json`.
-
-```yaml
-sessions:
-  - id: S01
-    name: general_review
-    description: Full repository — structure, navigation, content, links
-    target: .agents/reports/review_reports/YYYY-MM-DD-general-review.md
-    trigger: after each release
-
-  - id: S02
-    name: oai_pmh_accuracy
-    description: OAI-PMH documentation vs live API and aiscr-digiarchiv-2 source
-    target: .agents/reports/review_reports/YYYY-MM-DD-oai-pmh-accuracy.md
-    trigger: after API changes or schema updates
-
-  - id: S03
-    name: file_api_accuracy
-    description: File API documentation vs live digiarchiv.aiscr.cz and source
-    target: .agents/reports/review_reports/YYYY-MM-DD-file-api-accuracy.md
-    trigger: after File API changes
-
-  - id: S04
-    name: auth_api_accuracy
-    description: Auth API documentation vs live amcr.aiscr.cz and aiscr-webamcr source
-    target: .agents/reports/review_reports/YYYY-MM-DD-auth-api-accuracy.md
-    trigger: after Auth API changes
-
-  - id: S05
-    name: linkcheck
-    description: Broken internal and external links
-    target: .agents/reports/review_reports/YYYY-MM-DD-linkcheck.md
-    trigger: monthly
-
-  - id: S06
-    name: changelog_review
-    description: CHANGELOG accuracy and version coverage
-    target: .agents/reports/review_reports/YYYY-MM-DD-changelog.md
-    trigger: before releases
-
-  - id: S07
-    name: cicd_review
-    description: GitHub Actions workflows — build and deploy health
-    target: .agents/reports/review_reports/YYYY-MM-DD-cicd.md
-    trigger: when workflows change
-```
 
 ---
 

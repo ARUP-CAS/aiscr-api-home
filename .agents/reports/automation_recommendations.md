@@ -22,11 +22,11 @@ Canonical list and when to use: [AGENTS.md](../../AGENTS.md) — "Recommended sk
 
 | Skill / workflow | When to use |
 |------------------|--------------|
-| **Documentation (Quarto)** | Editing `.qmd`, `_quarto.yml`, API text, or examples: follow CONTRIBUTING.md, verify against live APIs, use [review_codebase.md](review_codebase.md) for full reviews. No external skill. |
+| **Documentation (Quarto)** | Editing `.qmd`, `_quarto.yml`, API text, or examples: follow CONTRIBUTING.md, verify against live APIs, use [review_codebase.md](../prompts/review_codebase.md) for full reviews. No external skill. |
 | **gh-fix-ci** | User asks to fix failing GitHub PR checks (GitHub Actions); uses `gh` to inspect logs and propose fixes. |
 | **gh-address-comments** | Address review comments on the open PR for the current branch; uses `gh` to fetch and apply selected comments. |
 
-**Custom procedure (no separate skill path):** "API doc verify" — run verification steps from [review_codebase.md](review_codebase.md) and AGENTS.md when changing endpoint docs.
+**Custom procedure (no separate skill path):** "API doc verify" — run verification steps from [review_codebase.md](../prompts/review_codebase.md) and AGENTS.md when changing endpoint docs.
 
 ---
 
@@ -43,7 +43,7 @@ Canonical list and when to use: [AGENTS.md](../../AGENTS.md) — "Recommended sk
 
 | Subagent | Why | Shared rule |
 |----------|-----|-------------|
-| **doc-reviewer** | Many `.qmd` files and strict "verify against live API"; dedicated pass for docs and examples. | Use procedure in [review_codebase.md](review_codebase.md) or a doc-reviewer subagent if your tool supports it. |
+| **doc-reviewer** | Many `.qmd` files and strict "verify against live API"; dedicated pass for docs and examples. | Use procedure in [review_codebase.md](../prompts/review_codebase.md) or a doc-reviewer subagent if your tool supports it. |
 | **security-reviewer** (optional) | Auth API and token handling; check docs don't suggest unsafe usage. | One-line mention; implement locally if desired. |
 
 ---
@@ -51,6 +51,6 @@ Canonical list and when to use: [AGENTS.md](../../AGENTS.md) — "Recommended sk
 ## References
 
 - [AGENTS.md](../../AGENTS.md) — governance, scope, verification, skills
-- [review_codebase.md](review_codebase.md) — review session procedure and API verification
-- [audit_doc_hygiene.md](audit_doc_hygiene.md) — documentation hygiene audit prompt (run via “Read .agents/prompts/audit_doc_hygiene.md and run the audit”)
+- [review_codebase.md](../prompts/review_codebase.md) — review session procedure and API verification
+- [audit_doc_hygiene.md](../prompts/audit_doc_hygiene.md) — documentation hygiene audit prompt (run via "Read .agents/prompts/audit_doc_hygiene.md and run the audit")
 - [CONTRIBUTING.md](../../CONTRIBUTING.md) — branches, Quarto, PR process
