@@ -248,6 +248,18 @@ for all three APIs, see [`.agents/prompts/review_codebase.md`](.agents/prompts/r
 
 ---
 
+## AI-generated API documentation
+
+When generating or updating API documentation (including examples, endpoint descriptions, or parameter tables), agents must follow these rules:
+
+1. **Read canonical sources first.** User-facing endpoint definitions live in the Quarto API sections (`oai-pmh/`, `file-api/`, `auth-api/`). Live URLs and verification curl commands are canonical in [`.agents/config/review_config.yaml`](.agents/config/review_config.yaml) under `live_endpoints`. Use these as the single source of truth; do not rely on ad-hoc or out-of-date copies elsewhere.
+2. **Do not invent endpoints or parameters.** Only document endpoints, parameters, and response shapes that appear in the canonical Quarto docs or in the live API (verified via `review_config.yaml` curl commands or source code). If in doubt, verify against the live system or the backend repos (see [Verification Sources](#verification-sources)).
+3. **Match authentication and base URLs in examples.** Generated examples (e.g. curl, Python) must use the same base URLs and auth method as in the canonical source: OAI-PMH at `https://api.aiscr.cz/` (or versioned `/2.2/oai`); File API at `https://digiarchiv.aiscr.cz/`; Auth API at `https://amcr.aiscr.cz/`. Never use `api.aiscr.cz` as the base URL for File API or Auth API requests.
+
+An inventory and mapping of canonical sources is maintained in [`.agents/reports/api-docs-specs-inventory.md`](.agents/reports/api-docs-specs-inventory.md).
+
+---
+
 ## Scope
 
 ### In Scope
