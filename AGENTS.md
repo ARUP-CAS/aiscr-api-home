@@ -348,57 +348,6 @@ Changes to `.agents/` require **human review before merge**.
 
 ---
 
-## .agents Structure
-
-The `.agents/` directory stores persistent AI review artefacts.
-It is organized into subfolders:
-
-### prompts/
-
-`review_codebase.md`\
-Instructions for running long-term AI review sessions.\
-Contains the initialization sequence, session registry and execution procedure.
-
-`automation_recommendations.md` (under `.agents/reports/`)\
-Recommended MCP servers, skills, hooks, and subagents; shared rules live in AGENTS.md and .agents/ (not .cursor/).
-
-`prompt_evolution/`\
-Suggestions for improving the review prompt, accumulated across sessions.
-
-### config/
-
-`review_config.yaml`\
-Enabled review modules and live endpoint configuration.
-
-`review_cache.json`\
-Persistent review session state.
-
-### analysis/
-
-`repository_map.json`\
-High-level repository structure.
-
-`dependency_graph.json`\
-Dependencies and technologies.
-
-`*_analysis.json`\
-Task-specific analysis outputs (CI/CD, frontend, etc.).
-
-### reports/
-
-`review_reports/`\
-Generated technical audit reports.
-
-`bugs.md`\
-Structured list of discovered issues.
-
-`refactoring_backlog.md`\
-Long-term improvement backlog.
-
-Additional analysis artefacts may be generated during review sessions.
-
----
-
 ## Repository Context
 
 This repository is part of the AIS CR ecosystem.
