@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f91d38c05d7c98dacea18a6701bbb777.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-3b4d450d609455d4f1bf48d392aee074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -175,6 +178,10 @@ cookieconsent.run({
   <li class="nav-item">
     <a class="nav-link" href="../auth-api/index.html"> 
 <span class="menu-text">Authentication Api</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pas-api/index.html"> 
+<span class="menu-text">Pas Api</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -403,10 +410,10 @@ cookieconsent.run({
 <table class="caption-top table table-sm table-striped small">
 <caption>Basic rules for file access</caption>
 <colgroup>
-<col style="width: 14%">
-<col style="width: 18%">
-<col style="width: 26%">
-<col style="width: 39%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 24%">
+<col style="width: 45%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -433,13 +440,21 @@ cookieconsent.run({
 <td style="text-align: left;"><code>//samostatny_nalez/soubor</code></td>
 <td style="text-align: left;"><code>stav</code> = 4</td>
 <td style="text-align: left;"><code>stav</code> = 4<br>OR my record</td>
-<td style="text-align: left;"><code>stav</code> = 4<br>OR my record<br>OR my organisation record</td>
+<td style="text-align: left;"><code>stav</code> = 4<br>OR my record<br>OR my organisation’s project<br>OR handed over to my organisation</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p><em>stav</em> – processing state of the record, see <a href="https://amcr-help.aiscr.cz/o-systemu/procesy.html" class="external">Documentation</a> (<em>in Czech language only</em>)<br>
+<em>pristupnost</em> – accessibility of the record, ordered A &lt; B &lt; C &lt; D<br>
+<em>my record</em> – record created by the user<br>
+<em>my organisation record</em> – record created by someone from the user’s organisation; for a project, a project of the user’s organisation<br>
+<em>my organisation’s project</em> – individual find recorded under a project of the user’s organisation<br>
+<em>handed over to my organisation</em> – individual find handed over to the user’s organisation (<code>samostatny_nalez/predano_organizace</code>), in any processing state</p>
+</blockquote>
 </section>
 <section id="authentication" class="level3">
 <h3 class="anchored" data-anchor-id="authentication">Authentication</h3>

@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-27">
+<meta name="dcterms.date" content="2026-09-22">
+<meta name="description" content="Documentation of the AMCR-PAS API, through which museum systems and field applications create finds in AMCR-PAS, update their registration numbers and add photographs.">
 
-<title>Version 2.2 of the schema – AMCR API</title>
+<title>AMCR-PAS API reference – AMCR API</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -169,7 +170,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2025-06-27.html">Version 2.2 of the schema</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2026-09-22.html">AMCR-PAS API reference</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -206,7 +207,7 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../changelogs/2025-06-27.html" class="sidebar-item-text sidebar-link active">
+  <a href="../changelogs/2025-06-27.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Version 2.2 of the schema</span></a>
   </div>
 </li>
@@ -218,7 +219,7 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../changelogs/2026-09-22.html" class="sidebar-item-text sidebar-link">
+  <a href="../changelogs/2026-09-22.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">AMCR-PAS API reference</span></a>
   </div>
 </li>
@@ -241,14 +242,20 @@ cookieconsent.run({
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2025-06-27.html">Version 2.2 of the schema</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2026-09-22.html">AMCR-PAS API reference</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Version 2.2 of the schema</h1>
+<h1 class="title">AMCR-PAS API reference</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">OAI-PMH</div>
+    <div class="quarto-category">PAS</div>
+    <div class="quarto-category">Documentation</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    Documentation of the AMCR-PAS API, through which museum systems and field applications create finds in AMCR-PAS, update their registration numbers and add photographs.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -257,7 +264,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 27, 2025</p>
+      <p class="date">September 22, 2026</p>
     </div>
   </div>
   
@@ -269,17 +276,9 @@ cookieconsent.run({
 </header>
 
 
-<p>New schema for AMCR OAI-PMH API is released (<a href="https://api.aiscr.cz/schema/amcr/2.2/">v2.2</a>, 2025-06-18). This version contains only minor updates in the structure of the response.</p>
-<p><strong>Changes</strong></p>
-<ul>
-<li>addition of element <code>email</code> in the set <code>ruian_kraj</code></li>
-<li>change in some of the elements from <code>xs:string</code> to <code>xs:anyURI</code></li>
-</ul>
-<p><strong>URLs</strong></p>
-<ul>
-<li>Schema: <a href="https://api.aiscr.cz/schema/amcr/2.2/">https://api.aiscr.cz/schema/amcr/2.2/</a>,</li>
-<li>Endpoint: <code>https://api.aiscr.cz/2.2/oai</code></li>
-</ul>
+<p>The <a href="../pas-api/index.html">AMCR-PAS API reference</a> documents the write interface available to external integrators, including museum systems and offline field applications. MUSEION is the reference client.</p>
+<p>The section covers vocabulary mapping through the existing OAI-PMH sets, authentication, the XML import contract, registration-number updates, photograph uploads, configurable schema acceptance, rate limits and record locks. cURL and Python examples show authenticated import and update requests.</p>
+<p>This entry records a documentation addition; it does not announce a new API deployment or a MUSEION release.</p>
 
 
 

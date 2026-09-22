@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-09-22">
+
+<title>AMCR-PAS API – AMCR API</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../figs/cover.png" rel="icon" type="image/png">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3b4d450d609455d4f1bf48d392aee074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-E32YT41EWT"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E32YT41EWT', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../figs/cover_g.png" alt="" class="navbar-logo light-content">
+    <img src="../figs/cover_g.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">AMCR API</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../oai-pmh/index.html"> 
+<span class="menu-text">Oai-pmh Api</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../file-api/index.html"> 
+<span class="menu-text">File Api</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../auth-api/index.html"> 
+<span class="menu-text">Authentication Api</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../pas-api/index.html" aria-current="page"> 
+<span class="menu-text">Pas Api</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../changelogs/index.html"> 
+<span class="menu-text">Changelogs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about/index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pas-api/index.html">AMCR-PAS API</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<p><a href="../pas-api/index.html"><img src="../figs/logo-amcr-hor.png" class="img-fluid"></a></p>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pas-api/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">AMCR-PAS API</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a>
+  <ul class="collapse">
+  <li><a href="#access" id="toc-access" class="nav-link" data-scroll-target="#access">Access and testing</a></li>
+  </ul></li>
+  <li><a href="#vocabulary-mapping" id="toc-vocabulary-mapping" class="nav-link" data-scroll-target="#vocabulary-mapping">Prerequisite: vocabulary mapping</a></li>
+  <li><a href="#authentication" id="toc-authentication" class="nav-link" data-scroll-target="#authentication">Authentication and permissions</a></li>
+  <li><a href="#endpoints" id="toc-endpoints" class="nav-link" data-scroll-target="#endpoints">Endpoints</a>
+  <ul class="collapse">
+  <li><a href="#file-integrity" id="toc-file-integrity" class="nav-link" data-scroll-target="#file-integrity">File integrity</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import a find</a></li>
+  <li><a href="#registration-number" id="toc-registration-number" class="nav-link" data-scroll-target="#registration-number">Update a registration number</a></li>
+  <li><a href="#photograph" id="toc-photograph" class="nav-link" data-scroll-target="#photograph">Upload a photograph</a></li>
+  </ul></li>
+  <li><a href="#rate-limits" id="toc-rate-limits" class="nav-link" data-scroll-target="#rate-limits">Rate limits and retries</a>
+  <ul class="collapse">
+  <li><a href="#idempotency" id="toc-idempotency" class="nav-link" data-scroll-target="#idempotency">Idempotency</a></li>
+  </ul></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Worked examples</a>
+  <ul class="collapse">
+  <li><a href="#curl-bash" id="toc-curl-bash" class="nav-link" data-scroll-target="#curl-bash">cURL (Bash)</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  </ul></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See also</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AMCR-PAS API</h1>
+<p class="subtitle lead">Import finds and update their museum registration numbers and photographs</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The reference is valid for AMCR <a href="https://github.com/ARUP-CAS/aiscr-webamcr/releases/tag/v1.4.0" class="external">v1.4.0</a> and newer.</p>
+</div>
+</div>
+</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The <strong>AMCR-PAS API</strong> lets an external application create individual find records (<em>samostatné nálezy</em>) in AMCR-PAS, update their museum registration numbers (<em>evidenční čísla</em>), and attach photographs.</p>
+<p>The API was built together with the integration of AMCR with <strong>MUSEION</strong>, the collection-management system developed by Axiell and used widely by the Czech museums. MUSEION is its first client and serves as the reference implementation: museum staff export finds from their collection records to AMCR-PAS instead of entering them a second time.</p>
+<p>The interface is not specific to MUSEION. It is open to any integrator with the required AMCR account and record permissions — other collection-management systems, and developers of offline field applications who want to submit finds recorded in the field.</p>
+<p>The base URL is <code>https://amcr.aiscr.cz</code>. This website, <code>api.aiscr.cz</code>, hosts the documentation and schemas, not the PAS write endpoints.</p>
+<p>Each import request carries one find; a client exporting several finds sends one request per find. Mapping your vocabularies to AMCR is a <a href="#vocabulary-mapping">prerequisite</a>. Reading records back — for example to update a museum record from AMCR — uses the <a href="../oai-pmh/index.html">OAI-PMH API</a>.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Funding
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The API and the AMCR–MUSEION integration were developed in 2026 within the project PRAK-25-45 <em>Integrovaná evidence archeologických fondů v České republice: pilotní řešení pro otevřené sdílení dat</em>, funded by the <a href="https://transfer.cas.cz/portal/cs/program-prak/" class="external">Programme for the Development of Applications and Commercialisation (PRAK)</a> of the Czech Academy of Sciences (in Czech).</p>
+</div>
+</div>
+</section>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<ol type="1">
+<li><strong>Get an account</strong> with the role and project access your integration needs (see <a href="#access">Access and testing</a>).</li>
+<li><strong>Map your vocabularies</strong> to AMCR entries (<a href="#vocabulary-mapping">vocabulary mapping</a>).</li>
+<li><strong>Obtain a token</strong> from the <a href="../auth-api/index.html">Authentication API</a>.</li>
+<li><strong>Import a first find at state 1</strong> using the <a href="#minimal-document">minimal document</a> on the training instance. State 1 needs the fewest fields and suits records that are completed later, for example after fieldwork.</li>
+<li><strong>Store the returned <code>X-Record-ID</code></strong> and use it for registration-number updates and photograph uploads.</li>
+<li><strong>Move to the full contract</strong> — <a href="#xml-elements">states 2 and 3</a>, <a href="#photograph">photographs</a> and <a href="#rate-limits">rate limits</a> — before connecting to production.</li>
+</ol>
+<section id="access" class="level3">
+<h3 class="anchored" data-anchor-id="access">Access and testing</h3>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Getting access
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Register an AMCR account at <a href="https://amcr.aiscr.cz/accounts/register/" class="external">amcr.aiscr.cz/accounts/register/</a>, then write to <a href="mailto:amcr@arup.cas.cz">amcr@arup.cas.cz</a> describing your integration. Registration and account activation are described in <a href="https://amcr-help.aiscr.cz/zakladni-info/ucty.html" class="external">User accounts</a> in the AMCR documentation (in Czech). We arrange the role and project access it needs, and an account on the training instance.</p>
+</div>
+</div>
+<p>Develop and test against the <strong>training instance</strong> <code>https://amcr-tr.aiscr.cz</code>, not production. The PAS paths are the same; only the base URL differs.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Current limits of the training instance
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The training instance has no Digital Archive and no OAI-PMH API yet. Records created there cannot be read back through OAI-PMH, and the persistent URL in <code>Location</code> does not resolve to them. Harvest vocabulary identifiers from the production OAI-PMH API; if the training instance rejects an identifier, contact us. Work to close these gaps is in progress.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="vocabulary-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="vocabulary-mapping">Prerequisite: vocabulary mapping</h2>
+<p>Map your application’s vocabulary to AMCR controlled-vocabulary entries (<em>hesláře</em>) before exporting finds. Harvest the appropriate <code>heslo:*</code> sets listed in the <a href="../oai-pmh/index.html#sets">OAI-PMH sets reference</a>, and retain each entry’s AMCR identifier and URI in your local mapping. A URI identifies the entry across systems; the XML import’s <code>id</code> attribute takes its identifier (for example, <code>HES-000761</code>), not the full URI.</p>
+<p>The import checks that each identifier belongs to the correct vocabulary: an object-type entry cannot stand in for a period entry. Include the element’s text and required attributes in the XML, but do not rely on the label to select an entry: the importer resolves vocabulary and organisation references by <code>id</code>. Use <code>xml:lang="cs"</code> on vocabulary elements. The importer does not use the label or language attribute to translate the supplied data.</p>
+</section>
+<section id="authentication" class="level2">
+<h2 class="anchored" data-anchor-id="authentication">Authentication and permissions</h2>
+<p>Obtain a token using the <a href="../auth-api/index.html#authentication-token-endpoint">Authentication API</a>, which owns the login procedure and token lifetime. Send it on every PAS request:</p>
+<pre class="http"><code>Authorization: Bearer &lt;token&gt;</code></pre>
+<p>Authentication does not grant access to every project or record. Imports must target a survey project (<em>průzkum</em>) available to the authenticated user under the standard AMCR-PAS rules. A Researcher (<em>Badatel</em>) can import only into state 1; other eligible roles can import into states 1–3. Editing a registration number requires Archaeologist (<em>Archeolog</em>) or a higher role <strong>and</strong> permission to edit the particular record. Photograph permissions are described below. What each role may do in AMCR is described in <a href="https://amcr-help.aiscr.cz/o-systemu/role.html" class="external">User roles and permissions</a> (in Czech).</p>
+<p>Operators can also restrict access by account or IP address, or temporarily close the API. An interface open to external integrators still applies those deployment and record-access rules.</p>
+</section>
+<section id="endpoints" class="level2">
+<h2 class="anchored" data-anchor-id="endpoints">Endpoints</h2>
+<p>Paths are relative to the base URL. The PAS paths have <strong>no trailing slash</strong>; the authentication paths retain theirs.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Path</th>
+<th>Input</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>POST</code></td>
+<td><code>/api/token-auth/</code></td>
+<td>JSON credentials</td>
+<td>Bearer token; see <a href="../auth-api/index.html">Authentication API</a></td>
+</tr>
+<tr class="even">
+<td><code>GET</code></td>
+<td><code>/api/uzivatel-info/</code></td>
+<td>Bearer token</td>
+<td>User XML metadata; see <a href="../auth-api/index.html#user-information-endpoint">Authentication API</a></td>
+</tr>
+<tr class="odd">
+<td><code>POST</code></td>
+<td><code>/api/pas/import-xml</code></td>
+<td>XML file in multipart field <code>file</code></td>
+<td>New find record</td>
+</tr>
+<tr class="even">
+<td><code>PATCH</code></td>
+<td><code>/api/pas/nalez/{ident_cely}/evidencni-cislo</code></td>
+<td>Query parameter <code>evidencni_cislo</code></td>
+<td>Updated registration number</td>
+</tr>
+<tr class="odd">
+<td><code>POST</code></td>
+<td><code>/api/pas/nalez/{ident_cely}/upload-foto</code></td>
+<td>Photograph in multipart field <code>file</code></td>
+<td>Photograph attached to the record</td>
+</tr>
+</tbody>
+</table>
+<section id="file-integrity" class="level3">
+<h3 class="anchored" data-anchor-id="file-integrity">File integrity</h3>
+<p>Both file-upload endpoints require <code>Content-Digest</code> in this form:</p>
+<pre class="http"><code>Content-Digest: sha-512=:&lt;base64-encoded SHA-512 digest&gt;:</code></pre>
+<p>The field syntax follows <a href="https://www.rfc-editor.org/rfc/rfc9530.html#section-2" class="external">RFC 9530</a>. For this API, compute the digest over the <strong>uploaded file’s bytes</strong>. The implementation verifies that file, rather than the complete multipart body. Do not hash a hexadecimal digest string or include multipart boundaries. Let your HTTP library generate the multipart <code>Content-Type</code> and its boundary.</p>
+</section>
+<section id="import" class="level3">
+<h3 class="anchored" data-anchor-id="import">Import a find</h3>
+<p><code>POST /api/pas/import-xml</code></p>
+<p>Send one XML file as multipart field <code>file</code>, with the authentication and digest headers. The document must contain exactly one <code>amcr:samostatny_nalez</code> as the only child of <code>amcr:amcr</code>. XML syntax, the declared XSD, field values, permissions and the requested target state are validated before a successful response.</p>
+<section id="schema-versions" class="level4">
+<h4 class="anchored" data-anchor-id="schema-versions">Schema and versions</h4>
+<p>Accepted versions are subject to the deployment’s <code>pas_api/allowed_schema_versions</code> setting. The declared AMCR namespace and <code>xsi:schemaLocation</code> must also match the schema supported by that deployment; adding a version to the allowlist alone does not add support for a different schema. Obtain the accepted schema from the operator when configuring an integration.</p>
+<p>The <a href="https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd" class="external">published 2.2 XSD</a> is the concrete schema used by the template below. Its number is an example, not a permanent API version guarantee. Keep the namespace and schema-location pair consistent when adapting a client to a supported schema.</p>
+</section>
+<section id="xml-elements" class="level4">
+<h4 class="anchored" data-anchor-id="xml-elements">XML elements</h4>
+<p>The table lists imported fields in schema order. Names are relative to <code>amcr:samostatny_nalez</code>, and all elements use the <code>amcr</code> prefix. Reference types have string content and an <code>id</code> attribute; vocabulary references also require <code>xml:lang</code>. XSD optionality does not override the state-dependent rules below.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>XSD type</th>
+<th>Import contract</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ident_cely</code></td>
+<td><code>xs:string</code></td>
+<td>Required; use <code>:tba</code>. AMCR assigns the new identifier.</td>
+</tr>
+<tr class="even">
+<td><code>evidencni_cislo</code></td>
+<td><code>xs:string</code></td>
+<td>Museum registration number; required for state 3.</td>
+</tr>
+<tr class="odd">
+<td><code>projekt</code></td>
+<td><code>amcr:refType</code></td>
+<td>Required; <code>id</code> identifies the survey project. Used for authorisation and identifier assignment.</td>
+</tr>
+<tr class="even">
+<td><code>hloubka</code></td>
+<td><code>xs:integer</code></td>
+<td>Depth in centimetres; required for states 2 and 3.</td>
+</tr>
+<tr class="odd">
+<td><code>okolnosti</code></td>
+<td><code>amcr:vocabType</code></td>
+<td>Find context; <code>id</code> must belong to the find-context vocabulary (<em>nálezové okolnosti</em>). Required for states 2 and 3.</td>
+</tr>
+<tr class="even">
+<td><code>obdobi</code></td>
+<td><code>amcr:vocabType</code></td>
+<td>Period vocabulary entry; required for states 2 and 3.</td>
+</tr>
+<tr class="odd">
+<td><code>presna_datace</code></td>
+<td><code>xs:string</code></td>
+<td>Optional free-text dating detail.</td>
+</tr>
+<tr class="even">
+<td><code>druh_nalezu</code></td>
+<td><code>amcr:vocabType</code></td>
+<td>Object-type vocabulary entry; required for states 2 and 3.</td>
+</tr>
+<tr class="odd">
+<td><code>specifikace</code></td>
+<td><code>amcr:vocabType</code></td>
+<td>Object-specification vocabulary entry; required for states 2 and 3.</td>
+</tr>
+<tr class="even">
+<td><code>pocet</code></td>
+<td><code>xs:string</code></td>
+<td>Optional number of items, expressed as text.</td>
+</tr>
+<tr class="odd">
+<td><code>poznamka</code></td>
+<td><code>xs:string</code></td>
+<td>Optional note.</td>
+</tr>
+<tr class="even">
+<td><code>nalezce</code></td>
+<td><code>amcr:refType</code></td>
+<td>Finder’s person identifier in <code>id</code>; required for states 2 and 3. With <code>id=":tba"</code>, supply <code>Surname, Given name</code>: an existing matching person is reused, otherwise a person is created with the find.</td>
+</tr>
+<tr class="odd">
+<td><code>datum_nalezu</code></td>
+<td><code>xs:date</code></td>
+<td>Date in <code>YYYY-MM-DD</code> form; required for states 2 and 3.</td>
+</tr>
+<tr class="even">
+<td><code>stav</code></td>
+<td><code>xs:integer</code></td>
+<td>Required target state: <code>1</code> registered, <code>2</code> submitted, <code>3</code> confirmed. Direct import into archived state <code>4</code> is unavailable.</td>
+</tr>
+<tr class="odd">
+<td><code>predano</code></td>
+<td><code>xs:boolean</code></td>
+<td>Handover flag; must be <code>true</code> for state 3.</td>
+</tr>
+<tr class="even">
+<td><code>predano_organizace</code></td>
+<td><code>amcr:vocabType</code></td>
+<td>Receiving organisation identifier in <code>id</code>; required for state 3.</td>
+</tr>
+<tr class="odd">
+<td><code>geom_system</code></td>
+<td><code>xs:string</code></td>
+<td>Required; the importer accepts <code>4326</code> (WGS 84) or <code>5514</code> (S-JTSK).</td>
+</tr>
+<tr class="even">
+<td><code>pristupnost</code></td>
+<td><code>amcr:vocabType</code></td>
+<td>Required accessibility vocabulary entry, resolved by <code>id</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>chranene_udaje/lokalizace</code></td>
+<td><code>xs:string</code></td>
+<td>Location description; required for states 2 and 3.</td>
+</tr>
+<tr class="even">
+<td><code>chranene_udaje/geom_wkt</code></td>
+<td><code>amcr:wktType</code></td>
+<td>Source point geometry for <code>geom_system=4326</code>; use <code>EPSG="4326"</code>. WGS 84 coordinates are longitude, latitude.</td>
+</tr>
+<tr class="odd">
+<td><code>chranene_udaje/geom_sjtsk_wkt</code></td>
+<td><code>amcr:wktType</code></td>
+<td>Source point geometry for <code>geom_system=5514</code>; use <code>EPSG="5514"</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>For state 1, geometry and the fields required only at later states can be omitted. States 2 and 3 require valid point geometry and the descriptive fields identified above. State 3 additionally requires a registration number, handover to an organisation and the organisation’s identifier. Photographs are uploaded separately through the <a href="#photograph">photograph endpoint</a>. The import accepts states 2 and 3 without them, but a find is accepted for archiving only once its photographs have been uploaded.</p>
+<p>The coordinate system selects one source geometry. AMCR calculates the other representation and determines the cadastral area from the WGS 84 point. If a supplied point falls outside every cadastral area, import returns <code>422</code>.</p>
+<p>The importer ignores supplied <code>okres</code>, <code>chranene_udaje/katastr</code>, <code>igsn</code>, <code>geom_updated_at</code>, <code>geom_sjtsk_updated_at</code>, <code>chranene_udaje/geom_gml</code>, <code>chranene_udaje/geom_sjtsk_gml</code>, <code>historie</code> and <code>soubor</code> values. It also ignores the non-selected WKT representation. These elements, if present, must still satisfy the XSD. District and cadastral area are derived; geometry timestamps and history are generated; files use the photograph endpoint.</p>
+</section>
+<section id="minimal-document" class="level4">
+<h4 class="anchored" data-anchor-id="minimal-document">Minimal document (state 1)</h4>
+<p>The smallest document the importer accepts: the elements the XSD requires, at state 1, without geometry. It is the recommended first test request.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">"1.0"</span> <span class="ot">encoding=</span><span class="st">"utf-8"</span><span class="fu">?&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">amcr:amcr</span> <span class="ot">xmlns:amcr=</span><span class="st">"https://api.aiscr.cz/schema/amcr/2.2/"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="ot">xmlns:xsi=</span><span class="st">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>           <span class="ot">xsi:schemaLocation=</span><span class="st">"https://api.aiscr.cz/schema/amcr/2.2/ https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd"</span>&gt;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">amcr:samostatny_nalez</span>&gt;</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:ident_cely</span>&gt;:tba&lt;/<span class="kw">amcr:ident_cely</span>&gt;</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:projekt</span> <span class="ot">id=</span><span class="st">"PROJECT_ID"</span>&gt;PROJECT_LABEL&lt;/<span class="kw">amcr:projekt</span>&gt;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:stav</span>&gt;1&lt;/<span class="kw">amcr:stav</span>&gt;</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:geom_system</span>&gt;4326&lt;/<span class="kw">amcr:geom_system</span>&gt;</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:pristupnost</span> <span class="ot">id=</span><span class="st">"ACCESSIBILITY_ID"</span> <span class="ot">xml:lang=</span><span class="st">"cs"</span>&gt;ACCESSIBILITY_LABEL&lt;/<span class="kw">amcr:pristupnost</span>&gt;</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">amcr:samostatny_nalez</span>&gt;</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">amcr:amcr</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="xml-template" class="level4">
+<h4 class="anchored" data-anchor-id="xml-template">Full template (state 3)</h4>
+<p>This is a <strong>template</strong>, not an importable demonstration record. Replace the uppercase identifiers and descriptive values with authorised project data and entries from the correct vocabularies. The finder name is fictional. Keep element order as shown; it follows the XSD sequence. This example selects WGS 84 and state 3, so it includes the full required field set.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">"1.0"</span> <span class="ot">encoding=</span><span class="st">"utf-8"</span><span class="fu">?&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">amcr:amcr</span> <span class="ot">xmlns:amcr=</span><span class="st">"https://api.aiscr.cz/schema/amcr/2.2/"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="ot">xmlns:xsi=</span><span class="st">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>           <span class="ot">xsi:schemaLocation=</span><span class="st">"https://api.aiscr.cz/schema/amcr/2.2/ https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd"</span>&gt;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">amcr:samostatny_nalez</span>&gt;</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:ident_cely</span>&gt;:tba&lt;/<span class="kw">amcr:ident_cely</span>&gt;</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:evidencni_cislo</span>&gt;EXAMPLE-2026-001&lt;/<span class="kw">amcr:evidencni_cislo</span>&gt;</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- igsn: ignored on import --&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:projekt</span> <span class="ot">id=</span><span class="st">"PROJECT_ID"</span>&gt;PROJECT_LABEL&lt;/<span class="kw">amcr:projekt</span>&gt;</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- okres: derived from geometry --&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:hloubka</span>&gt;20&lt;/<span class="kw">amcr:hloubka</span>&gt;</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:okolnosti</span> <span class="ot">id=</span><span class="st">"CIRCUMSTANCES_ID"</span> <span class="ot">xml:lang=</span><span class="st">"cs"</span>&gt;CIRCUMSTANCES_LABEL&lt;/<span class="kw">amcr:okolnosti</span>&gt;</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:obdobi</span> <span class="ot">id=</span><span class="st">"PERIOD_ID"</span> <span class="ot">xml:lang=</span><span class="st">"cs"</span>&gt;PERIOD_LABEL&lt;/<span class="kw">amcr:obdobi</span>&gt;</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:presna_datace</span>&gt;DATING_DETAIL&lt;/<span class="kw">amcr:presna_datace</span>&gt;</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:druh_nalezu</span> <span class="ot">id=</span><span class="st">"OBJECT_TYPE_ID"</span> <span class="ot">xml:lang=</span><span class="st">"cs"</span>&gt;OBJECT_TYPE_LABEL&lt;/<span class="kw">amcr:druh_nalezu</span>&gt;</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:specifikace</span> <span class="ot">id=</span><span class="st">"SPECIFICATION_ID"</span> <span class="ot">xml:lang=</span><span class="st">"cs"</span>&gt;SPECIFICATION_LABEL&lt;/<span class="kw">amcr:specifikace</span>&gt;</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:pocet</span>&gt;1&lt;/<span class="kw">amcr:pocet</span>&gt;</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:poznamka</span>&gt;NOTE&lt;/<span class="kw">amcr:poznamka</span>&gt;</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:nalezce</span> <span class="ot">id=</span><span class="st">":tba"</span>&gt;Example, Alex&lt;/<span class="kw">amcr:nalezce</span>&gt;</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:datum_nalezu</span>&gt;2026-06-01&lt;/<span class="kw">amcr:datum_nalezu</span>&gt;</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:stav</span>&gt;3&lt;/<span class="kw">amcr:stav</span>&gt;</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:predano</span>&gt;true&lt;/<span class="kw">amcr:predano</span>&gt;</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:predano_organizace</span> <span class="ot">id=</span><span class="st">"ORGANISATION_ID"</span> <span class="ot">xml:lang=</span><span class="st">"cs"</span>&gt;ORGANISATION_LABEL&lt;/<span class="kw">amcr:predano_organizace</span>&gt;</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:geom_system</span>&gt;4326&lt;/<span class="kw">amcr:geom_system</span>&gt;</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:pristupnost</span> <span class="ot">id=</span><span class="st">"ACCESSIBILITY_ID"</span> <span class="ot">xml:lang=</span><span class="st">"cs"</span>&gt;ACCESSIBILITY_LABEL&lt;/<span class="kw">amcr:pristupnost</span>&gt;</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">amcr:chranene_udaje</span>&gt;</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>      <span class="co">&lt;!-- katastr: derived from geometry --&gt;</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">amcr:lokalizace</span>&gt;LOCATION_DESCRIPTION&lt;/<span class="kw">amcr:lokalizace</span>&gt;</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="co">&lt;!-- geom_gml: ignored on import --&gt;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">amcr:geom_wkt</span> <span class="ot">EPSG=</span><span class="st">"4326"</span>&gt;POINT(15.5 49.5)&lt;/<span class="kw">amcr:geom_wkt</span>&gt;</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>      <span class="co">&lt;!-- For geom_system=5514, replace the preceding element with</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">           geom_sjtsk_wkt EPSG="5514" containing the S-JTSK point. --&gt;</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      <span class="co">&lt;!-- geom_sjtsk_gml: ignored on import --&gt;</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">amcr:chranene_udaje</span>&gt;</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- historie: generated by AMCR; soubor: uploaded separately --&gt;</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">amcr:samostatny_nalez</span>&gt;</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">amcr:amcr</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="import-responses" class="level4">
+<h4 class="anchored" data-anchor-id="import-responses">Import responses</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>201</code></td>
+<td>Find created. The body contains XML metadata; <code>X-Record-ID</code> contains the assigned identifier and <code>Location</code> contains the record’s persistent URL.</td>
+</tr>
+<tr class="even">
+<td><code>400</code></td>
+<td>Missing <code>file</code>, malformed XML, missing or invalid <code>Content-Digest</code>, digest mismatch, or empty AMCR root.</td>
+</tr>
+<tr class="odd">
+<td><code>401</code> / <code>403</code></td>
+<td>Missing or invalid authentication, access restriction, or insufficient project/state permissions.</td>
+</tr>
+<tr class="even">
+<td><code>404</code></td>
+<td>The project identified in the XML does not exist.</td>
+</tr>
+<tr class="odd">
+<td><code>422</code></td>
+<td>Unsupported schema declaration/version, XSD or field validation failure, invalid root content, multiple finds, or missing/invalid data for the requested state. Includes missing required geometry or a supplied point outside all cadastral areas.</td>
+</tr>
+<tr class="even">
+<td><code>429</code></td>
+<td>Request throttled; see <a href="#rate-limits">rate limits and retries</a>.</td>
+</tr>
+<tr class="odd">
+<td><code>500</code></td>
+<td>Internal processing or metadata-storage failure. Establish the outcome before resubmitting an import.</td>
+</tr>
+<tr class="even">
+<td><code>503</code></td>
+<td>API temporarily closed.</td>
+</tr>
+</tbody>
+</table>
+<p>Success returns <code>application/xml</code>. Errors normally contain JSON with <code>detail</code>, <code>schema_errors</code> or <code>validation_errors</code>. Validation entries include <code>line</code>, <code>column</code>, <code>message</code> and <code>error_type</code> (<code>1</code> missing record, <code>2</code> invalid data, <code>3</code> permission error); line/column may be null. Treat messages as diagnostics, not stable machine-readable codes.</p>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>After a <code>500</code> or a timeout
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An import can be saved even when the response reports a failure or never arrives. Check whether the record exists before resubmitting — a blind retry creates a duplicate. See <a href="#idempotency">idempotency</a>.</p>
+</div>
+</div>
+</section>
+<section id="example-responses" class="level4">
+<h4 class="anchored" data-anchor-id="example-responses">Example responses</h4>
+<p>A successful import, headers shown and body shortened; the identifier is illustrative:</p>
+<pre class="http"><code>HTTP/1.1 201 Created
+Content-Type: application/xml
+X-Record-ID: M-202600123-N00001
+Location: https://api.aiscr.cz/id/M-202600123-N00001
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;amcr:amcr ...&gt;
+  &lt;amcr:samostatny_nalez&gt;
+    &lt;amcr:ident_cely&gt;M-202600123-N00001&lt;/amcr:ident_cely&gt;
+    [...]</code></pre>
+<p>A rejected import. <code>schema_errors</code> uses the same entry shape; <code>message</code> text is translated and varies:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"validation_errors"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"line"</span><span class="fu">:</span> <span class="dv">7</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"column"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"message"</span><span class="fu">:</span> <span class="st">"&lt;diagnostic message&gt;"</span><span class="fu">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"error_type"</span><span class="fu">:</span> <span class="dv">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Other refusals — for example a missing file, malformed XML, an unsupported schema or a permission failure — return a single <code>detail</code> string instead.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant C as Integrating application
+    participant A as Authentication API
+    participant P as PAS API
+    C-&gt;&gt;A: Obtain token (see Authentication API)
+    A--&gt;&gt;C: Bearer token
+    Note over C: Map vocabularies, prepare one find XML, hash its bytes
+    C-&gt;&gt;P: POST /api/pas/import-xml (Bearer, Content-Digest, multipart file)
+    P-&gt;&gt;P: Check access and throttle&lt;br/&gt;Validate digest, XML, project and state
+    alt Import succeeds
+        P-&gt;&gt;P: Save record and transition history&lt;br/&gt;Retrieve XML metadata
+        P--&gt;&gt;C: 201 + XML + X-Record-ID + Location
+        Note over C: Save the assigned identifier before further requests
+    else Request rejected or processing fails
+        P--&gt;&gt;C: Error status and diagnostic response
+        Note over C: Resolve the error&lt;br/&gt;Reconcile uncertain outcomes before resubmitting
+    end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="registration-number" class="level3">
+<h3 class="anchored" data-anchor-id="registration-number">Update a registration number</h3>
+<p><code>PATCH /api/pas/nalez/{ident_cely}/evidencni-cislo</code></p>
+<p>Replace <code>{ident_cely}</code> with an existing find’s identifier. Supply the required <code>evidencni_cislo</code> <strong>query parameter</strong>, URL-encoded, with no request body. Leading and trailing whitespace is stripped; internal spaces are allowed. The value must be non-empty, at most 255 characters, and different from the current value. This endpoint changes <code>evidencni_cislo</code>, not an inventory number.</p>
+<p>The user must have Archaeologist or a higher role and record-edit permission. The record can be in any state, including archived.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>200</code></td>
+<td>Updated; XML metadata returned, with <code>X-Record-ID</code> and <code>Location</code>.</td>
+</tr>
+<tr class="even">
+<td><code>400</code></td>
+<td>Query parameter <code>evidencni_cislo</code> is absent.</td>
+</tr>
+<tr class="odd">
+<td><code>401</code> / <code>403</code></td>
+<td>Authentication failure, access restriction or insufficient role/record permissions.</td>
+</tr>
+<tr class="even">
+<td><code>404</code></td>
+<td>Find does not exist.</td>
+</tr>
+<tr class="odd">
+<td><code>422</code></td>
+<td>Empty value after trimming, more than 255 characters, or unchanged value.</td>
+</tr>
+<tr class="even">
+<td><code>429</code></td>
+<td>Throttling or another request holds the record lock; see below.</td>
+</tr>
+<tr class="odd">
+<td><code>500</code></td>
+<td>Internal processing or metadata-update failure.</td>
+</tr>
+<tr class="even">
+<td><code>503</code></td>
+<td>API temporarily closed.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="photograph" class="level3">
+<h3 class="anchored" data-anchor-id="photograph">Upload a photograph</h3>
+<p><code>POST /api/pas/nalez/{ident_cely}/upload-foto</code></p>
+<p>Send exactly one photograph in multipart field <code>file</code>, with the <a href="#file-integrity">file digest</a>. The server checks file size, supported file type and antivirus results. The current implementation limits a photograph to 250 MiB (262,144,000 bytes). The filename must also satisfy AMCR’s generated filename constraints.</p>
+<p>A Researcher uses the standard photograph-upload permissions, normally for their own registered find. Archaeologist and higher roles may upload in any state, including archived, subject to record permissions. Uploading to an archived find records a rearchiving event in its history.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>201</code></td>
+<td>Photograph attached; updated find XML returned, with <code>X-Record-ID</code> and <code>Location</code>.</td>
+</tr>
+<tr class="even">
+<td><code>400</code></td>
+<td>Missing <code>file</code>, more than one uploaded file, or missing/malformed <code>Content-Digest</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>401</code> / <code>403</code></td>
+<td>Authentication failure, access restriction or insufficient record permissions.</td>
+</tr>
+<tr class="even">
+<td><code>404</code></td>
+<td>Find does not exist.</td>
+</tr>
+<tr class="odd">
+<td><code>422</code></td>
+<td>File too large, unsupported/encrypted file, digest mismatch, virus detected, or invalid/overlong generated filename.</td>
+</tr>
+<tr class="even">
+<td><code>429</code></td>
+<td>Throttling or another request holds the record lock.</td>
+</tr>
+<tr class="odd">
+<td><code>500</code></td>
+<td>Antivirus check could not complete, or an internal storage/metadata operation failed.</td>
+</tr>
+<tr class="even">
+<td><code>503</code></td>
+<td>API temporarily closed.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="rate-limits" class="level2">
+<h2 class="anchored" data-anchor-id="rate-limits">Rate limits and retries</h2>
+<p>All three PAS endpoints share throttling. With <code>min_request_intervals</code> set to <code>user_ms: 100</code> and <code>ip_ms: 100</code>, space requests by at least 100 ms <strong>both per user and per client IP</strong>: approximately 10 requests per second for each scope, not permission to send a burst of ten requests. These are configurable values; additional <code>rate_limits</code> may restrict a user, an IP range or a record. Coordinate clients sharing an account or outward-facing IP, and allow a margin above the minimum interval.</p>
+<p>Two different conditions return <code>429</code>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cause</th>
+<th>Where it occurs</th>
+<th>Client handling</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Throttling</td>
+<td>Any PAS endpoint, before its operation runs</td>
+<td>Reduce aggregate request frequency. Honour <code>Retry-After</code> when supplied; otherwise use bounded backoff.</td>
+</tr>
+<tr class="even">
+<td>Record lock could not be acquired</td>
+<td>Registration-number PATCH or photograph upload for the same <code>ident_cely</code></td>
+<td>Serialise changes to that record and retry with bounded backoff after the other operation finishes. The lock response has a <code>detail</code> message and does not itself set <code>Retry-After</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Do not diagnose a lock merely from an absent <code>Retry-After</code>: a throttle can also reject without a calculated wait. Inspect the diagnostic response as well; its text can be translated. Keep both global pacing and per-record serialisation.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    R[Authenticated PAS request] --&gt; T{Throttle permits request?}
+    T --&gt;|No| H[429: request frequency]
+    H --&gt; B[Respect Retry-After if present; reduce rate and back off]
+    T --&gt;|Yes| V[Validate endpoint input and permissions]
+    V --&gt; K{PATCH or photograph upload?}
+    K --&gt;|No: import| I[Create one find]
+    K --&gt;|Yes| L{Record lock acquired?}
+    L --&gt;|No| E[429: record busy]
+    E --&gt; S[Serialise work for that record; back off]
+    L --&gt;|Yes| U[Update record; release lock]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="idempotency" class="level3">
+<h3 class="anchored" data-anchor-id="idempotency">Idempotency</h3>
+<p>An import creates a new identifier on every successful call. Keep the returned identifier and persistent URL in the exporting application. If a connection times out or a server error leaves the outcome uncertain, reconcile it with AMCR before repeating the import; an automatic retry can create a duplicate. A repeated PATCH whose first attempt succeeded can return <code>422</code> because the value is already current. A repeated photograph upload can attach another file.</p>
+</section>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Worked examples</h2>
+<p>First obtain a token by following the <a href="../auth-api/index.html#example-requests">Authentication API examples</a>. The examples here start with that token and demonstrate authenticated requests, file hashing, import and registration-number update. Prepare <code>find.xml</code> from the <a href="#minimal-document">minimal document</a> or the full template, with identifiers from your own project and vocabulary mapping.</p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>These calls write data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run them against the <a href="#access">training instance</a> (<code>https://amcr-tr.aiscr.cz</code>) while developing the client. Against production they create real records.</p>
+</div>
+</div>
+<section id="curl-bash" class="level3">
+<h3 class="anchored" data-anchor-id="curl-bash">cURL (Bash)</h3>
+<p>Requires cURL, OpenSSL and Python 3. The base URL is prompted explicitly so that running the example does not silently select production. Token input is hidden. The commands stop on an HTTP error; they do not automatically retry writes.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">read</span> <span class="at">-r</span> <span class="at">-p</span> <span class="st">'AMCR base URL (https://..., no trailing slash): '</span> <span class="va">AMCR_BASE_URL</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">read</span> <span class="at">-r</span> <span class="at">-s</span> <span class="at">-p</span> <span class="st">'Bearer token from the Authentication API: '</span> <span class="va">AMCR_TOKEN</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'\n'</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="va">DIGEST</span><span class="op">=</span><span class="va">$(</span><span class="ex">openssl</span> dgst <span class="at">-sha512</span> <span class="at">-binary</span> find.xml <span class="kw">|</span> <span class="ex">openssl</span> base64 <span class="at">-A</span><span class="va">)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--fail-with-body</span> <span class="at">--silent</span> <span class="at">--show-error</span> <span class="at">--max-time</span> 120 <span class="dt">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--header</span> <span class="st">"Authorization: Bearer </span><span class="va">${AMCR_TOKEN}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">--header</span> <span class="st">"Content-Digest: sha-512=:</span><span class="va">${DIGEST}</span><span class="st">:"</span> <span class="dt">\</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">--form</span> <span class="st">'file=@find.xml;type=application/xml'</span> <span class="dt">\</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">--dump-header</span> import.headers <span class="at">--output</span> import-response.xml <span class="dt">\</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"</span><span class="va">${AMCR_BASE_URL}</span><span class="st">/api/pas/import-xml"</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the assigned identifier from the successful response headers.</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="va">RECORD_ID</span><span class="op">=</span><span class="va">$(</span><span class="ex">python3</span> <span class="at">-c</span> <span class="st">'from pathlib import Path; print(next(line.split(":", 1)[1].strip() for line in Path("import.headers").read_text().splitlines() if line.lower().startswith("x-record-id:")))'</span><span class="va">)</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'Created record: %s\n'</span> <span class="st">"</span><span class="va">$RECORD_ID</span><span class="st">"</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">read</span> <span class="at">-r</span> <span class="at">-p</span> <span class="st">'New registration number (different from the imported value): '</span> <span class="va">REGISTRATION_NUMBER</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep requests apart; deployments can impose additional limits.</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 0.2</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--fail-with-body</span> <span class="at">--silent</span> <span class="at">--show-error</span> <span class="at">--max-time</span> 120 <span class="dt">\</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">--request</span> PATCH <span class="at">--get</span> <span class="dt">\</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">--header</span> <span class="st">"Authorization: Bearer </span><span class="va">${AMCR_TOKEN}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">--data-urlencode</span> <span class="st">"evidencni_cislo=</span><span class="va">${REGISTRATION_NUMBER}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">--output</span> patch-response.xml <span class="dt">\</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"</span><span class="va">${AMCR_BASE_URL}</span><span class="st">/api/pas/nalez/</span><span class="va">${RECORD_ID}</span><span class="st">/evidencni-cislo"</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="bu">unset</span> <span class="va">AMCR_TOKEN</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>--get</code> places the encoded data in the query string; <code>--request PATCH</code> selects the method. No body or digest is needed for the registration-number update. Keep <code>import.headers</code> and the XML response to reconcile later operations.</p>
+</section>
+<section id="python" class="level3">
+<h3 class="anchored" data-anchor-id="python">Python</h3>
+<p>Requires the <code>requests</code> package. The token is supplied through a hidden prompt; the authentication procedure remains in the Authentication API reference.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> base64</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> getpass</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hashlib</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.parse <span class="im">import</span> quote</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="bu">input</span>(<span class="st">"AMCR base URL (https://...): "</span>).rstrip(<span class="st">"/"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>token <span class="op">=</span> getpass.getpass(<span class="st">"Bearer token from the Authentication API: "</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> Path(<span class="st">"find.xml"</span>).read_bytes()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>digest <span class="op">=</span> base64.b64encode(hashlib.sha512(content).digest()).decode(<span class="st">"ascii"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {<span class="st">"Authorization"</span>: <span class="ss">f"Bearer </span><span class="sc">{</span>token<span class="sc">}</span><span class="ss">"</span>}</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.post(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>base_url<span class="sc">}</span><span class="ss">/api/pas/import-xml"</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    headers<span class="op">=</span>{<span class="op">**</span>headers, <span class="st">"Content-Digest"</span>: <span class="ss">f"sha-512=:</span><span class="sc">{</span>digest<span class="sc">}</span><span class="ss">:"</span>},</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    files<span class="op">=</span>{<span class="st">"file"</span>: (<span class="st">"find.xml"</span>, content, <span class="st">"application/xml"</span>)},</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    timeout<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">120</span>),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">!=</span> <span class="dv">201</span>:</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">RuntimeError</span>(<span class="ss">f"Unexpected import status: </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>record_id <span class="op">=</span> response.headers[<span class="st">"X-Record-ID"</span>]</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>Path(<span class="st">"import-response.xml"</span>).write_bytes(response.content)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>Path(<span class="st">"import-record-id.txt"</span>).write_text(record_id, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Created:"</span>, record_id, response.headers.get(<span class="st">"Location"</span>, <span class="st">""</span>))</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>number <span class="op">=</span> <span class="bu">input</span>(<span class="st">"New registration number (different from the imported value): "</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="fl">0.2</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>patched <span class="op">=</span> requests.patch(</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"</span><span class="sc">{</span>base_url<span class="sc">}</span><span class="ss">/api/pas/nalez/</span><span class="sc">{</span>quote(record_id, safe<span class="op">=</span><span class="st">''</span>)<span class="sc">}</span><span class="ss">/evidencni-cislo"</span>,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    headers<span class="op">=</span>headers,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{<span class="st">"evidencni_cislo"</span>: number},</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    timeout<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">120</span>),</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>patched.raise_for_status()</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>Path(<span class="st">"patch-response.xml"</span>).write_bytes(patched.content)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For photograph upload, calculate the digest from the photograph’s bytes and send it as multipart <code>file</code> to the <a href="#photograph">photograph endpoint</a>, using the assigned record identifier. Keep this separate from the XML import.</p>
+</section>
+</section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See also</h2>
+<ul>
+<li><a href="https://doc.axiell.cz/prirucky/" class="external">MUSEION user manuals</a> (Axiell) — the reference client, including the AMCR integration manual and the <code>NalezyAmcrService</code> description. In that manual’s scenario numbering, this API serves S2 and S3 (single and bulk export of finds to AMCR-PAS).</li>
+<li><a href="../oai-pmh/index.html">OAI-PMH API</a> — reading records and harvesting vocabularies.</li>
+<li><a href="../auth-api/index.html">Authentication API</a> — tokens and user information.</li>
+<li><a href="https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd" class="external">AMCR 2.2 XML schema</a>.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ARUP-CAS\.github\.io\/aiscr-api-home\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="../about/index.html" class="fttext">About</a> | <u id="open_preferences_center" class="fttext">Cookies</u> | <span class="fttext">CC BY-NC 4.0</span></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.aiscr.cz/" target="_blank"><img src="../figs/logo-aiscr-hor.png" height="60"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Created with ♡ in <a href="https://www.quarto.org/" target="_blank">Quarto</a>, source code on <a href="https://github.com/ARUP-CAS/aiscr-api-home" target="_blank">GitHub <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 496 512" width="14" style="fill:#6b6b6b; margin-left:2px;"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

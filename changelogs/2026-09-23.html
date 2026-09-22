@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-27">
+<meta name="dcterms.date" content="2026-09-23">
+<meta name="description" content="Archaeologists of the organisation an individual find was handed over to can access its record and files in any processing state.">
 
-<title>Version 2.2 of the schema – AMCR API</title>
+<title>Access to individual finds for receiving organisations – AMCR API</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -169,7 +170,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2025-06-27.html">Version 2.2 of the schema</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2026-09-23.html">Access to individual finds for receiving organisations</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -206,7 +207,7 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../changelogs/2025-06-27.html" class="sidebar-item-text sidebar-link active">
+  <a href="../changelogs/2025-06-27.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Version 2.2 of the schema</span></a>
   </div>
 </li>
@@ -224,7 +225,7 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../changelogs/2026-09-23.html" class="sidebar-item-text sidebar-link">
+  <a href="../changelogs/2026-09-23.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Access to individual finds for receiving organisations</span></a>
   </div>
 </li>
@@ -241,14 +242,20 @@ cookieconsent.run({
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2025-06-27.html">Version 2.2 of the schema</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../changelogs/index.html">Changelogs</a></li><li class="breadcrumb-item"><a href="../changelogs/2026-09-23.html">Access to individual finds for receiving organisations</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Version 2.2 of the schema</h1>
+<h1 class="title">Access to individual finds for receiving organisations</h1>
   <div class="quarto-categories">
     <div class="quarto-category">OAI-PMH</div>
+    <div class="quarto-category">File API</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    Archaeologists of the organisation an individual find was handed over to can access its record and files in any processing state.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -257,7 +264,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 27, 2025</p>
+      <p class="date">September 23, 2026</p>
     </div>
   </div>
   
@@ -269,17 +276,8 @@ cookieconsent.run({
 </header>
 
 
-<p>New schema for AMCR OAI-PMH API is released (<a href="https://api.aiscr.cz/schema/amcr/2.2/">v2.2</a>, 2025-06-18). This version contains only minor updates in the structure of the response.</p>
-<p><strong>Changes</strong></p>
-<ul>
-<li>addition of element <code>email</code> in the set <code>ruian_kraj</code></li>
-<li>change in some of the elements from <code>xs:string</code> to <code>xs:anyURI</code></li>
-</ul>
-<p><strong>URLs</strong></p>
-<ul>
-<li>Schema: <a href="https://api.aiscr.cz/schema/amcr/2.2/">https://api.aiscr.cz/schema/amcr/2.2/</a>,</li>
-<li>Endpoint: <code>https://api.aiscr.cz/2.2/oai</code></li>
-</ul>
+<p>An individual find (<em>samostatný nález</em>) is accessible, in any processing state, to archaeologists (role <strong>C</strong>) of the organisation it was handed over to, recorded in <code>samostatny_nalez/predano_organizace</code>. The rule applies to both the <a href="../oai-pmh/index.html#access">OAI-PMH API</a> and the <a href="../file-api/index.html#access-rules">File API</a>, in addition to the existing rules, which remain in force.</p>
+<p>The individual-find rows of both access tables now state the archaeologist’s organisation clauses explicitly — a find under a project of the user’s organisation, or handed over to it — and the File API page gained a legend for the terms its table uses.</p>
 
 
 

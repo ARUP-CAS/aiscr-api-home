@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -44,10 +47,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f91d38c05d7c98dacea18a6701bbb777.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3b4d450d609455d4f1bf48d392aee074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -133,7 +136,7 @@ cookieconsent.run({
   
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -200,6 +203,10 @@ window.Quarto = {
   <li class="nav-item">
     <a class="nav-link" href="./auth-api/index.html"> 
 <span class="menu-text">Authentication Api</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./pas-api/index.html"> 
+<span class="menu-text">Pas Api</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -307,7 +314,7 @@ Thank you for your patience and understanding.
 If you have any questions or need assistance, please [contact us](about/index.qmd).
 
 ::: -->
-<p><strong>Archaeological Map of the Czech Republic</strong> (AMCR) is part of a large research infrastructure <strong>Archaeological Information System of the Czech Republic</strong> (AIS CR). <strong>AMCR API</strong> is a homepage of AMCR application programming interfaces, currently providing data stored in the AMCR database using the <em>OpenArchives Initiative Protocol for Metadata Harvesting</em> (<a href="./oai-pmh/index.html">OAI-PMH API</a>), documents and document thumbnails in the <a href="./file-api/index.html">File API</a> and user information and authentication in the <a href="./auth-api/index.html">Authentication API</a>.</p>
+<p><strong>Archaeological Map of the Czech Republic</strong> (AMCR) is part of a large research infrastructure <strong>Archaeological Information System of the Czech Republic</strong> (AIS CR). <strong>AMCR API</strong> is a homepage of AMCR application programming interfaces, currently providing data stored in the AMCR database using the <em>OpenArchives Initiative Protocol for Metadata Harvesting</em> (<a href="./oai-pmh/index.html">OAI-PMH API</a>), documents and document thumbnails in the <a href="./file-api/index.html">File API</a>, user information and authentication in the <a href="./auth-api/index.html">Authentication API</a>, and find imports, registration-number updates and photograph uploads in the <a href="./pas-api/index.html">AMCR-PAS API</a>.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -329,7 +336,43 @@ If you have any questions or need assistance, please [contact us](about/index.qm
 <h2 class="anchored" data-anchor-id="api-changelog">API Changelog</h2>
 <div id="listing-changelogs" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="T0FJLVBNSA==" data-listing-date-sort="1767312000000" data-listing-file-modified-sort="1784190398463" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="105">
+<div class="g-col-1" data-index="0" data-categories="T0FJLVBNSCUyQ0ZpbGUlMjBBUEk=" data-listing-date-sort="1790121600000" data-listing-file-modified-sort="1790121368216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="85">
+<a href="./changelogs/2026-09-23.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Access to individual finds for receiving organisations
+</h5>
+<div class="card-text listing-description delink">
+<p>Archaeologists of the organisation an individual find was handed over to can access its record and files in any processing state.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+2026-09-23
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="UEFTJTJDRG9jdW1lbnRhdGlvbg==" data-listing-date-sort="1790035200000" data-listing-file-modified-sort="1790121368216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="71">
+<a href="./changelogs/2026-09-22.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+AMCR-PAS API reference
+</h5>
+<div class="card-text listing-description delink">
+<p>Documentation of the AMCR-PAS API, through which museum systems and field applications create finds in AMCR-PAS, update their registration numbers and add photographs.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+2026-09-22
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="T0FJLVBNSA==" data-listing-date-sort="1767312000000" data-listing-file-modified-sort="1790121368216" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="105">
 <a href="./changelogs/2025-12-19.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
@@ -342,42 +385,6 @@ An updated version of AMCR OAI-PMH API is released featuring two main changes �
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
 2026-01-02
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="T0FJLVBNSA==" data-listing-date-sort="1750982400000" data-listing-file-modified-sort="1784190398463" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44">
-<a href="./changelogs/2025-06-27.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Version 2.2 of the schema
-</h5>
-<div class="card-text listing-description delink">
-New schema for AMCR OAI-PMH API is released (v2.2, 2025-06-18). This version contains only minor updates in the structure of the response.
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-2025-06-27
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="T0FJLVBNSA==" data-listing-date-sort="1743120000000" data-listing-file-modified-sort="1784190398463" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="132">
-<a href="./changelogs/2025-03-21.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Version 2.1 of OAI-PMH API
-</h5>
-<div class="card-text listing-description delink">
-New AMCR OAI-PMH API version is released together with updated schema. This version reacts to development of AMCR and its v1.1.0 release (see changelog), major change being…
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-2025-03-28
 </div>
 </div>
 </div>
@@ -411,7 +418,7 @@ New AMCR OAI-PMH API version is released together with updated schema. This vers
 </blockquote>
 <p>And the API documentation as:</p>
 <blockquote class="blockquote">
-<p>Pajdla P., Novák D. 2024: AMCR API Documentation. DOI: <a href="https://zenodo.org/doi/10.5281/zenodo.13220182">10.5281/zenodo.13220182</a>. Website: <a href="https://api.aiscr.cz">https://api.aiscr.cz/</a>. Source: <a href="https://github.com/ARUP-CAS/aiscr-api-home">https://github.com/ARUP-CAS/aiscr-api-home</a>.</p>
+<p>Pajdla P., Novák D. 2026: AMCR API Documentation. DOI: <a href="https://zenodo.org/doi/10.5281/zenodo.13220182">10.5281/zenodo.13220182</a>. Website: <a href="https://api.aiscr.cz">https://api.aiscr.cz/</a>. Source: <a href="https://github.com/ARUP-CAS/aiscr-api-home">https://github.com/ARUP-CAS/aiscr-api-home</a>.</p>
 </blockquote>
 
 
