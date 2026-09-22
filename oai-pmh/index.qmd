@@ -75,7 +75,9 @@ read.csv("tabs/access1.csv", tryLogical = FALSE) |>
 
 > *stav* -- processing state of the record, see [Documentation](https://amcr-help.aiscr.cz/o-systemu/procesy.html){.external} (*in Czech language only*)  
 > *my record* -- record created by the user  
-> *my organisation record* -- record created by someone from user's organisation
+> *my organisation record* -- record created by someone from user's organisation  
+> *my organisation's project* -- individual find recorded under a project of the user's organisation  
+> *handed over to my organisation* -- individual find handed over to the user's organisation (`samostatny_nalez/predano_organizace`), in any processing state
 
 ```{r}
 #| tbl-cap: "Effects of the limited accessibility"

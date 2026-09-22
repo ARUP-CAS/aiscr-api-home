@@ -1,0 +1,18 @@
+---
+title: "AMCR-PAS API reference"
+date: 2026-09-22
+categories: [PAS, Documentation]
+description: "Documentation of the AMCR-PAS API, through which museum systems and field applications create finds in AMCR-PAS, update their registration numbers and add photographs."
+---
+
+The [AMCR-PAS API reference](/pas-api/index.qmd) documents the write interface
+available to external integrators, including museum systems and offline field
+applications. MUSEION is the reference client.
+
+The section covers vocabulary mapping through the existing OAI-PMH sets,
+authentication, the XML import contract, registration-number updates,
+photograph uploads, configurable schema acceptance, rate limits and record
+locks. cURL and Python examples show authenticated import and update requests.
+
+This entry records a documentation addition; it does not announce a new API
+deployment or a MUSEION release.
