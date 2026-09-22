@@ -1,0 +1,16 @@
+---
+title: "Access to individual finds for receiving organisations"
+date: 2026-09-23
+categories: [OAI-PMH, File API]
+description: "Archaeologists of the organisation an individual find was handed over to can access its record and files in any processing state."
+---
+
+An individual find (*samostatný nález*) is accessible, in any processing state, to
+archaeologists (role **C**) of the organisation it was handed over to, recorded in
+`samostatny_nalez/predano_organizace`. The rule applies to both the
+[OAI-PMH API](/oai-pmh/index.qmd#access) and the [File API](/file-api/index.qmd#access-rules),
+in addition to the existing rules, which remain in force.
+
+The individual-find rows of both access tables now state the archaeologist's organisation
+clauses explicitly — a find under a project of the user's organisation, or handed over to it —
+and the File API page gained a legend for the terms its table uses.

@@ -7,7 +7,7 @@
 "dokument","stav = 3","TRUE","TRUE","TRUE"
 "ext_zdroj","stav = 3","TRUE","TRUE","TRUE"
 "pian","stav = 2","TRUE","TRUE","TRUE"
-"samostatny_nalez","stav = 4","stav = 4 OR my record","stav = 4 OR my organisation record","TRUE"
+"samostatny_nalez","stav = 4","stav = 4 OR my record","stav = 4 OR my record OR my organisation's project OR handed over to my organisation","TRUE"
 "uzivatel","FALSE","my record","my record","TRUE"
 "heslo ","TRUE","TRUE","TRUE","TRUE"
 "ruian_kraj","TRUE","TRUE","TRUE","TRUE"
