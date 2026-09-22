@@ -1,0 +1,597 @@
+---
+title: "AMCR-PAS API"
+subtitle: Import finds and update their museum registration numbers and photographs
+date: 2026-09-22
+---
+
+::: {.callout-note}
+
+The reference is valid for AMCR [v1.4.0](https://github.com/ARUP-CAS/aiscr-webamcr/releases/tag/v1.4.0){.external} and newer.
+
+:::
+
+## Overview
+
+The **AMCR-PAS API** lets an external application create individual find records
+(*samostatné nálezy*) in AMCR-PAS, update their museum registration numbers
+(*evidenční čísla*), and attach photographs.
+
+The API was built together with the integration of AMCR with **MUSEION**, the
+collection-management system developed by Axiell and used widely by the Czech museums. MUSEION is its first client and serves as the
+reference implementation: museum staff export finds from their collection
+records to AMCR-PAS instead of entering them a second time.
+
+The interface is not specific to MUSEION. It is open to any integrator with the
+required AMCR account and record permissions — other collection-management
+systems, and developers of offline field applications who want to submit finds
+recorded in the field.
+
+The base URL is `https://amcr.aiscr.cz`. This website, `api.aiscr.cz`, hosts the
+documentation and schemas, not the PAS write endpoints.
+
+Each import request carries one find; a client exporting several finds sends
+one request per find. Mapping your vocabularies to AMCR is a
+[prerequisite](#vocabulary-mapping). Reading records back — for example to update
+a museum record from AMCR — uses the [OAI-PMH API](/oai-pmh/index.qmd).
+
+::: {.callout-note}
+
+## Funding
+
+The API and the AMCR–MUSEION integration were developed in 2026 within the
+project PRAK-25-45 *Integrovaná evidence archeologických fondů v České republice:
+pilotní řešení pro otevřené sdílení dat*, funded by the
+[Programme for the Development of Applications and Commercialisation (PRAK)](https://transfer.cas.cz/portal/cs/program-prak/){.external}
+of the Czech Academy of Sciences (in Czech).
+
+:::
+
+## Getting started {#getting-started}
+
+1. **Get an account** with the role and project access your integration needs
+   (see [Access and testing](#access)).
+2. **Map your vocabularies** to AMCR entries ([vocabulary mapping](#vocabulary-mapping)).
+3. **Obtain a token** from the [Authentication API](/auth-api/index.qmd).
+4. **Import a first find at state 1** using the [minimal document](#minimal-document)
+   on the training instance. State 1 needs the fewest fields and suits
+   records that are completed later, for example after fieldwork.
+5. **Store the returned `X-Record-ID`** and use it for registration-number
+   updates and photograph uploads.
+6. **Move to the full contract** — [states 2 and 3](#xml-elements),
+   [photographs](#photograph) and [rate limits](#rate-limits) — before
+   connecting to production.
+
+### Access and testing {#access}
+
+::: {.callout-tip}
+
+## Getting access
+
+Register an AMCR account at [amcr.aiscr.cz/accounts/register/](https://amcr.aiscr.cz/accounts/register/){.external},
+then write to [amcr@arup.cas.cz](mailto:amcr@arup.cas.cz) describing your
+integration. Registration and account activation are described in
+[User accounts](https://amcr-help.aiscr.cz/zakladni-info/ucty.html){.external}
+in the AMCR documentation (in Czech). We arrange the role and project access it needs, and an account on
+the training instance.
+
+:::
+
+Develop and test against the **training instance** `https://amcr-tr.aiscr.cz`,
+not production. The PAS paths are the same; only the base URL differs.
+
+::: {.callout-important}
+
+## Current limits of the training instance
+
+The training instance has no Digital Archive and no OAI-PMH API yet. Records
+created there cannot be read back through OAI-PMH, and the persistent URL in
+`Location` does not resolve to them. Harvest vocabulary identifiers from the
+production OAI-PMH API; if the training instance rejects an identifier, contact
+us. Work to close these gaps is in progress.
+
+:::
+
+## Prerequisite: vocabulary mapping {#vocabulary-mapping}
+
+Map your application's vocabulary to AMCR controlled-vocabulary entries
+(*hesláře*) before exporting finds. Harvest the appropriate `heslo:*` sets
+listed in the [OAI-PMH sets reference](/oai-pmh/index.qmd#sets), and retain each
+entry's AMCR identifier and URI in your local mapping. A URI identifies the
+entry across systems; the XML import's `id` attribute takes its identifier
+(for example, `HES-000761`), not the full URI.
+
+The import checks that each identifier belongs to the correct vocabulary:
+an object-type entry cannot stand in for a period entry. Include the element's
+text and required attributes in the XML, but do not rely on the label to select
+an entry: the importer resolves vocabulary and organisation references by `id`.
+Use `xml:lang="cs"` on vocabulary elements. The importer does not use the label
+or language attribute to translate the supplied data.
+
+## Authentication and permissions {#authentication}
+
+Obtain a token using the [Authentication API](/auth-api/index.qmd#authentication-token-endpoint),
+which owns the login procedure and token lifetime. Send it on every PAS request:
+
+```http
+Authorization: Bearer <token>
+```
+
+Authentication does not grant access to every project or record. Imports must
+target a survey project (*průzkum*) available to the authenticated user under
+the standard AMCR-PAS rules. A Researcher (*Badatel*) can import only into state
+1; other eligible roles can import into states 1–3. Editing a registration number
+requires Archaeologist (*Archeolog*) or a higher role **and** permission to edit
+the particular record. Photograph permissions are described below. What each
+role may do in AMCR is described in
+[User roles and permissions](https://amcr-help.aiscr.cz/o-systemu/role.html){.external}
+(in Czech).
+
+Operators can also restrict access by account or IP address, or temporarily
+close the API. An interface open to external integrators still applies those
+deployment and record-access rules.
+
+## Endpoints
+
+Paths are relative to the base URL. The PAS paths have **no trailing slash**;
+the authentication paths retain theirs.
+
+| Method | Path | Input | Result |
+| --- | --- | --- | --- |
+| `POST` | `/api/token-auth/` | JSON credentials | Bearer token; see [Authentication API](/auth-api/index.qmd) |
+| `GET` | `/api/uzivatel-info/` | Bearer token | User XML metadata; see [Authentication API](/auth-api/index.qmd#user-information-endpoint) |
+| `POST` | `/api/pas/import-xml` | XML file in multipart field `file` | New find record |
+| `PATCH` | `/api/pas/nalez/{ident_cely}/evidencni-cislo` | Query parameter `evidencni_cislo` | Updated registration number |
+| `POST` | `/api/pas/nalez/{ident_cely}/upload-foto` | Photograph in multipart field `file` | Photograph attached to the record |
+
+### File integrity {#file-integrity}
+
+Both file-upload endpoints require `Content-Digest` in this form:
+
+```http
+Content-Digest: sha-512=:<base64-encoded SHA-512 digest>:
+```
+
+The field syntax follows [RFC 9530](https://www.rfc-editor.org/rfc/rfc9530.html#section-2){.external}.
+For this API, compute the digest over the **uploaded file's bytes**. The
+implementation verifies that file, rather than the complete multipart body.
+Do not hash a hexadecimal digest string or include multipart boundaries.
+Let your HTTP library generate the multipart `Content-Type` and its boundary.
+
+### Import a find {#import}
+
+`POST /api/pas/import-xml`
+
+Send one XML file as multipart field `file`, with the authentication and digest
+headers. The document must contain exactly one `amcr:samostatny_nalez` as the
+only child of `amcr:amcr`. XML syntax, the declared XSD, field values, permissions
+and the requested target state are validated before a successful response.
+
+#### Schema and versions {#schema-versions}
+
+Accepted versions are subject to the deployment's `pas_api/allowed_schema_versions`
+setting. The declared AMCR namespace and `xsi:schemaLocation` must also match
+the schema supported by that deployment; adding a version to the allowlist
+alone does not add support for a different schema. Obtain the accepted schema
+from the operator when configuring an integration.
+
+The [published 2.2 XSD](https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd){.external} is the
+concrete schema used by the template below. Its number is an example, not a
+permanent API version guarantee. Keep the namespace and schema-location pair
+consistent when adapting a client to a supported schema.
+
+#### XML elements {#xml-elements}
+
+The table lists imported fields in schema order. Names are relative to
+`amcr:samostatny_nalez`, and all elements use the `amcr` prefix. Reference types
+have string content and an `id` attribute; vocabulary references also require
+`xml:lang`. XSD optionality does not override the state-dependent rules below.
+
+| Element | XSD type | Import contract |
+| --- | --- | --- |
+| `ident_cely` | `xs:string` | Required; use `:tba`. AMCR assigns the new identifier. |
+| `evidencni_cislo` | `xs:string` | Museum registration number; required for state 3. |
+| `projekt` | `amcr:refType` | Required; `id` identifies the survey project. Used for authorisation and identifier assignment. |
+| `hloubka` | `xs:integer` | Depth in centimetres; required for states 2 and 3. |
+| `okolnosti` | `amcr:vocabType` | Find context; `id` must belong to the find-context vocabulary (*nálezové okolnosti*). Required for states 2 and 3. |
+| `obdobi` | `amcr:vocabType` | Period vocabulary entry; required for states 2 and 3. |
+| `presna_datace` | `xs:string` | Optional free-text dating detail. |
+| `druh_nalezu` | `amcr:vocabType` | Object-type vocabulary entry; required for states 2 and 3. |
+| `specifikace` | `amcr:vocabType` | Object-specification vocabulary entry; required for states 2 and 3. |
+| `pocet` | `xs:string` | Optional number of items, expressed as text. |
+| `poznamka` | `xs:string` | Optional note. |
+| `nalezce` | `amcr:refType` | Finder's person identifier in `id`; required for states 2 and 3. With `id=":tba"`, supply `Surname, Given name`: an existing matching person is reused, otherwise a person is created with the find. |
+| `datum_nalezu` | `xs:date` | Date in `YYYY-MM-DD` form; required for states 2 and 3. |
+| `stav` | `xs:integer` | Required target state: `1` registered, `2` submitted, `3` confirmed. Direct import into archived state `4` is unavailable. |
+| `predano` | `xs:boolean` | Handover flag; must be `true` for state 3. |
+| `predano_organizace` | `amcr:vocabType` | Receiving organisation identifier in `id`; required for state 3. |
+| `geom_system` | `xs:string` | Required; the importer accepts `4326` (WGS 84) or `5514` (S-JTSK). |
+| `pristupnost` | `amcr:vocabType` | Required accessibility vocabulary entry, resolved by `id`. |
+| `chranene_udaje/lokalizace` | `xs:string` | Location description; required for states 2 and 3. |
+| `chranene_udaje/geom_wkt` | `amcr:wktType` | Source point geometry for `geom_system=4326`; use `EPSG="4326"`. WGS 84 coordinates are longitude, latitude. |
+| `chranene_udaje/geom_sjtsk_wkt` | `amcr:wktType` | Source point geometry for `geom_system=5514`; use `EPSG="5514"`. |
+
+For state 1, geometry and the fields required only at later states can be
+omitted. States 2 and 3 require valid point geometry and the descriptive fields
+identified above. State 3 additionally requires a registration number, handover
+to an organisation and the organisation's identifier. Photographs are uploaded
+separately through the [photograph endpoint](#photograph). The import accepts
+states 2 and 3 without them, but a find is accepted for archiving only once its
+photographs have been uploaded.
+
+The coordinate system selects one source geometry. AMCR calculates the other
+representation and determines the cadastral area from the WGS 84 point. If a
+supplied point falls outside every cadastral area, import returns `422`.
+
+The importer ignores supplied `okres`, `chranene_udaje/katastr`, `igsn`,
+`geom_updated_at`, `geom_sjtsk_updated_at`, `chranene_udaje/geom_gml`,
+`chranene_udaje/geom_sjtsk_gml`, `historie` and `soubor` values. It also ignores
+the non-selected WKT representation. These elements, if present, must still
+satisfy the XSD. District and cadastral area are derived; geometry timestamps and
+history are generated; files use the photograph endpoint.
+
+#### Minimal document (state 1) {#minimal-document}
+
+The smallest document the importer accepts: the elements the XSD requires, at
+state 1, without geometry. It is the recommended first test request.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<amcr:amcr xmlns:amcr="https://api.aiscr.cz/schema/amcr/2.2/"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="https://api.aiscr.cz/schema/amcr/2.2/ https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd">
+  <amcr:samostatny_nalez>
+    <amcr:ident_cely>:tba</amcr:ident_cely>
+    <amcr:projekt id="PROJECT_ID">PROJECT_LABEL</amcr:projekt>
+    <amcr:stav>1</amcr:stav>
+    <amcr:geom_system>4326</amcr:geom_system>
+    <amcr:pristupnost id="ACCESSIBILITY_ID" xml:lang="cs">ACCESSIBILITY_LABEL</amcr:pristupnost>
+  </amcr:samostatny_nalez>
+</amcr:amcr>
+```
+
+#### Full template (state 3) {#xml-template}
+
+This is a **template**, not an importable demonstration record. Replace the
+uppercase identifiers and descriptive values with authorised project data and
+entries from the correct vocabularies. The finder name is fictional. Keep
+element order as shown; it follows the XSD sequence. This example selects
+WGS 84 and state 3, so it includes the full required field set.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<amcr:amcr xmlns:amcr="https://api.aiscr.cz/schema/amcr/2.2/"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="https://api.aiscr.cz/schema/amcr/2.2/ https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd">
+  <amcr:samostatny_nalez>
+    <amcr:ident_cely>:tba</amcr:ident_cely>
+    <amcr:evidencni_cislo>EXAMPLE-2026-001</amcr:evidencni_cislo>
+    <!-- igsn: ignored on import -->
+    <amcr:projekt id="PROJECT_ID">PROJECT_LABEL</amcr:projekt>
+    <!-- okres: derived from geometry -->
+    <amcr:hloubka>20</amcr:hloubka>
+    <amcr:okolnosti id="CIRCUMSTANCES_ID" xml:lang="cs">CIRCUMSTANCES_LABEL</amcr:okolnosti>
+    <amcr:obdobi id="PERIOD_ID" xml:lang="cs">PERIOD_LABEL</amcr:obdobi>
+    <amcr:presna_datace>DATING_DETAIL</amcr:presna_datace>
+    <amcr:druh_nalezu id="OBJECT_TYPE_ID" xml:lang="cs">OBJECT_TYPE_LABEL</amcr:druh_nalezu>
+    <amcr:specifikace id="SPECIFICATION_ID" xml:lang="cs">SPECIFICATION_LABEL</amcr:specifikace>
+    <amcr:pocet>1</amcr:pocet>
+    <amcr:poznamka>NOTE</amcr:poznamka>
+    <amcr:nalezce id=":tba">Example, Alex</amcr:nalezce>
+    <amcr:datum_nalezu>2026-06-01</amcr:datum_nalezu>
+    <amcr:stav>3</amcr:stav>
+    <amcr:predano>true</amcr:predano>
+    <amcr:predano_organizace id="ORGANISATION_ID" xml:lang="cs">ORGANISATION_LABEL</amcr:predano_organizace>
+    <amcr:geom_system>4326</amcr:geom_system>
+    <amcr:pristupnost id="ACCESSIBILITY_ID" xml:lang="cs">ACCESSIBILITY_LABEL</amcr:pristupnost>
+    <amcr:chranene_udaje>
+      <!-- katastr: derived from geometry -->
+      <amcr:lokalizace>LOCATION_DESCRIPTION</amcr:lokalizace>
+      <!-- geom_gml: ignored on import -->
+      <amcr:geom_wkt EPSG="4326">POINT(15.5 49.5)</amcr:geom_wkt>
+      <!-- For geom_system=5514, replace the preceding element with
+           geom_sjtsk_wkt EPSG="5514" containing the S-JTSK point. -->
+      <!-- geom_sjtsk_gml: ignored on import -->
+    </amcr:chranene_udaje>
+    <!-- historie: generated by AMCR; soubor: uploaded separately -->
+  </amcr:samostatny_nalez>
+</amcr:amcr>
+```
+
+#### Import responses
+
+| Status | Meaning |
+| --- | --- |
+| `201` | Find created. The body contains XML metadata; `X-Record-ID` contains the assigned identifier and `Location` contains the record's persistent URL. |
+| `400` | Missing `file`, malformed XML, missing or invalid `Content-Digest`, digest mismatch, or empty AMCR root. |
+| `401` / `403` | Missing or invalid authentication, access restriction, or insufficient project/state permissions. |
+| `404` | The project identified in the XML does not exist. |
+| `422` | Unsupported schema declaration/version, XSD or field validation failure, invalid root content, multiple finds, or missing/invalid data for the requested state. Includes missing required geometry or a supplied point outside all cadastral areas. |
+| `429` | Request throttled; see [rate limits and retries](#rate-limits). |
+| `500` | Internal processing or metadata-storage failure. Establish the outcome before resubmitting an import. |
+| `503` | API temporarily closed. |
+
+Success returns `application/xml`. Errors normally contain JSON with `detail`,
+`schema_errors` or `validation_errors`. Validation entries include `line`,
+`column`, `message` and `error_type` (`1` missing record, `2` invalid data,
+`3` permission error); line/column may be null. Treat messages as diagnostics,
+not stable machine-readable codes.
+
+::: {.callout-important}
+
+## After a `500` or a timeout
+
+An import can be saved even when the response reports a failure or never
+arrives. Check whether the record exists before resubmitting — a blind retry
+creates a duplicate. See [idempotency](#idempotency).
+
+:::
+
+#### Example responses {#example-responses}
+
+A successful import, headers shown and body shortened; the identifier is
+illustrative:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/xml
+X-Record-ID: M-202600123-N00001
+Location: https://api.aiscr.cz/id/M-202600123-N00001
+
+<?xml version="1.0" encoding="utf-8"?>
+<amcr:amcr ...>
+  <amcr:samostatny_nalez>
+    <amcr:ident_cely>M-202600123-N00001</amcr:ident_cely>
+    [...]
+```
+
+A rejected import. `schema_errors` uses the same entry shape; `message` text is
+translated and varies:
+
+```json
+{
+  "validation_errors": [
+    {
+      "line": 7,
+      "column": null,
+      "message": "<diagnostic message>",
+      "error_type": 2
+    }
+  ]
+}
+```
+
+Other refusals — for example a missing file, malformed XML, an unsupported
+schema or a permission failure — return a single `detail` string instead.
+
+```{mermaid}
+sequenceDiagram
+    participant C as Integrating application
+    participant A as Authentication API
+    participant P as PAS API
+    C->>A: Obtain token (see Authentication API)
+    A-->>C: Bearer token
+    Note over C: Map vocabularies, prepare one find XML, hash its bytes
+    C->>P: POST /api/pas/import-xml (Bearer, Content-Digest, multipart file)
+    P->>P: Check access and throttle<br/>Validate digest, XML, project and state
+    alt Import succeeds
+        P->>P: Save record and transition history<br/>Retrieve XML metadata
+        P-->>C: 201 + XML + X-Record-ID + Location
+        Note over C: Save the assigned identifier before further requests
+    else Request rejected or processing fails
+        P-->>C: Error status and diagnostic response
+        Note over C: Resolve the error<br/>Reconcile uncertain outcomes before resubmitting
+    end
+```
+
+### Update a registration number {#registration-number}
+
+`PATCH /api/pas/nalez/{ident_cely}/evidencni-cislo`
+
+Replace `{ident_cely}` with an existing find's identifier. Supply the required
+`evidencni_cislo` **query parameter**, URL-encoded, with no request body.
+Leading and trailing whitespace is stripped; internal spaces are allowed.
+The value must be non-empty, at most 255 characters, and different from the
+current value. This endpoint changes `evidencni_cislo`, not an inventory number.
+
+The user must have Archaeologist or a higher role and record-edit permission.
+The record can be in any state, including archived.
+
+| Status | Meaning |
+| --- | --- |
+| `200` | Updated; XML metadata returned, with `X-Record-ID` and `Location`. |
+| `400` | Query parameter `evidencni_cislo` is absent. |
+| `401` / `403` | Authentication failure, access restriction or insufficient role/record permissions. |
+| `404` | Find does not exist. |
+| `422` | Empty value after trimming, more than 255 characters, or unchanged value. |
+| `429` | Throttling or another request holds the record lock; see below. |
+| `500` | Internal processing or metadata-update failure. |
+| `503` | API temporarily closed. |
+
+### Upload a photograph {#photograph}
+
+`POST /api/pas/nalez/{ident_cely}/upload-foto`
+
+Send exactly one photograph in multipart field `file`, with the
+[file digest](#file-integrity). The server checks file size, supported file type
+and antivirus results. The current implementation limits a photograph to
+250 MiB (262,144,000 bytes). The filename must also satisfy AMCR's generated
+filename constraints.
+
+A Researcher uses the standard photograph-upload permissions, normally for
+their own registered find. Archaeologist and higher roles may upload in any
+state, including archived, subject to record permissions. Uploading to an
+archived find records a rearchiving event in its history.
+
+| Status | Meaning |
+| --- | --- |
+| `201` | Photograph attached; updated find XML returned, with `X-Record-ID` and `Location`. |
+| `400` | Missing `file`, more than one uploaded file, or missing/malformed `Content-Digest`. |
+| `401` / `403` | Authentication failure, access restriction or insufficient record permissions. |
+| `404` | Find does not exist. |
+| `422` | File too large, unsupported/encrypted file, digest mismatch, virus detected, or invalid/overlong generated filename. |
+| `429` | Throttling or another request holds the record lock. |
+| `500` | Antivirus check could not complete, or an internal storage/metadata operation failed. |
+| `503` | API temporarily closed. |
+
+## Rate limits and retries {#rate-limits}
+
+All three PAS endpoints share throttling. With `min_request_intervals` set to
+`user_ms: 100` and `ip_ms: 100`, space requests by at least 100 ms **both per
+user and per client IP**: approximately 10 requests per second for each scope,
+not permission to send a burst of ten requests. These are configurable values;
+additional `rate_limits` may restrict a user, an IP range or a record.
+Coordinate clients sharing an account or outward-facing IP, and allow a margin
+above the minimum interval.
+
+Two different conditions return `429`:
+
+| Cause | Where it occurs | Client handling |
+| --- | --- | --- |
+| Throttling | Any PAS endpoint, before its operation runs | Reduce aggregate request frequency. Honour `Retry-After` when supplied; otherwise use bounded backoff. |
+| Record lock could not be acquired | Registration-number PATCH or photograph upload for the same `ident_cely` | Serialise changes to that record and retry with bounded backoff after the other operation finishes. The lock response has a `detail` message and does not itself set `Retry-After`. |
+
+Do not diagnose a lock merely from an absent `Retry-After`: a throttle can also
+reject without a calculated wait. Inspect the diagnostic response as well;
+its text can be translated. Keep both global pacing and per-record serialisation.
+
+```{mermaid}
+flowchart TD
+    R[Authenticated PAS request] --> T{Throttle permits request?}
+    T -->|No| H[429: request frequency]
+    H --> B[Respect Retry-After if present; reduce rate and back off]
+    T -->|Yes| V[Validate endpoint input and permissions]
+    V --> K{PATCH or photograph upload?}
+    K -->|No: import| I[Create one find]
+    K -->|Yes| L{Record lock acquired?}
+    L -->|No| E[429: record busy]
+    E --> S[Serialise work for that record; back off]
+    L -->|Yes| U[Update record; release lock]
+```
+
+### Idempotency {#idempotency}
+
+An import creates a new identifier on every successful call. Keep the returned
+identifier and persistent URL in the exporting application. If a connection
+times out or a server error leaves the outcome uncertain, reconcile it with
+AMCR before repeating the import; an automatic retry can create a duplicate.
+A repeated PATCH whose first attempt succeeded can return `422` because the
+value is already current. A repeated photograph upload can attach another file.
+
+## Worked examples {#examples}
+
+First obtain a token by following the [Authentication API examples](/auth-api/index.qmd#example-requests).
+The examples here start with that token and demonstrate authenticated requests,
+file hashing, import and registration-number update. Prepare `find.xml` from
+the [minimal document](#minimal-document) or the full template, with identifiers
+from your own project and vocabulary mapping.
+
+::: {.callout-warning}
+
+## These calls write data
+
+Run them against the [training instance](#access)
+(`https://amcr-tr.aiscr.cz`) while developing the client. Against production
+they create real records.
+
+:::
+
+### cURL (Bash)
+
+Requires cURL, OpenSSL and Python 3. The base URL is prompted explicitly so that
+running the example does not silently select production. Token input is hidden.
+The commands stop on an HTTP error; they do not automatically retry writes.
+
+```bash
+set -euo pipefail
+read -r -p 'AMCR base URL (https://..., no trailing slash): ' AMCR_BASE_URL
+read -r -s -p 'Bearer token from the Authentication API: ' AMCR_TOKEN
+printf '\n'
+
+DIGEST=$(openssl dgst -sha512 -binary find.xml | openssl base64 -A)
+curl --fail-with-body --silent --show-error --max-time 120 \
+  --header "Authorization: Bearer ${AMCR_TOKEN}" \
+  --header "Content-Digest: sha-512=:${DIGEST}:" \
+  --form 'file=@find.xml;type=application/xml' \
+  --dump-header import.headers --output import-response.xml \
+  "${AMCR_BASE_URL}/api/pas/import-xml"
+
+# Read the assigned identifier from the successful response headers.
+RECORD_ID=$(python3 -c 'from pathlib import Path; print(next(line.split(":", 1)[1].strip() for line in Path("import.headers").read_text().splitlines() if line.lower().startswith("x-record-id:")))')
+printf 'Created record: %s\n' "$RECORD_ID"
+read -r -p 'New registration number (different from the imported value): ' REGISTRATION_NUMBER
+
+# Keep requests apart; deployments can impose additional limits.
+sleep 0.2
+curl --fail-with-body --silent --show-error --max-time 120 \
+  --request PATCH --get \
+  --header "Authorization: Bearer ${AMCR_TOKEN}" \
+  --data-urlencode "evidencni_cislo=${REGISTRATION_NUMBER}" \
+  --output patch-response.xml \
+  "${AMCR_BASE_URL}/api/pas/nalez/${RECORD_ID}/evidencni-cislo"
+unset AMCR_TOKEN
+```
+
+`--get` places the encoded data in the query string; `--request PATCH` selects
+the method. No body or digest is needed for the registration-number update.
+Keep `import.headers` and the XML response to reconcile later operations.
+
+### Python
+
+Requires the `requests` package. The token is supplied through a hidden prompt;
+the authentication procedure remains in the Authentication API reference.
+
+```python
+import base64
+import getpass
+import hashlib
+from pathlib import Path
+import time
+from urllib.parse import quote
+
+import requests
+
+base_url = input("AMCR base URL (https://...): ").rstrip("/")
+token = getpass.getpass("Bearer token from the Authentication API: ")
+content = Path("find.xml").read_bytes()
+digest = base64.b64encode(hashlib.sha512(content).digest()).decode("ascii")
+headers = {"Authorization": f"Bearer {token}"}
+
+response = requests.post(
+    f"{base_url}/api/pas/import-xml",
+    headers={**headers, "Content-Digest": f"sha-512=:{digest}:"},
+    files={"file": ("find.xml", content, "application/xml")},
+    timeout=(10, 120),
+)
+response.raise_for_status()
+if response.status_code != 201:
+    raise RuntimeError(f"Unexpected import status: {response.status_code}")
+record_id = response.headers["X-Record-ID"]
+Path("import-response.xml").write_bytes(response.content)
+Path("import-record-id.txt").write_text(record_id, encoding="utf-8")
+print("Created:", record_id, response.headers.get("Location", ""))
+
+number = input("New registration number (different from the imported value): ")
+time.sleep(0.2)
+patched = requests.patch(
+    f"{base_url}/api/pas/nalez/{quote(record_id, safe='')}/evidencni-cislo",
+    headers=headers,
+    params={"evidencni_cislo": number},
+    timeout=(10, 120),
+)
+patched.raise_for_status()
+Path("patch-response.xml").write_bytes(patched.content)
+```
+
+For photograph upload, calculate the digest from the photograph's bytes and
+send it as multipart `file` to the [photograph endpoint](#photograph), using
+the assigned record identifier. Keep this separate from the XML import.
+
+## See also {#see-also}
+
+- [MUSEION user manuals](https://doc.axiell.cz/prirucky/){.external} (Axiell) —
+  the reference client, including the AMCR integration manual and the
+  `NalezyAmcrService` description. In that manual's scenario numbering, this API
+  serves S2 and S3 (single and bulk export of finds to AMCR-PAS).
+- [OAI-PMH API](/oai-pmh/index.qmd) — reading records and harvesting vocabularies.
+- [Authentication API](/auth-api/index.qmd) — tokens and user information.
+- [AMCR 2.2 XML schema](https://api.aiscr.cz/schema/amcr/2.2/amcr.xsd){.external}.

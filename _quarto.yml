@@ -35,6 +35,8 @@ website:
         href: file-api/index.qmd
       - text: "Authentication Api"
         href: auth-api/index.qmd
+      - text: "Pas Api"
+        href: pas-api/index.qmd
     right:
       - text: "Changelogs"
         href: changelogs/index.qmd
@@ -73,6 +75,12 @@ website:
       contents:
         - auth-api/index.qmd
         
+    - id: pasapi
+      header: |
+        [![](/figs/logo-amcr-hor.png)](/pas-api/index.qmd)
+      contents:
+        - pas-api/index.qmd
+
     - id: changelogs
       header: |
         [![](/figs/logo-amcr-hor.png)](/changelogs/index.qmd)
