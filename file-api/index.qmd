@@ -1,7 +1,8 @@
 ---
 title: "AMCR File API"
-subtitle: API serving files and file thumbnails
-date: 2026-07-16
+subtitle: API serving files, their distributions, paradata and thumbnails
+date: 2026-09-23
+# date: 2026-07-16
 # date: 2025-12-10
 # date: 2025-03-28
 ---
@@ -9,15 +10,16 @@ date: 2026-07-16
 ## Overview
 
 **AMCR File API** serves files and their thumbnails from the AMCR repository.
+A file can also have alternative [distributions](#distributions-and-paradata) and paradata, served by the same API.
 File URLs can be obtained from the [OAI-PMH API](/oai-pmh/index.qmd) response.
-They are in the `soubor/url` element of the response, see example below. 
-Mimetype and the filename of the returned file are in the response headers.
+They are in the `soubor/url` element of the response, see example below.
+The mimetype of the returned file is in the `Content-Type` response header and its filename in the `Content-Disposition` header; for a distribution, both describe the distribution.
 
 - Base URL for the file API is `https://digiarchiv.aiscr.cz/id/`.
 
 ### Example response from OAI-PMH API
 
-Note that in the examples on this page files accessible to anyone on the internet are accessed, i.e. their `dokument/pristupnost` element equals value `A`.
+Note that the examples on this page access files available to anonymous users (group **A**, see [Access rules](#access-rules)).
 
 #### Samostatný nález / Individual find
 
@@ -80,16 +82,34 @@ Note that namespace prefix `amcr:` is stripped from the element tags.
 | `<url>` | URL to the file | `https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b` |
 | `<historie>` | Element with a record of changes | *individual subelements* |
 
+### Distributions and paradata
+
+Besides the original, a file can have alternative **distributions** -- other renditions of the same file, each with its own mimetype and filename.
+Each distribution is identified by its path, e.g. `atr/alto-xml`.
+The original itself is the distribution `orig`, which is also the default when no distribution is requested.
+
+A distribution can have **paradata**, served as plain text, JSON or other text-based formats.
+Paradata are optional; not every distribution has them.
+
+Records of the entities *dokument*, *knihovna_3d* and *samostatny_nalez* can be filtered in the [Digital Archive](https://digiarchiv.aiscr.cz/){.external} search by the facet `soubor_distri`.
+Its values are the distribution paths currently available for the record's files: `orig` plus the names of the distributions.
+
+See the [Distributions](#distributions) and [Paradata](#paradata) endpoints below.
+
 ### Access rules
 
 Different access rules apply to different files and access groups.
-There are three main groups of users:
+There are four main groups of users:
 
-- **A** (*Anonym*/*Anonymous*) -- anyone in the internet, non authenticated user;
+- **A** (*Anonym*/*Anonymous*) -- anyone on the internet, non-authenticated user;
 - **B** (*Badatel*/*Researcher*) -- any user registered in the system;
-- **C** (*Archeolog*/*Archaeologist*) -- archaeologist from a licensed organisation.
+- **C** (*Archeolog*/*Archaeologist*) -- archaeologist from a licensed organisation;
+- **D** (*Archivář*/*Archivist*) -- authorised AMCR archivist.
 
-Furthermore, groups **D** (*Archivář*/*Archivist*) and **E** (*Administrátor*/*Admin*) exist and no restrictions apply to them.
+Furthermore, group **E** (*Administrátor*/*Admin*) exists and no restrictions apply to it.
+
+The rules below apply to the original file and equally to all its distributions, paradata and large thumbnails.
+Only small thumbnails are available to anyone, see [Small thumbnails](#small-thumbnails).
 
 ::: {.column-page-inset-right}
 ```{r}
@@ -98,7 +118,7 @@ Furthermore, groups **D** (*Archivář*/*Archivist*) and **E** (*Administrátor*
 read.csv("tabs/access.csv", tryLogical = FALSE) |> 
   dplyr::mutate(dplyr::across(dplyr::everything(), \(x) dplyr::if_else(x == TRUE, "&#x2714;", x)),
                 dplyr::across(dplyr::everything(), \(x) dplyr::if_else(x == FALSE, "&#x2718;", x))) |>
-  knitr::kable(align = "llll")
+  knitr::kable(align = "lllll")
 ```
 :::
 
@@ -107,7 +127,8 @@ read.csv("tabs/access.csv", tryLogical = FALSE) |>
 > *my record* -- record created by the user  
 > *my organisation record* -- record created by someone from the user's organisation; for a project, a project of the user's organisation  
 > *my organisation's project* -- individual find recorded under a project of the user's organisation  
-> *handed over to my organisation* -- individual find handed over to the user's organisation (`samostatny_nalez/predano_organizace`), in any processing state
+> *handed over to my organisation* -- individual find handed over to the user's organisation (`samostatny_nalez/predano_organizace`), in any processing state  
+> *knihovna_3d* -- records of the 3D library are documents; the `//dokument/soubor` row applies to them
 
 ### Authentication
 
@@ -123,7 +144,7 @@ User registration is available here: [https://amcr.aiscr.cz/accounts/register/](
 
 ```sh 
 curl -u <username> "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb" \
-    -o thumbnail.jpg
+    -o thumbnail.png
 ```
 
 #### Authentication API 
@@ -134,13 +155,29 @@ curl -u <username> "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cd
 
 | Name | Type | Description | Required | Example |
 |------|------|-------------|----------|---------|
-| `digiarchiv_url` | *string* | Base URL for the API | `true` | `https://digiarchiv.aiscr.cz/` |
+| `digiarchiv_url` | *string* | Base URL for the API | `true` | `https://digiarchiv.aiscr.cz` |
 | `ident_cely` | *string* | Full identifier of the record | `true` | `M-202301215-N00001`, `C-TX-198603094` |
 | `file_id` | *string* | Unique identifier of the file | `true` | `aa0cdd95-4bc4-4358-a831-2cf8672a3e4b`, `3e28c562-17f6-48dc-b8f5-787d14fb55af` |
-| `page` | *integer* | Specific page number | `true` for large thumbnails endpoint | `1`, `2` |
+| `page` | *integer* | Specific page number | `true` for the page thumbnail endpoint | `1`, `2` |
+| `dist` | *string* | Path of the distribution, see [Distributions and paradata](#distributions-and-paradata) | `false`, defaults to `orig` | `orig`, `atr/alto-xml` |
 
 
-## Endpoints 
+## Endpoints
+
+All endpoints share one path pattern: the file path followed by at most one of the suffixes below.
+
+```text
+/id/{ident_cely}/file/{file_id}                     original file
+/id/{ident_cely}/file/{file_id}/{dist}              distribution of the file
+/id/{ident_cely}/file/{file_id}/thumb               small thumbnail
+/id/{ident_cely}/file/{file_id}/thumb-large         large thumbnail of the first page
+/id/{ident_cely}/file/{file_id}/thumb/page/{page}   large thumbnail of a page
+/id/{ident_cely}/file/{file_id}/paradata[/{dist}]   paradata of a distribution
+```
+
+The segments `thumb`, `thumb-large`, `thumb/page/{page}` and `paradata` are reserved.
+Any other path segment after `{file_id}` is resolved as a distribution of the file, `orig` being the explicit form of the original.
+A request for a distribution that the file does not have returns `404 Not Found`.
 
 ### Small thumbnails
 
@@ -156,12 +193,12 @@ All small thumbnails are available without authentication.
 
 ##### cURL
 
-```sh 
+```sh
 curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb" \
-    -o thumbnail.jpeg
+    -o thumbnail.png
 ```
 
-##### BASH script 
+##### BASH script
 
 Prompts for username and password.
 
@@ -178,7 +215,7 @@ echo
 # Curl command with authentication and output
 curl -u "$username:$password" \
     "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b/thumb" \
-    -o thumbnail.jpeg
+    -o thumbnail.png
 ```
 
 ##### Python script
@@ -198,15 +235,20 @@ base_url = "https://digiarchiv.aiscr.cz"
 ident_cely = "M-202301215-N00001"
 file_id = "aa0cdd95-4bc4-4358-a831-2cf8672a3e4b"
 
+# Prompt for username and password
+username = input("Enter username: ")
+password = getpass.getpass("Enter password: ")
+
 # Download thumbnail
 response = requests.get(
     f"{base_url}/id/{ident_cely}/file/{file_id}/thumb",
+    auth=(username, password),
 )
 
 # Save file if file download was successful
 if response.status_code == 200:
     # Save the file
-    with open(f"{file_id}.jpeg", "wb") as file:
+    with open(f"{file_id}.png", "wb") as file:
         file.write(response.content)
     print("Thumbnail downloaded successfully.")
 else:
@@ -220,7 +262,8 @@ else:
 
 `GET` method to request large thumbnail of any page in the document.
 Large thumbnails are in **JPEG** file format in case of (textual) documents and **PNG** file format in case of images (photographs), with the maximum **size of 800x800 px**.
-Without authentication, only some of the large thumbnails are available, see section [Authentication](index.qmd#authentication) above.
+An image has a single page, so for images only `page` = `1` is valid; any other page returns `404 Not Found`.
+Large thumbnails follow the access rules of the original file, see section [Access rules](#access-rules) above.
 
 - Method: `GET`
 - Endpoint: `/id/{ident_cely}/file/{file_id}/thumb/page/{page}`
@@ -235,22 +278,83 @@ curl "https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5
 ```
 
 
+### Large thumbnail of the first page
+
+`GET` method to request the large thumbnail of the first page of a document or of an image.
+The thumbnail is in **PNG** file format.
+It follows the access rules of the original file, see section [Access rules](#access-rules) above.
+
+- Method: `GET`
+- Endpoint: `/id/{ident_cely}/file/{file_id}/thumb-large`
+
+#### Example requests
+
+##### cURL
+
+```sh
+curl "https://digiarchiv.aiscr.cz/id/C-TX-198603094/file/3e28c562-17f6-48dc-b8f5-787d14fb55af/thumb-large" \
+    -o thumbnail.png
+```
+
+
 ### Original files
 
 `GET` method to request original files.
-Without authentication, only some original files are available, see section [Authentication](index.qmd#authentication) above.
+Without authentication, only some original files are available, see section [Access rules](#access-rules) above.
 
 - Method: `GET`
 - Endpoint: `/id/{ident_cely}/file/{file_id}`
 
 
-#### Example requests 
+#### Example requests
 
-##### cURL 
+##### cURL
 
-```sh 
+```sh
 curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-a831-2cf8672a3e4b" \
     -o file.jpeg
+```
+
+
+### Distributions
+
+`GET` method to request a distribution of a file, see [Distributions and paradata](#distributions-and-paradata).
+The `Content-Type` and `Content-Disposition` response headers carry the mimetype and filename of the requested distribution.
+The distribution `orig` returns the original file, i.e. the same response as the [Original files](#original-files) endpoint.
+A distribution that the file does not have returns `404 Not Found`.
+Distributions follow the access rules of the original file, see section [Access rules](#access-rules) above.
+
+- Method: `GET`
+- Endpoint: `/id/{ident_cely}/file/{file_id}/{dist}`
+
+#### Example requests
+
+##### cURL
+
+```sh
+curl "https://digiarchiv.aiscr.cz/id/{ident_cely}/file/{file_id}/atr/alto-xml" \
+    -o distribution.xml
+```
+
+
+### Paradata
+
+`GET` method to request the paradata of a distribution, see [Distributions and paradata](#distributions-and-paradata).
+Paradata are always returned as plain text (`Content-Type: text/plain`).
+The form without `{dist}` returns the paradata of the original, i.e. the same response as `paradata/orig`.
+Paradata follow the access rules of the original file, see section [Access rules](#access-rules) above.
+
+- Method: `GET`
+- Endpoint: `/id/{ident_cely}/file/{file_id}/paradata` -- paradata of the original (`orig`)
+- Endpoint: `/id/{ident_cely}/file/{file_id}/paradata/{dist}` -- paradata of the distribution `{dist}`
+
+#### Example requests
+
+##### cURL
+
+```sh
+curl "https://digiarchiv.aiscr.cz/id/{ident_cely}/file/{file_id}/paradata/atr/alto-xml" \
+    -o paradata.txt
 ```
 
 ## Notes
@@ -263,8 +367,16 @@ curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-
 |------|-------------|----------------|
 | 401 | Unauthorized | Invalid credentials |
 | 403 | Forbidden | Insufficient permissions |
-| 404 | Not Found | Invalid identifier or file ID |
-| 429 | Too many requests | Too frequent requests (parallelisation not allowed, 1s or more between requests)
+| 404 | Not Found | Invalid identifier, file ID or distribution |
+| 429 | Too Many Requests | Too frequent requests, see [Rate limiting](#rate-limiting) |
+
+### Rate limiting
+
+File downloads are rate limited per client: parallel requests are not allowed and there must be 1 second or more between requests.
+The limit applies identically to original files, distributions and paradata.
+
+A request over the limit returns `429 Too Many Requests` with a `Retry-After` header stating, in whole seconds, how long to wait before retrying.
+Wait at least that long and do not send requests in parallel.
 
 
 ## Postman definition
@@ -350,6 +462,79 @@ curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Download large thumbnail",
+			"protocolProfileBehavior": {
+				"disableCookies": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digiarchiv_url}}/id/{{ident_cely}}/file/{{file_id}}/thumb-large",
+					"host": [
+						"{{digiarchiv_url}}"
+					],
+					"path": [
+						"id",
+						"{{ident_cely}}",
+						"file",
+						"{{file_id}}",
+						"thumb-large"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download distribution",
+			"protocolProfileBehavior": {
+				"disableCookies": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digiarchiv_url}}/id/{{ident_cely}}/file/{{file_id}}/{{dist}}",
+					"host": [
+						"{{digiarchiv_url}}"
+					],
+					"path": [
+						"id",
+						"{{ident_cely}}",
+						"file",
+						"{{file_id}}",
+						"{{dist}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download paradata",
+			"protocolProfileBehavior": {
+				"disableCookies": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{digiarchiv_url}}/id/{{ident_cely}}/file/{{file_id}}/paradata/{{dist}}",
+					"host": [
+						"{{digiarchiv_url}}"
+					],
+					"path": [
+						"id",
+						"{{ident_cely}}",
+						"file",
+						"{{file_id}}",
+						"paradata",
+						"{{dist}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -391,6 +576,11 @@ curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-
 	],
 	"variable": [
 		{
+			"key": "digiarchiv_url",
+			"value": "https://digiarchiv.aiscr.cz",
+			"type": "default"
+		},
+		{
 			"key": "ident_cely",
 			"value": "",
 			"type": "default"
@@ -403,6 +593,11 @@ curl "https://digiarchiv.aiscr.cz/id/M-202301215-N00001/file/aa0cdd95-4bc4-4358-
 		{
 			"key": "page",
 			"value": "1"
+		},
+		{
+			"key": "dist",
+			"value": "orig",
+			"type": "default"
 		}
 	]
 }
