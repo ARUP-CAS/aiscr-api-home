@@ -4,7 +4,8 @@ _site/
 # vscode
 .vscode/
 
-# agents
-.codex/
-.claude/
-.cursor/
+# venv
+.venv/
+
+# node_modules
+node_modules/

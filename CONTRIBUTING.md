@@ -138,13 +138,13 @@ Repozitář obsahuje Lua filtry. Při úpravách Lua kódu otestujte render výs
 Při úpravě popisu endpointů nebo parametrů vždy ověřte vůči:
 
 - **Živým API** (api.aiscr.cz je jen dokumentační web; skutečná API):
-  - OAI-PMH: https://api.aiscr.cz/oai
+  - OAI-PMH: https://api.aiscr.cz/oai (příp. versioned https://api.aiscr.cz/2.2/oai)
   - File API: https://digiarchiv.aiscr.cz/
   - Auth API: https://amcr.aiscr.cz/
 - **Zdrojovému kódu** Auth API: https://github.com/ARUP-CAS/aiscr-webamcr
 - **Zdrojovému kódu** File API + OAI-PMH: https://github.com/ARUP-CAS/aiscr-digiarchiv-2
 
-Podrobně viz **AGENTS.md** — Verification Sources.
+Canonické URL a curl příkazy pro ověření jsou v **AGENTS.md** (Verification Sources) a v `.agents/config/review_config.yaml` (live_endpoints). Podrobně viz **AGENTS.md** — Verification Sources.
 
 ---
 
