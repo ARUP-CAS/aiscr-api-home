@@ -1,0 +1,25 @@
+---
+title: "File distributions and paradata in the File API"
+date: 2026-09-23
+categories: [File API]
+description: "The File API serves alternative distributions of files and their paradata, and a large thumbnail of the first page."
+---
+
+The [File API](/file-api/index.qmd) serves, besides original files and thumbnails,
+alternative **distributions** of a file at `/id/{ident_cely}/file/{file_id}/{dist}`,
+`orig` being the explicit form of the original, and their **paradata** at
+`/paradata[/{dist}]`, always as plain text. A distribution the file does not have
+returns `404 Not Found`. The Digital Archive search facet `soubor_distri` on
+*dokument*, *knihovna_3d* and *samostatny_nalez* lists the available distributions.
+A new endpoint `/thumb-large` returns the large thumbnail of the first page.
+
+Distributions, paradata and large thumbnails follow the access rules of the original
+file. The [access table](/file-api/index.qmd#access-rules) gained a column for
+archivists (group **D**), who have unrestricted access. The
+[rate limit](/file-api/index.qmd#rate-limiting) applies identically to original files,
+distributions and paradata, and `429` responses state in `Retry-After` how many whole
+seconds to wait.
+
+The page also received smaller corrections: the example scripts save small thumbnails
+as PNG, the Python example prompts for credentials, and the Postman collection covers
+the new endpoints.
