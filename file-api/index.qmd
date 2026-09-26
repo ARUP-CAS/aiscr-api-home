@@ -341,6 +341,7 @@ curl "https://digiarchiv.aiscr.cz/id/{ident_cely}/file/{file_id}/atr/alto-xml" \
 
 `GET` method to request the paradata of a distribution, see [Distributions and paradata](#distributions-and-paradata).
 Paradata are always returned as plain text (`Content-Type: text/plain`).
+This is planned to change: paradata written under the ATRIUM storage contract are JSON-LD following the RO-Crate Process Run Crate profile, and will be served as `application/ld+json`.
 The form without `{dist}` returns the paradata of the original, i.e. the same response as `paradata/orig`.
 Paradata follow the access rules of the original file, see section [Access rules](#access-rules) above.
 
